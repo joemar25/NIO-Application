@@ -7,6 +7,11 @@ def hello():
     return render_template('index.html')
 
 
+@app.route("/members")
+def members():
+    return {"members": ["member1", "member2", "member3"]}
+
+
 if __name__ == "__main__":
-    # app.run()
+    # debug mode is here since we are in dev mode
     app.run(debug=True)
