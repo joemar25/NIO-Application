@@ -22,7 +22,7 @@
           .venv\scripts\activate
     5. install flask
        > pip install flask
-    6. 
+    6. setup other files
 ```
 
 ## References
