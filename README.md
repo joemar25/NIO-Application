@@ -23,6 +23,9 @@
     5. install flask
        > pip install flask
     6. setup other files
+    7. if finished configuring, run command:
+        > python app.py
+    - start creating, using a web server
 ```
 
 ## References
