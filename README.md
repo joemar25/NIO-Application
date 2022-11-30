@@ -1,7 +1,5 @@
 # Project
 
-> made by Joemar
-
 ## Setting Up
 
 - python
