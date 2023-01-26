@@ -30,11 +30,46 @@
 
 ```txt
     for front end setup
-        use command: npx create-react-app client
+        requires to install node.js
+        and use command: npx create-react-app client
+        to get started, 'client' is just a folder name.
+        npx create-react-app .
+        use . to install in current directory
 
     to go in the front end
         use command: cd client
                      npm start
+```
+
+ npm start
+    Starts the 'development' server.
+
+  npm run build
+    Bundles the app into static files for 'production'.
+
+  npm test
+    Starts the 'test' runner.
+
+  npm run eject
+    'Removes' this tool and 'copies' build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+## Extention needs
+
+- ES7 React/Redux/GraphQL/React-Native snippets
+  - for easy native react coding (example, using rcf and enter)
+
+## activation
+
+@important!
+
+```txt
+  cd app
+  .venv\scripts\activate
+  python server.py
+
+  cd client
+  npm start
 ```
 
 ## References

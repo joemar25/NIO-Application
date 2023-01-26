@@ -3,15 +3,14 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
-    return render_template('index.html')
+def index():
+    return 'return page'
 
 
-@app.route("/members")
-def members():
+@app.route("/record", methods=['GET'])
+def record():
     return {"members": ["member1", "member2", "member3"]}
 
 
 if __name__ == "__main__":
-    # debug mode is here since we are in dev mode
-    app.run(debug=True)
+    app.run(debug=True, threaded=True)
