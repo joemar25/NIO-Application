@@ -1,10 +1,18 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, request, url_for
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    return 'return page'
+    return render_template('index.html')
+
+
+@app.route("/index", methods=['POST'])
+def sent():
+    if request.method == "POST":
+        user_name = request.form['username']
+        user_script = request.form['text_script']
+    return render_template("index.html", user_name=user_name, user_script=user_script)
 
 
 '''
@@ -12,7 +20,7 @@ def index():
 '''
 
 
-@app.route("/feedback", methods=['GET'])
+@ app.route("/feedback", methods=['GET'])
 def feedback():
     # sample -> {"members": ["member1", "member2", "member3"]}
 
@@ -33,3 +41,4 @@ def feedback():
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)
+    # debug=True is in development mode

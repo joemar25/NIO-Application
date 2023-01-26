@@ -1,0 +1,39 @@
+<!-- this extends our base html -->
+{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
+%}
+
+<form action="/index" method="POST">
+  <label for="html">What do you want me to call you?</label>
+  <br />
+  <input
+    class=""
+    type="text"
+    id="username"
+    name="username"
+    placeholder="name"
+    required
+  />
+  <br />
+
+  <br />
+  <label for="text_script">Script</label>
+  <br />
+  <input
+    class="txt_area"
+    type="text"
+    id="text_script"
+    name="text_script"
+    placeholder="copy and paste your speech script here"
+    required
+  />
+
+  <br />
+  <br />
+  <input type="submit" id="submit" value="Proceed" />
+</form>
+
+<h4>action</h4>
+<p>user name is {{ user_name}}</p>
+<textarea>{{ user_script}}</textarea>
+
+{% endblock %}
