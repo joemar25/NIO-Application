@@ -57,7 +57,7 @@
 - ES7 React/Redux/GraphQL/React-Native snippets
   - for easy native react coding (example, using rcf and enter)
 
-## activation
+## Activation
 
 @important!
 
@@ -68,6 +68,22 @@
 
   cd client
   npm start
+```
+
+## Installing the package that will help us get the files we want from forms
+
+```cmd
+  # if error occurs
+  python -m pip install --upgrade pip
+  # install flask_wtf
+  pip install flask_wtf wtforms
+```
+
+> then use it in the file to get forms
+  > source: <https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
+
+```py
+
 ```
 
 ## References

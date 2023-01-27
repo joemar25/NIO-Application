@@ -1,5 +1,5 @@
+# for default configuration
 from flask import Flask, render_template, request
-from flask import Flask, render_template, request, url_for
 from werkzeug.utils import secure_filename
 import os
 
@@ -7,9 +7,10 @@ UPLOAD_FOLDER = '../app/temp_data/text'
 ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask(__name__)
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER  # Specify the destination folder
-# app.config[‘MAX_CONTENT-PATH‘] Specifies the maximum sixe of the file in bytes
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER  # Specify the destination folder
+# app.config[‘MAX_CONTENT-PATH‘] Specifies the maximum size of the file in bytes
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+app.config['SECRET_KEY'] = 'supersecretkey'
 
 
 class Routes:
@@ -37,7 +38,9 @@ class Routes:
             upload = request.files['file_script']
 
             if text == "" and upload.filename != '':
-                upload.save(UPLOAD_FOLDER, secure_filename(upload.filename))
+                # upload.save(UPLOAD_FOLDER, secure_filename(upload.filename))
+                upload.save(os.path.join(os.path.abspath(os.path.dirname(
+                    __file__)), app.config['UPLOAD_FOLDER'], secure_filename(upload.filename)))
             else:
                 return render_template("index.html", user_name=user_name, text_script=text)
         return render_template("index.html", user_name=user_name, text_script=text)
