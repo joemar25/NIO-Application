@@ -23,9 +23,7 @@ class Routes:
             - is the first page that the user will see
             - user can enter their name and the script for their speech
         """
-        text = ""
-        user_name = ""
-        upload = ""
+        text = upload = user_name = ""
 
         if request.method == "POST":
             user_name = request.form['username']
@@ -34,15 +32,31 @@ class Routes:
                   text is too short
                   uploaded file texts is too short or token
             """
-            text = request.form['text_script']
             upload = request.files['file_script']
+            text = request.form['text_script']
 
-            if text == "" and upload.filename != '':
-                # upload.save(UPLOAD_FOLDER, secure_filename(upload.filename))
+            if text == "" and upload.filename == '':
+                return render_template("index.html")
+
+            elif text == "" and not upload.filename == "":
                 upload.save(os.path.join(os.path.abspath(os.path.dirname(
                     __file__)), app.config['UPLOAD_FOLDER'], secure_filename(upload.filename)))
-            else:
-                return render_template("index.html", user_name=user_name, text_script=text)
+
+                filename = app.config['UPLOAD_FOLDER'] + \
+                    "/" + secure_filename(upload.filename)
+                print(filename)
+                content = ""
+                if not os.path.isfile(filename):
+                    print('File does not exist.')
+                else:
+                    # Open the file as f and reads the file
+                    with open(filename) as f:
+                        content = f.read().splitlines()
+                text = content
+                text = [i.strip() for i in text]
+
+                print(text)
+
         return render_template("index.html", user_name=user_name, text_script=text)
 
     @app.route("/store", methods=['POST'])
