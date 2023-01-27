@@ -15,6 +15,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 class Routes:
 
     @app.route("/")
+    @app.route("/index")
     def index():
         """
             #### Index function in route ('/')
@@ -42,11 +43,10 @@ class Routes:
             upload = request.files['file_script']
 
             if text == "" and upload.filename != '':
-                upload.save(UPLOAD_FOLDER,
+                upload.save(os.path.join(UPLOAD_FOLDER),
                             secure_filename(upload.filename))
             else:
-                # return render_template("index.html")
-                return render_template("index.html", user_name=user_name, text_script=text)
+                return render_template("index.html")
         return render_template("index.html", user_name=user_name, text_script=text)
 
     @app.route("/store", methods=['POST'])

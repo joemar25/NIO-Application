@@ -2,7 +2,7 @@
 {% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
 %}
 
-<form action="/index" method="POST">
+<form action="/index" method="post" enctype=multipart/form-data>
   <label for="html">What do you want me to call you?</label>
   <br />
   <input
@@ -16,16 +16,18 @@
   <br />
 
   <br />
-  <label for="text_script">Script</label>
-  <br />
+  input (copy paste you're script)
   <input
     class="txt_area"
     type="text"
     id="text_script"
     name="text_script"
     placeholder="copy and paste your speech script here"
-    required
   />
+
+  <br />
+  or input file text
+  <input type="file" id="file_script" name="file_script" accept=".txt" />
 
   <br />
   <br />
@@ -34,6 +36,6 @@
 
 <h4>action</h4>
 <p>user name is {{ user_name}}</p>
-<textarea>{{ user_script}}</textarea>
+<textarea>{{ text_script}}</textarea>
 
 {% endblock %}

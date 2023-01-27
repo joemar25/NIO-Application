@@ -73,3 +73,17 @@
 ## References
 
 <https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment>
+
+solution for file upload
+
+<https://www.askpython.com/python-modules/flask/flask-file-uploading>
+
+<https://stackoverflow.com/questions/61628503/flask-uploads-importerror-cannot-import-name-secure-filename>
+
+<https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask>
+
+solution for permission error
+
+<https://www.youtube.com/watch?v=bwduoqYRqjA&ab_channel=RomanDoesConsumerTips>
+
+<https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
