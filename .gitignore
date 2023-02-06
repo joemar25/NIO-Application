@@ -2,9 +2,11 @@
 *.venv
 /client/node_modules
 /client/build
-/note.txt
+*note.txt
 /__
+/app/temp_data
 speedpy.txt
+PATCH_NOTES.md
 
 # dependencies
 /node_modules

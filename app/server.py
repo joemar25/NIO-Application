@@ -1,16 +1,30 @@
-# for default configuration
+# python packages
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import os
+# our local packages
+from models import helpers
 
+# configurations - if error occurs, create a folder manually
 UPLOAD_FOLDER = '../app/temp_data/text'
-ALLOWED_EXTENSIONS = set(['txt'])
+ALLOWED_EXTENSIONS = {'txt'}
 
+# flask instance
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER  # Specify the destination folder
-# app.config[‘MAX_CONTENT-PATH‘] Specifies the maximum size of the file in bytes
+# destination folder when saving a flie
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# the maximum size of the file in bytes
+# app.config['MAX_CONTENT-PATH']
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 app.config['SECRET_KEY'] = 'supersecretkey'
+
+# helper instance
+helper = helpers
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class Routes:
@@ -23,40 +37,80 @@ class Routes:
             - is the first page that the user will see
             - user can enter their name and the script for their speech
         """
+
+        # use validation and error class from helper
+        valid = helper.Validation
+
+        # this is the containers of string that we will use later
         text = upload = user_name = ""
 
+        # check if the request method use if Post
         if request.method == "POST":
+
+            # get the request from the input file
             user_name = request.form['username']
-            """
-                - create a validation tester for:
-                  text is too short
-                  uploaded file texts is too short or token
-            """
-            upload = request.files['file_script']
             text = request.form['text_script']
 
-            if text == "" and upload.filename == '':
-                return render_template("index.html")
+            # check if the post request has the file part
+            if 'file_script' in request.files:
+                upload = request.files['file_script']
 
-            elif text == "" and not upload.filename == "":
+            """
+                if the text and upload file is empty return as it is
+                - good for starting the index file without anything on the input
+            """
+            if user_name == "" and text == "" and upload.filename == '':
+                return render_template("index.html", error="username and script text are not found. try again")
+
+            # if user_name is not empty but it is not valid return error message
+            if not user_name == "" and not valid.name(user_name):
+                return render_template("index.html", error="username error. try again")
+
+            # we have our user_name now but no text file or text found
+            if text == "" and upload.filename == '':
+                return render_template("index.html", error="no script text found. try again")
+
+            # our user_name is empty but we have something in our text fild or upload field
+            if user_name == "" and (text != "" or not upload.filename != ""):
+                return render_template("index.html", error="no username found. try again")
+
+            """
+                if text is empty but we have upload file
+                check the file path and file exist
+                if true proceed uploading it to our local storage
+                - generate filname
+                - and save as text
+                else return with error    
+            """
+            if text == "" and not upload.filename == "":
+
+                # if the file uploaded is a file but not the allowed one (txt file only here)
+                if upload and not allowed_file(upload.filename):
+                    return render_template("index.html", error="invalid file type. try again")
+
+                # save to path
                 upload.save(os.path.join(os.path.abspath(os.path.dirname(
                     __file__)), app.config['UPLOAD_FOLDER'], secure_filename(upload.filename)))
-
+                # generate filename
                 filename = app.config['UPLOAD_FOLDER'] + \
                     "/" + secure_filename(upload.filename)
-                print(filename)
-                content = ""
+
+                # if the file does not exist
                 if not os.path.isfile(filename):
-                    print('File does not exist.')
-                else:
-                    # Open the file as f and reads the file
-                    with open(filename) as f:
-                        content = f.read().splitlines()
-                text = content
-                text = [i.strip() for i in text]
+                    return render_template("index.html", error="file does not exist. try again")
+                    # read the contents of file and set them on text variable
 
-                print(text)
+                with open(filename) as f:
+                    text = f.read()
 
+                if not valid.text(text):
+                    return render_template("index.html", error="text is too short. try again")
+
+            # if text is not empty but it is not valid return error message
+            if not text == "" and not valid.text(text):
+                return render_template("index.html", error="script text is too short. try again")
+
+        # proceed with no error messages
         return render_template("index.html", user_name=user_name, text_script=text)
 
     @app.route("/store", methods=['POST'])
@@ -89,5 +143,11 @@ class Routes:
 
 
 if __name__ == "__main__":
-    # we are in development mode
+
+    """
+        port=8080 is important for us; when connecting to the client's frontent we will
+        configure package.json and set the to "proxy": "http://127.0.0.1:8080" since we use
+        8080 else just put the "proxy": "http://127.0.0.1:5000" since it is the default proxy
+    """
+
     app.run(debug=True, threaded=True, host='localhost', port=8080)

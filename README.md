@@ -103,3 +103,5 @@ solution for permission error
 <https://www.youtube.com/watch?v=bwduoqYRqjA&ab_channel=RomanDoesConsumerTips>
 
 <https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
+
+<https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/>
