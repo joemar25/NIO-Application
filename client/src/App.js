@@ -3,14 +3,15 @@
 */
 
 
-import React from 'react' 
+import React from 'react'
+import './App.css';
 // importing record.js
-import Record from './Record'
+import Home from './Home'
 
 function App() {
     // return only one html elements in this case
     return (
-        <Record />        
+        <Home />
     )
 }
 

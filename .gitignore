@@ -1,5 +1,5 @@
 # personal choice
-*.venv
+/app/.venv
 /client/node_modules
 /client/build
 *note.txt
@@ -7,6 +7,8 @@
 /app/temp_data
 speedpy.txt
 PATCH_NOTES.md
+
+Requirement.txt
 
 # dependencies
 /node_modules

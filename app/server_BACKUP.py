@@ -33,7 +33,7 @@ class Routes:
     @app.route("/index", methods=['GET', 'POST'])
     def index():
         """
-            # Index function in route ('/')
+            #### Index function in route ('/')
             - is the first page that the user will see
             - user can enter their name and the script for their speech
         """
@@ -60,19 +60,19 @@ class Routes:
                 - good for starting the index file without anything on the input
             """
             if user_name == "" and text == "" and upload.filename == '':
-                return {"error": "username and script text are not found. try again"}
+                return render_template("index.html", error="username and script text are not found. try again")
 
             # if user_name is not empty but it is not valid return error message
             if not user_name == "" and not valid.name(user_name):
-                return {"error": "username error. try again"}
+                return render_template("index.html", error="username error. try again")
 
             # we have our user_name now but no text file or text found
             if text == "" and upload.filename == '':
-                return {"error": "no script text found. try again"}
+                return render_template("index.html", error="no script text found. try again")
 
             # our user_name is empty but we have something in our text fild or upload field
             if user_name == "" and (text != "" or not upload.filename != ""):
-                return {"error": "no username found. try again"}
+                return render_template("index.html", error="no username found. try again")
 
             """
                 if text is empty but we have upload file
@@ -80,13 +80,13 @@ class Routes:
                 if true proceed uploading it to our local storage
                 - generate filname
                 - and save as text
-                else return with error
+                else return with error    
             """
             if text == "" and not upload.filename == "":
 
                 # if the file uploaded is a file but not the allowed one (txt file only here)
                 if upload and not allowed_file(upload.filename):
-                    return {"error": "invalid file type. try again"}
+                    return render_template("index.html", error="invalid file type. try again")
 
                 # save to path
                 upload.save(os.path.join(os.path.abspath(os.path.dirname(
@@ -97,35 +97,31 @@ class Routes:
 
                 # if the file does not exist
                 if not os.path.isfile(filename):
-                    return {"error": "file does not exist. try again"}
+                    return render_template("index.html", error="file does not exist. try again")
+                    # read the contents of file and set them on text variable
 
-                # read the contents of file and set them on text variable
                 with open(filename) as f:
                     text = f.read()
 
                 if not valid.text(text):
-                    return {"error": "text is too short. try again"}
+                    return render_template("index.html", error="text is too short. try again")
 
             # if text is not empty but it is not valid return error message
             if not text == "" and not valid.text(text):
-                return {"error": "script text is too short. try again"}
+                return render_template("index.html", error="script text is too short. try again")
 
         # proceed with no error messages
-        # redirect to a page together with these dictionary
-        return {
-            "user_name": user_name,
-            "text_script": text
-        }
+        return render_template("index.html", user_name=user_name, text_script=text)
 
-    @ app.route("/store", methods=['POST'])
+    @app.route("/store", methods=['POST'])
     def store():
         """
-            # Store function with route ('/store')
+            #### Store function with route ('/store')
             - get the recorded file and store for processing
         """
         return 0
 
-    @ app.route("/feedback", methods=['GET'])
+    @app.route("/feedback", methods=['GET'])
     def show():
         rate = 80
         grammar = 81
@@ -141,7 +137,7 @@ class Routes:
             "feedback": feedback
         }
 
-    @ app.route("/destroy", methods=['POST'])
+    @app.route("/destroy", methods=['POST'])
     def destroy():
         return 0
 
