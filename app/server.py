@@ -1,5 +1,5 @@
 # python packages
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, request
 from werkzeug.utils import secure_filename
 import os
 # our local packages
@@ -117,6 +117,14 @@ class Routes:
             "text_script": text
         }
 
+    @ app.route("/show", methods=['POST'])
+    def show():
+        """
+            # Show function with route ('/show')
+            - get the name and the input text to display in the browswer
+        """
+        return 0
+
     @ app.route("/store", methods=['POST'])
     def store():
         """
@@ -126,7 +134,7 @@ class Routes:
         return 0
 
     @ app.route("/feedback", methods=['GET'])
-    def show():
+    def feedback():
         rate = 80
         grammar = 81
         fluency = 85
@@ -155,3 +163,8 @@ if __name__ == "__main__":
     """
 
     app.run(debug=True, threaded=True, host='localhost', port=8080)
+
+    """
+    try -> jsonify(__var)
+    someday
+    """

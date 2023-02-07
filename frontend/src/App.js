@@ -5,8 +5,10 @@
 
 import React from 'react'
 import './App.css';
-// importing record.js
+
+// importing pages
 import Home from './Home'
+// import Record from './components/Record'
 
 function App() {
     // return only one html elements in this case

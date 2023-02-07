@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
 
-function App() {
+function Home() {
     document.title = 'Home'
 
     const [data, setData] = useState([{}])
 
     // use USE-EFFECT to fetch the route from our app/server.py 
     useEffect(() => {
-        fetch('/index').then(
+        fetch('/index', {
+            'method': 'POST',
+            headers: {
+                'Content-Type': 'applications/json'
+            }
+        }).then(
             res => res.json()
         ).then(
             data => { setData(data) }
@@ -73,4 +78,4 @@ function App() {
     )
 }
 
-export default App
+export default Home

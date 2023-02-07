@@ -29,13 +29,13 @@
 ```txt
     for front end setup
         requires to install node.js
-        and use command: npx create-react-app client
-        to get started, 'client' is just a folder name.
+        and use command: npx create-react-app frontend
+        to get started, 'frontend' is just a folder name.
         npx create-react-app .
         use . to install in current directory
 
     to go in the front end
-        use command: cd client
+        use command: cd frontend
                      npm start
 ```
 
@@ -66,8 +66,12 @@
   .venv\scripts\activate
   python server.py
 
-  cd client
+  cd frontend
   npm start
+
+  or
+
+  npm run start
 ```
 
 ## Installing the package that will help us get the files we want from forms

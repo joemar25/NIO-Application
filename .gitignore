@@ -1,7 +1,7 @@
 # personal choice
 /app/.venv
-/client/node_modules
-/client/build
+/frontend/node_modules
+/frontend/build
 *note.txt
 /__
 /app/temp_data
