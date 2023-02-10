@@ -1,0 +1,7 @@
+python -m virtualenv .venv
+.venv\scripts\activate
+
+pip install flask
+pip install Werkzeug
+
+python.exe -m pip install --upgrade pip

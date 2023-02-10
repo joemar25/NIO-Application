@@ -5,10 +5,10 @@
 *note.txt
 /__
 /app/temp_data
+/app/node_modules
 speedpy.txt
 PATCH_NOTES.md
 
-Requirement.txt
 
 # dependencies
 /node_modules

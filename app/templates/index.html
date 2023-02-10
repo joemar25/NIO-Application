@@ -1,59 +1,91 @@
 <!-- this extends our base html -->
-{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body %}
+{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
+%}
 
-<span class="err" style="color: red">{{ error }}</span>
+<!-- if error is empty do not show this else show -->
+{% if error %}
+  <!-- Alert Warning  -->
+  <div
+    class="flex justify-between text-white shadow-inner rounded p-3 bg-orange-600"
+  >
+    <p class="self-center capitalize"><strong>Warning: </strong>{{ error }}!</p>
+    <strong class="text-xl align-center cursor-pointer alert-del"
+      >&times;</strong
+    >
+  </div>
+{% endif %}
 
+<!--<form class="w-full max-w-sm" action="/main" method="post" enctype=multipart/form-data>
+  but create a validation for main() function
+-->
+<form class="w-full max-w-sm" action="/index" method="post" enctype=multipart/form-data content-type:>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label
+        class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        for="username"
+      >
+        What do you want me to call you?
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input
+        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Username"
+        minlength="3"
+        maxlength="19"
+      />
+    </div>
+  </div>
 
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label
+        class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        for="text_script"
+      >
+        Enter text you want
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input
+        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+        id="text_script"
+        name="text_script"
+        placeholder="copy and paste your speech script here"
+      />
+    </div>
+  </div>
 
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+      <label
+        class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+        for="file_script"
+      >
+        Input text script
+      </label>
+    </div>
+    <div class="md:w-2/3">
+      <input
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        type="file"
+        id="file_script"
+        name="file_script"
+        accept=".txt"
+      />
+    </div>
+  </div>
 
-
-
-<form action="/index" method="post" enctype=multipart/form-data>
-  <label for="html">What do you want me to call you?</label>
-  <br />
-  <input
-    class=""
-    type="text"
-    id="username"
-    name="username"
-    placeholder="name"
-    minlength="3"
-    maxlength="19"
-  />
-  <!--- required is removed from the input above --> 
-  <br />
-
-  <br />
-  input (copy paste you're script)
-  <input
-    class="txt_area"
-    type="text"
-    id="text_script"
-    name="text_script"
-    placeholder="copy and paste your speech script here"
-  />
-
-  <br />
-  or input file text
-  <input type="file" id="file_script" name="file_script" accept=".txt" />
-
-  <br />
-  <br />
-  <input type="submit" id="submit" value="Proceed" />
+  <div class="md:flex md:items-center">
+    <div class="md:w-1/3"></div>
+    <div class="md:w-2/3">
+        <input class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" id="submit" value="Proceed" />
+    </div>
+  </div>
 </form>
-
-
-
-
-
-
-
-
-
-
-<br />
-<hr>
-<p>user name is {{ user_name }}</p>
-<textarea>{{ text_script }}</textarea>
 
 {% endblock %}

@@ -26,6 +26,13 @@
     - start creating, using a web server
 ```
 
+```cmd
+python -m virtualenv .venv
+.venv\scripts\activate
+pip install flask
+
+```
+
 ```txt
     for front end setup
         requires to install node.js
@@ -86,9 +93,26 @@
 > then use it in the file to get forms
   > source: <https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
 
-```py
+## Setting Python Dotenv
 
+```py
+  cd app
+  pip install python-dotenv
 ```
+
+## Libraries
+
+- Gingerit
+
+  ```cmd
+  pip install gingerit 
+  ```
+
+- Pytz
+
+  ```cmd
+  pip install pytz
+  ```
 
 ## References
 
@@ -109,3 +133,8 @@ solution for permission error
 <https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
 
 <https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/>
+
+-- Setting up postCSS & tailwind
+<https://tailwindcss.com/docs/installation/using-postcss>
+<https://www.youtube.com/watch?v=h4nI6thys6E>
+command: npm run watch

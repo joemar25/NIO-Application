@@ -6,22 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %} {% endblock %}</title>
 
+    <!-- our logo here -->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='images/icon2.jpg') }}"
+    />
     <!-- use flask import : url_for : for both css and js files -->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/main.css') }}"
+      href="{{ url_for('static', filename='css/output.css') }}"
     />
-
-    <style>
-      .txt_area {
-        height: 100px;
-        width: 500px;
-        word-break: break-word;
-      }
-    </style>
   </head>
 
   <body>
-    {% block body %} {% endblock %}
+    <div
+      class="container bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
+    >
+      {% block body %} {% endblock %}
+    </div>
+
+    <script
+      rel="text/javascript"
+      src="{{ url_for('static', filename='js/script.js') }}"
+    ></script>
   </body>
 </html>
