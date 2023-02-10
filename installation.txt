@@ -1,0 +1,18 @@
+cd app
+python -m virtualenv .venv
+.venv\scripts\activate
+
+pip install flask
+pip install Werkzeug
+
+python.exe -m pip install --upgrade pip
+
+npm install -D tailwindcss postcss-cli autoprefixer
+
+
+
+# to activate api
+python api.py
+
+# to activate tailwindcss
+npm run watch
