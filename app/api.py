@@ -3,6 +3,7 @@ from models import generator
 from models import helpers
 import os
 from os.path import exists
+from datetime import datetime
 # default
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from werkzeug.utils import secure_filename
@@ -57,30 +58,38 @@ def _emptydir(directory: str):
 
 # classes/models
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(80), unique=False, nullable=False)
-    text = db.Column(db.Text, nullable=False)
-    audio = db.Column(db.Text, nullable=True)
+    id = db.Column('id', db.Integer, primary_key=True)
+    user_name = db.Column('user_name', db.String(80),
+                          unique=False, nullable=False)
+    text = db.Column('text', db.Text, nullable=False)
+    audio = db.Column('audio', db.Text, nullable=True, default=None)
+    datetime = db.Column('timestamp', db.DateTime,
+                         default=datetime.utcnow)
 
     scores = db.relationship("Score", backref="user")
 
-    def __repr__(self):
-        return '<User %r>' % self.username
+    # def __repr__(self):
+    # return '<User %r>' % self.username
 
     # str representation of the model
-    def __str__(self):
-        return f"{self.user_name} {self.text}"
+    def __repr__(self):
+        return f"User: {self.user_name}\tText: {self.text}\tAudio: {self.audio}"
 
 
 class Score(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True)
 
     # foreign key, using id of the user
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column('user_id', db.Integer,
+                        db.ForeignKey("user.id"), nullable=False)
 
-    rate = db.Column(db.Float(), unique=False, nullable=False)
-    grammar = db.Column(db.Float(), unique=False, nullable=False)
-    fluency = db.Column(db.Float(), unique=False, nullable=False)
+    rate = db.Column('rate', db.Float(), unique=False, nullable=False)
+    grammar = db.Column('grammar', db.Float(), unique=False, nullable=False)
+    fluency = db.Column('fluency', db.Float(), unique=False, nullable=False)
+
+    # str representation of the model
+    def __repr__(self):
+        return f"{self.rate} {self.grammar} {self.fluency}"
 
 
 class DB():
@@ -137,10 +146,19 @@ class Routes:
             return render_template("home.html", error="no script text found. try again")
 
         # all fields are filled, we can now validate
+        # !!!!!!!!!! todo VALIDATION
+        # data is for jsonification
         data = {
             'user_name': user_name,
             'text': text
         }
+
+        # save to database
+        query_user = User(
+            user_name=data['user_name'], text=data['text'], audio=None)
+        db.session.add(query_user)
+        db.session.commit()
+
         return jsonify(data)
 
     @app.route("/validate", methods=['GET', 'POST'])
