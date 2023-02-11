@@ -1,14 +1,17 @@
 # personal choice
-/app/.venv
+/.venv
+/.vscode
 /frontend/node_modules
 /frontend/build
 *note.txt
 /__
-/app/temp_data
-/app/node_modules
-/app/__pycache__
-/app/static/css/output.css
+/project/temp_data
+/project/instance
+/project/node_modules
+/project/__pycache__
+/project/static/css/output.css
 speedpy.txt
+api copy.py
 PATCH_NOTES.md
 
 
