@@ -4,6 +4,7 @@ python -m virtualenv .venv
 
 pip install flask
 pip install Werkzeug
+pip install Flask-SQLAlchemy
 
 python.exe -m pip install --upgrade pip
 

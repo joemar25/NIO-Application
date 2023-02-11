@@ -9,13 +9,15 @@
     <!-- our logo here -->
     <link
       rel="shortcut icon"
-      href="{{ url_for('static', filename='images/icon2.jpg') }}"
+      href="{{ url_for('static', filename='images/icon1.jpg') }}"
     />
     <!-- use flask import : url_for : for both css and js files -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/output.css') }}"
     />
+
+    <script src="{{url_for('static', filename='js/script.js')}}" defer></script>
   </head>
 
   <body>
@@ -25,9 +27,11 @@
       {% block body %} {% endblock %}
     </div>
 
-    <script
+    <!--
+      <script
       rel="text/javascript"
       src="{{ url_for('static', filename='js/script.js') }}"
     ></script>
+    -->
   </body>
 </html>
