@@ -16,22 +16,18 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/output.css') }}"
     />
-
-    <script src="{{url_for('static', filename='js/script.js')}}" defer></script>
   </head>
 
   <body>
     <div
-      class="container bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
+      class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
     >
       {% block body %} {% endblock %}
     </div>
 
-    <!--
-      <script
+    <script
       rel="text/javascript"
       src="{{ url_for('static', filename='js/script.js') }}"
     ></script>
-    -->
   </body>
 </html>

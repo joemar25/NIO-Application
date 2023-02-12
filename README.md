@@ -114,6 +114,12 @@ pip install flask
   pip install pytz
   ```
 
+## Making Requirements
+
+```cmd
+pip freeze > requirements.txt
+```
+
 ## References
 
 <https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment>
@@ -138,3 +144,7 @@ solution for permission error
 <https://tailwindcss.com/docs/installation/using-postcss>
 <https://www.youtube.com/watch?v=h4nI6thys6E>
 command: npm run watch
+
+<https://flask.palletsprojects.com/en/1.0.x/patterns/errorpages/>
+
+<http://exploreflask.com/en/latest/views.html>

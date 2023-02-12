@@ -1,4 +1,4 @@
-class Validation():
+class Validation:
     """
         Validation class for validating functions
     """

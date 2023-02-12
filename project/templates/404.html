@@ -1,0 +1,10 @@
+<!-- this extends our base html -->
+{% extends 'base.html' %} {% block title %} Page not found {% endblock %} {%
+block body %}
+
+<h1>Page Not Found</h1>
+<p>What you were looking for is just not there.</p>
+<p class="underline text-blue-300 text-bolder">
+  <a href="{{ url_for('home') }}">go somewhere nice</a>
+</p>
+{% endblock %}

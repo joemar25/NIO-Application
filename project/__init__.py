@@ -12,10 +12,11 @@ from flask import Flask
 
 app = Flask(__name__)
 db_name = 'records.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' +  db_name
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
+# routes here
 from project import routes
 
 UPLOAD_FOLDER = '../app/temp_data/text'

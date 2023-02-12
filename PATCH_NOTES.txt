@@ -1,5 +1,0 @@
-- basic server setup
-- tailwind css
-- simple routing
-- using json as basic data format for storing data (Java Script Object Notation)
-
