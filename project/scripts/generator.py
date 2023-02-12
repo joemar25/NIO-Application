@@ -7,10 +7,6 @@
     - File : contains the generated filename. Used for saving a file.
 '''
 
-__authors__ = "joemar_olan_glenn_arrlee_jericho"
-__version__ = "1.1"
-__docformat__ = "restructuredtext en"
-
 try:
     import os
     import uuid
@@ -39,17 +35,3 @@ class File:
         udate: str = f"{str(todays.year)[deduct:]}{todays.month}{todays.day}"
 
         return f"{udate}{utime}"
-
-    # def files_from_dataset(self, file_type) -> list:
-
-    #     # add error handling
-    #     file_list = []
-    #     # get the directory above current directory then go to \audio\dataset
-    #     path = os.path.abspath(os.path.join(
-    #         os.getcwd(), os.pardir)) + '\\audio\\dataset'
-    #     print("Current path:", path)
-    #     for root, dirs, files in os.walk(path):
-    #         for file in files:
-    #             if file[-3:] == file_type:
-    #                 file_list.append(os.path.join(root, file))
-    #     return file_list

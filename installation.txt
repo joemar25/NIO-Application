@@ -5,8 +5,12 @@ python -m virtualenv .venv
 pip install flask
 pip install Werkzeug
 pip install Flask-SQLAlchemy
-
+pip install pytz
+pip install gingerit
+pip install -U WTForms
+pip install -U Flask-WTF
 python.exe -m pip install --upgrade pip
+
 
 npm install -D tailwindcss postcss-cli autoprefixer
 

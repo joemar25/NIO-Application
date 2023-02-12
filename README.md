@@ -117,7 +117,13 @@ pip install flask
 ## Making Requirements
 
 ```cmd
+to generate
 pip freeze > requirements.txt
+or
+pip list --format=freeze > requirements.txt
+
+to install
+pip install -r requirements.txt
 ```
 
 ## References
