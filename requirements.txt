@@ -368,7 +368,7 @@ toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 tomli @ file:///C:/Windows/TEMP/abs_ac109f85-a7b3-4b4d-bcfd-52622eceddf0hy332ojo/croots/recipe/tomli_1657175513137/work
 tomlkit @ file:///C:/Windows/TEMP/abs_3296qo9v6b/croots/recipe/tomlkit_1658946894808/work
 toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
-torch==1.13.0
+torch==1.13.1
 tornado @ file:///C:/ci/tornado_1606924294691/work
 tqdm @ file:///C:/b/abs_0axbz66qik/croots/recipe/tqdm_1664392691071/work
 traitlets @ file:///tmp/build/80754af9/traitlets_1636710298902/work
