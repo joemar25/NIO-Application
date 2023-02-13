@@ -3,7 +3,7 @@ backend
 [] Use session
 [] Grammar correction - template (connect to front-end of possible)
 [/] Text length validation
-[/] Text validation - Ex: length of text should be more than more than 5 sentences
+[-] Text validation - Ex: length of text should be more than more than 5 sentences
        - to upgade since --> a a a a  a is not valid
 
 [] grammar checking
