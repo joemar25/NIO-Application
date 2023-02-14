@@ -79,4 +79,16 @@
   </div>
 </form>
 
+{% if username %}
+<p>
+  {{ username }}
+</p>
+{% endif %}
+
+{% if text %}
+<p>
+  {{ text }}
+</p>
+{% endif %}
+
 {% endblock %}

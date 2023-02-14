@@ -13,6 +13,8 @@ speedpy.txt
 api copy.py
 PATCH_NOTES.md
 
+# training models
+/project/model/train_sentence.py
 
 # dependencies
 /node_modules

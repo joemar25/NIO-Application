@@ -19,20 +19,6 @@ class EntryForm(FlaskForm):
         if not (n > 2 and n < 21):
             raise ValidationError('username must be greater than 2 characters. try again')
         return
-    
-    def validate_text_script(self, input) -> bool:
-        """
-        splitting result in world by world counting
-        putting it to n  and  analyze
-        n must be greater than 3
-        and must be less than 5000
-        """
-        text = input.data
-        split = text.split()
-        n = len(split)
-        if not (n > 3 and n < 5000):
-            raise ValidationError('not a valid sentence for speech. try again')
-        return
 
     def validate_file_script(self, input) -> bool:
         """
@@ -47,16 +33,16 @@ class EntryForm(FlaskForm):
     )
 
     text_script = TextAreaField(
-        label="Script",
-        validators=[
-            Length(min=1),
-        ]
+        label="Text Script"
     )
-    file_script = FileField()
+    
+    file_script = FileField(
+        label="File Script"
+    )
+    
     submit = SubmitField(
         label="Proceed"
     )
-
 
 class RecordForm(FlaskForm):
     pass

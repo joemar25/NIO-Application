@@ -5,6 +5,7 @@ backend
 [/] Text length validation
 [-] Text validation - Ex: length of text should be more than more than 5 sentences
        - to upgade since --> a a a a  a is not valid
-
+       - is can use sentence detection?
+[] Input file read as text
 [] grammar checking
        - accuracy: board exam questions about grammar
