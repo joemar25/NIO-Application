@@ -5,3 +5,5 @@ alert_del.forEach((x) =>
         x.parentElement.classList.add('hidden');
     })
 );
+
+// Record Audio

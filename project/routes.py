@@ -11,46 +11,62 @@ from flask import render_template, redirect, url_for, request, jsonify, flash
 from os.path import exists
 from project import app, db_name, db
 from project.models import User
-from project.forms import EntryForm
+from project.forms import EntryForm, RecordForm
 from project.scripts.rules import Validation
 
-# for file upload
-from werkzeug.utils import secure_filename
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in Validation.ALLOWED_EXTENSIONS
 class Routes:
+        
     @app.route("/")
     def index():
+        """
+        This is the index function where we only redirect to home page if called.
+
+        Args:
+            None.
+
+        Returns:
+            __template__: 'home' for '/home'
+        """
         return redirect(url_for("home"))
 
     @app.route("/home", methods=['GET', 'POST'])
     def home():
+        """
+        Where the home page of the users will see.
+
+        Args:
+            None.
+
+        Returns:
+            __template__: 'home' for '/home'
+        
+        Function:
+            Manage form and it's validation to be put inside the db
+        """
+        
         # if database not exist then create
         if not exists('./instance/' + db_name):
             db.create_all()
 
-        # form instance
+        # form instance is created for forms to render on page
         form = EntryForm()
         
         # if request is not post, just render page
         if request.method != "POST":
             return render_template("home.html", form=form)
 
-        # get all data in form
+        # [GET] all data in form is submit button is clicked
         user_name = form.username.data
         text = form.text_script.data
         
         """
-            check if text script has no strings in it
-                
-            - if true; check file data then read text
+        check if text script has no strings in it
             
-            note: this statement will get the file and read it
-                  by decoding it using 'utf-8' for us to get the
-                  text data
+        - if true; check file data then read text
+        
+        note: this statement will get the file and read it
+                by decoding it using 'utf-8' for us to get the
+                text data
         """
         if not text:
             file = form.file_script.data
@@ -67,28 +83,54 @@ class Routes:
                     flash(f'{err_msg}', category='danger')
             return render_template("home.html", form=form)
 
-        # Use trained data to determine the sentence is ok for the text
+        # Validate text if passed or not
+        if not Validation.is_valid_sentence(text):
+            if text:
+                flash(f'{"invalid script text. try again"}', category='danger')
+            return render_template("home.html", form=form)
         
-        # add to database
-        user = User(user_name=user_name, text=text)
+        # db management
+        user = User(
+            user_name = user_name,
+            text = text
+        )
         db.session.add(user)
         db.session.commit()
         
         # redirect to main page
-        # return render_template("home.html", form=form, username=user_name, text=text)
         return redirect(url_for("main"))
 
     @app.route("/main", methods=['GET', 'POST'])
     def main():
+        """
+        This is loaded after we get the correct data from home page though form.
+
+        Args:
+            None.
+
+        Returns:
+            __template__: 'home' for '/home'
+            
+        Function:
+            Manage database and session of the user
+        """
         query = User.query.order_by(-User.id).first()
         username = query.user_name
         text = query.text
 
-        # grammar checking on text
-        # ready for recording
+        # (1) grammar checking on text
+        
+        # (2) do a validation for session
+        
+        # (3) ready for recording
+        form = RecordForm()
+        
+        # if request is not post, just render page
+        if request.method != "POST":
+            return render_template("main.html", form=form)
         
         # return a template holding data
-        return render_template("main.html", username=username, text=text)
+        return render_template("main.html", audio=audio_data)
 
 
     @app.route("/feedback", methods=['GET'])

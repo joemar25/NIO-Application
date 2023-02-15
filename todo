@@ -6,6 +6,25 @@ backend
 [-] Text validation - Ex: length of text should be more than more than 5 sentences
        - to upgade since --> a a a a  a is not valid
        - is can use sentence detection?
+         - pip install spacy
+
 [] Input file read as text
 [] grammar checking
        - accuracy: board exam questions about grammar
+
+--------
+
+You can use the following command to list all installed packages in your virtual environment:
+
+- pip freeze
+You can then use the output to create a list of the packages you want to keep and save them to a file, for example, "requirements.txt":
+
+- pip freeze > requirements.txt
+After that, you can uninstall all the packages that are not included in the "requirements.txt" file:
+
+- pip uninstall -y $(comm -23 <(pip freeze | sort) <(sort requirements.txt))
+- or - pip uninstall -y $(compare-object -differenceObject (get-content 'requirements.txt' | sort-object) -referenceObject ([environment]::getfolderpath('mydocuments') + '\WindowsPowerShell\Modules' | get-childitem | select-object name | foreach-object {$_ -replace '\.|\d' }))
+
+This command will compare the list of installed packages with the ones listed in "requirements.txt" and remove any package that is not in the list. The "-y" flag skips the confirmation prompt for each package to be uninstalled.
+
+Note that you should be careful when using this command, as you might unintentionally remove packages that are required by your project. It's a good practice to keep a record of the packages you install and to review them periodically to remove any unnecessary packages.
