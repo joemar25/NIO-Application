@@ -49,10 +49,10 @@ class RecordForm(FlaskForm):
         label="Record"
     )
     
-    pause = SubmitField(
-        label="Pause"
-    )
-    
     stop = SubmitField(
         label="Stop"
+    )
+
+    script = TextAreaField(
+        label="Script"
     )

@@ -127,12 +127,21 @@ class Routes:
         
         # if request is not post, just render page
         if request.method != "POST":
-            return render_template("main.html", form=form)
+            return render_template("main.html", username=username, text=text, form=form)
         
         # return a template holding data
-        return render_template("main.html", audio=audio_data)
+        return render_template("main.html", username=username, text=text)
 
-
+    @app.route("/rec_handler", methods=['POST'])
+    def rec_handler():
+        if request.method != "POST":
+            return
+        
+        if request.form["status"] == "finished":
+            rec_audio_path = request.form["rec_audio_path"]
+        
+        return ('', 204)
+    
     @app.route("/feedback", methods=['GET'])
     def feedback():
         return render_template("feedback.html")
