@@ -2,8 +2,7 @@
 {% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
 %}
 
-<!-- <form class="w-full max-w-sm" action="main" method="post" enctype=multipart/form-data> -->
-<form class="w-full max-w-sm" action="home" method="post" enctype=multipart/form-data>
+<form class="w-full max-w-sm" action="" method="post" enctype=multipart/form-data>
   
   {{ form.hidden_tag() }}
   
@@ -19,8 +18,7 @@
     <div class="md:w-2/3">
       
       {{ form.username(
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
-          placeholder="Username",
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         )
       }}
 
@@ -39,8 +37,7 @@
     <div class="md:w-2/3">
       
       {{ form.text_script(
-          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
-          placeholder="Speech Here"
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         )
       }}
       
@@ -78,17 +75,5 @@
     </div>
   </div>
 </form>
-
-{% if username %}
-<p>
-  {{ username }}
-</p>
-{% endif %}
-
-{% if text %}
-<p>
-  {{ text }}
-</p>
-{% endif %}
 
 {% endblock %}

@@ -29,11 +29,13 @@ class EntryForm(FlaskForm):
     
     # fields
     username = StringField(
-        label="Username"
+        label="Username",
+        render_kw={"placeholder": "Username"}
     )
 
     text_script = TextAreaField(
-        label="Text Script"
+        label="Text Script",
+        render_kw={"placeholder": "Speech Here"}
     )
     
     file_script = FileField(

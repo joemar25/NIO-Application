@@ -1,8 +1,11 @@
 <!-- this extends our base html -->
 {% extends 'base.html' %} {% block title %} Score and Feedback {% endblock %} {%
-block body %}
-
+block body %} {% if current_user.is_authenticated %}
 <h2>Score and Feedback</h2>
 <a class="underline" href="{{ url_for('home') }}"> Home </a>
+{% else %}
 
-{% endblock %}
+<h1>User must have a username and their script to proceed to this page.</h1>
+<a href="{{url_for('index')}}">Home</a>
+
+{% endif%} {% endblock %}

@@ -17,8 +17,26 @@
 from project import db
 from datetime import datetime
 
+"""
+Flask-login requires a User model with the following properties:
 
-class User(db.Model):
+(1) has an is_authenticated() method that returns True if the user has provided valid credentials
+(2) has an is_active() method that returns True if the user’s account is active
+(3) has an is_anonymous() method that returns True if the current user is an anonymous user
+(4) has a get_id() method which, given a User instance, returns the unique ID for that object
+
+UserMixin class provides the implementation of this properties. Its the reason you can call for example
+is_authenticated to check if login credentials provide is correct or not instead of having to write a
+method to do that yourself.
+
+
+We can use the fields here in 'current_user.field_name' to print or use the data in it.
+"""
+
+from flask_login import UserMixin
+
+
+class User(db.Model, UserMixin):
     id = db.Column(
         'id',
         db.Integer,
