@@ -7,7 +7,7 @@
 
 """
 
-from flask import render_template, redirect, url_for, request, jsonify, flash
+from flask import render_template, redirect, url_for, flash, request, session, g # g for global var
 from os.path import exists
 from project import app, db_name, db
 from project.models import User
@@ -43,6 +43,10 @@ class Routes:
         Function:
             Manage form and it's validation to be put inside the db
         """
+        
+        # if method is POST, dropping session of previous user is good
+        # before having post request
+        session.pop('user', None)
         
         # if database not exist then create
         if not exists('./instance/' + db_name):
@@ -97,6 +101,8 @@ class Routes:
         db.session.add(user)
         db.session.commit()
         
+        session['user'] = 1
+        
         # redirect to main page
         return redirect(url_for("main"))
 
@@ -114,6 +120,12 @@ class Routes:
         Function:
             Manage database and session of the user
         """
+        
+        # check if the global user is set or not
+        if not g.user:
+            return redirect(url_for("home"))
+        
+        # query the user
         query = User.query.order_by(-User.id).first()
         username = query.user_name
         text = query.text
@@ -154,6 +166,18 @@ class Routes:
     def destroy():
         return 0
 
+    """
+    before any request is made, we will need a middleware
+    """
+    @app.before_request
+    def before_request():
+        g.user = None
+        
+        # is session variable is set
+        if 'user' in session:
+            # initialize global user to the actual session
+            g.user = session['user']
+    
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404
