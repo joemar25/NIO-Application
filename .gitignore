@@ -21,6 +21,10 @@ PATCH_NOTES.md
 /.pnp
 .pnp.js
 
+# temps
+*output.css
+*output.js
+
 # testing
 /coverage
 

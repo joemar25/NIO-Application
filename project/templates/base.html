@@ -11,21 +11,12 @@
       rel="shortcut icon"
       href="{{ url_for('static', filename='images/icon1.jpg') }}"
     />
-    <!-- use flask import : url_for : for both css and js files -->
+    
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/output.css') }}"
     />
 
-    <style>
-      .unselectable {
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-    </style>
   </head>
 
   <body>
@@ -67,7 +58,7 @@
 
     <script
       type=text/javascript
-      src="{{url_for('static', filename='js/script.js')}}"
+      src="{{url_for('static', filename='js/output.js')}}"
       >
     </script>
     

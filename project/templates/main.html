@@ -29,22 +29,18 @@ body %}
 <br />
 
 <div class="w-full max-w-sm">
-  <div>
+  <span>
     {{ form.record( class="shadow bg-green-500 hover:bg-green-400
     focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4
-    rounded", id="rec_start") }}
-  </div>
-
-  <br />
-  <br />
-
-  <div>
+    rounded", id="start-button") }}
+  </span>
+  <span>
     {{ form.stop( class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline
-    focus:outline-none text-white font-bold py-2 px-4 rounded", id="rec_stop")
-    }}
-  </div>
+    focus:outline-none text-white font-bold py-2 px-4 rounded",
+    id="stop-button") }}
+  </span>
 </div>
 
-<div id="formats">Format: start recording to see sample rate</div>
+<div id="recording-status">Format: start recording to see sample rate</div>
 
 {% endblock %}
