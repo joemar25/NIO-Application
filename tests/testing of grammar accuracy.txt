@@ -1,0 +1,36 @@
+Text 1:	1/6 = 17%
+
+Answer key:
+At the start of school Dora was afraid of her new teacher. Mrs. Davis seemed nice, but she had so many rules for the class to follow. It would scare someone to pieces. As the school year continued, Dora began to understand how the teacher came up with the rules. The rules were there so students would be respectful of themselves and each other. By the end of the year, Dora thought Mrs. Davis was the best teacher she ever had!
+
+
+Program:
+At the start of  school Dora was afraid of  her new Teacher. Mrs. Davis seemed nice, but she had so many rules for the class to follow. Scare someone to pieces. As the school year continued, Dora has begun to understand how the Teacher come up with the rules The rules were there so students would be respectful of  themselves and each other. By the end of  the year, Dora though Mrs. Davis was the best Teacher she ever had!
+
+
+
+Text 2:	4/4 = 100%
+
+Answer key:
+A greenhouse is a glass building used to grow plants. A greenhouse has transparent glass that allows the sunlight to pass through, but does not allow the heat inside to escape. The same effect occurs on the earth. The sun's radiation passes through the atmosphere to heat the earth's surface. When heated, the earth's surface produces infrared radiation, which has a longer wavelength than that of sunlight. This infrared radiation rises into the atmosphere where gases, such as carbon dioxide, prevent the infrared radiation from escaping into space. The concentrations of these gases, which are called greenhouse gases, control how much infrared radiation escapes. The retained radiation heats the earth's atmosphere, thus keeping the planet warm.
+
+Program:
+A greenhouse is a glass building used to grow plants. A greenhouse has transparent glass that allows the sunlight to pass through, but does not allow the heat inside to escape. The same effect occurs on the earth. The sun's radiation passes through the atmosphere to heat the earth's surface. When heated, the earth's surface produces infrared radiation, which has a longer wavelength than that of sunlight. This infrared radiation rises into the atmosphere where gases, such as carbon dioxide, prevents the infrared radiation from escaping into space. The concentrations of these gases, which are called greenhouse gases, control how much infrared radiation escapes. The retained radiation heats the earth's atmosphere, thus keeping the planet warm.
+
+
+Text 3:	0/5 = 0%
+
+Answer key:
+During the last century, the concentrations of greenhouse gases have increased substantially [Holman, 1985]. Scientists believe that further increases could cause excess warming of the earth's climate. Moreover, many scientists believe this warming could produce side effects. An example would be the changing of the earth's wind patterns. These wind patterns control the amount of rain received in a particular area. If the greenhouse gases warm the earth's climate too much, areas that now receive plenty of rainfall could become deserts. Moreover, some scientists speculate that additional increases in warming could cause another effect, a rise in the ocean levels ["Greenhouse," 1990]. How would this rise occur? An increase in global temperature would melt the polar ice caps, thus emptying more water into the oceans. Scientists also predict that this ocean rise, which may be as high as 1 meter, could flood port cities and coastal lands
+
+
+Program:
+During the last century, the concentrations of greenhouse gases have increased substantially [Holman, 1985]. Scientists believe that further increases could cause excess warming of the earth's climate. Moreover, many scientists believe this warming could produce side effects. For example, the changing of the earth's wind patterns. These wind patterns control the amount of rain received in a particular area. If the greenhouse gases warm the earth's climate too much, areas that now receive plenty of rainfall could become deserts, moreover, some scientists speculate that additional increases in warming could cause another effect, a rise in the ocean levels ["Greenhouse," 1990]. How would this rise occur? An increase in global temperature would melt the polar ice caps, thus emptying more water into the oceans. They also predict that this ocean rise, which may be as high as 1 meter could flood port cities and coastal lands.
+
+
+
+
+
+
+
+
