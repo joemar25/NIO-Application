@@ -1,5 +1,5 @@
-import spacy, re, nltk
-import collections
+# import spacy, re, nltk
+# import collections
 
 
 class Validation:

@@ -12,6 +12,7 @@ pip install -U Flask-WTF
 python.exe -m pip install --upgrade pip
 
 
+cd project
 npm install -D tailwindcss postcss-cli autoprefixer
 
 
