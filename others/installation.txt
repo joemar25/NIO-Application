@@ -16,9 +16,11 @@ cd project
 npm install -D tailwindcss postcss-cli autoprefixer
 
 
-
 # to activate api
 python api.py
 
 # to activate tailwindcss
 npm run watch
+
+# generate requirements.txt
+pip freeze > requirements.txt
