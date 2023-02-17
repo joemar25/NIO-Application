@@ -67,19 +67,17 @@ class Routes:
             Manage form and it's validation to be put inside the db
         """
         
-        # logout user if this page is accessed
-        logout_user()
         
+        # if database not exist then create
+        if not exists('./instance/' + db_name):
+            db.create_all()
+
         # form instance is created for forms to render on page
         form = EntryForm()
         
         # if request is not post, just render page
         if request.method != "POST":
             return render_template("home.html", form=form)
-        
-        # if database not exist then create
-        if not exists('./instance/' + db_name):
-            db.create_all()
 
         # [GET] all data in form is submit button is clicked
         user_name = form.username.data
@@ -123,7 +121,6 @@ class Routes:
         db.session.add(user)
         db.session.commit()
         
-        # login the current user to the session
         user = User.query.order_by(-User.id).first()
         login_user(user)
         
@@ -133,12 +130,39 @@ class Routes:
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
+        """
+        This is loaded after we get the correct data from home page though form.
+
+        Args:
+            None.
+
+        Returns:
+            __template__: 'home' for '/home'
+            
+        Function:
+            Manage database and session of the user
+        """
+        
+        # query the user
+        query = User.query.order_by(-User.id).first()
+        username = query.user_name
+        text = query.text
+
+        # (1) grammar checking on text
+        
+        # (2) do a validation for session
+        
+        # (3) ready for recording
         form = RecordForm()
+        
+        # if request is not post, just render page
+        if request.method != "POST":
+            return render_template("main.html", username="", text="", form=form)
+        
         # return a template holding data
-        return render_template("main.html", username="", text="", form=form)
+        return render_template("main.html", username=username, text=text, form=form)
 
     @app.route("/rec_handler", methods=['POST'])
-    @login_required
     def rec_handler():
         if request.method != "POST":
             return
@@ -150,16 +174,11 @@ class Routes:
     
     @app.route("/feedback", methods=['GET'])
     def feedback():
-        # no login required but has error message if user access this page with no login credentials
         return render_template("feedback.html")
 
     @app.route("/loading")
     def loading():
         return render_template('loading.html')
-
-    @app.route("/help")
-    def help():
-        return render_template("help.html")
 
     @app.route("/destroy", methods=['POST'])
     def destroy():

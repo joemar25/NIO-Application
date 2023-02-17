@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,60 +8,107 @@
     <title>{% block title %} {% endblock %}</title>
 
     <!-- our logo here -->
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='images/icon1.jpg') }}"
-    />
-    <!-- use flask import : url_for : for both css and js files -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/output.css') }}"
-    />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon1.jpg') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}" />
+
   </head>
 
   <body>
-    <div
-      class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
-    >
 
-      <!-- error message flashing area -->
-      <span>
-        {% with messages = get_flashed_messages(with_categories=True) %}
-          {% if messages %}
-            <div id="alert-border-2" class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-              
-              <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-              <span class="sr-only">Danger</span>
-              <div>
-                <span class="font-medium">Ensure that these requirements are met:</span>
-                  <ul class="mt-1.5 ml-4 list-disc list-inside">
-                    {% for category, msg in messages%}
-                      <li>{{ msg.replace("']", "").replace("['", "") }}</li>
-                    {% endfor%}
-                  </ul>
-              </div>
-    
-              <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-2" aria-label="Close">
-                <span class="sr-only">Dismiss</span>
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    <div class="bg-white dark:bg-slate-800">
+      <!-- LOGO AREA -->
+      <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+
+          {% if request.path == "/home" %}
+          <div class="unselectable flex items-center">
+          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo" title="I am Nio!">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
+          </div>
+          {% else %}
+          <a href="{{url_for('index')}}" class="unselectable flex items-center">
+          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo" title="I am Nio!">
+            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
+          </a>
+          {% endif %}
+
+
+
+          <div class="flex md:order-2">
+
+            <p class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400">
+              <!-- Help text-->
+
+              <button data-popover-target="popover-description" data-popover-placement="bottom-end" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                </svg>
+                <span class="sr-only">Show information</span>
               </button>
 
+
+            </p>
+            <div data-popover id="popover-description" role="tooltip"
+              class="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+              <div class="p-3 space-y-2">
+                <h3 class="font-semibold text-gray-900 dark:text-white">
+                  How to..... Something
+                </h3>
+                <p>
+                  Detailed on how to...
+                </p>
+                <h3 class="font-semibold text-gray-900 dark:text-white">
+                  How to..... Something
+                </h3>
+                <p>
+                  Detailed on how to...
+                </p>
+                <a href="{{ url_for('help') }}"
+                  class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">
+                  Read more
+                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg></a>
+              </div>
+              <div data-popper-arrow></div>
             </div>
-          {% endif %}
-        {% endwith %}
-      </span>
-      
-      
+
+            <button id="theme-toggle" type="button"
+              class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="Theme">
+
+              <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+              </svg>
+
+
+              <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+              </svg>
+
+            </button>
+
+          </div>
+        </div>
+      </nav>
+
       <!-- body template area -->
-      {% block body %} {% endblock %}
+      <div class="grid h-screen place-items-center bg-white dark:bg-gray-900">
+        {% block body %} {% endblock %}
+      </div>
     </div>
 
-    <script
-      type=text/javascript
-      src="{{url_for('static', filename='js/script.js')}}"
-      >
-    </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
+
   </body>
+
 </html>

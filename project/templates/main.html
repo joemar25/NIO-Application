@@ -1,14 +1,50 @@
 <!-- this extends our base html -->
 {% extends 'base.html' %} {% block title %} Speech Time {% endblock %} {% block
-body %}
+body %} {% if current_user.is_authenticated%}
+<div
+  class="unselectable"
+  onmousedown="return false"
+  onselectstart="return false"
+>
+  <p class="underline text-blue-300 text-bolder">
+    <a href="{{ url_for('index') }}">Home</a>
+  </p>
 
-<h2>My name is {{ username }}</h2>
+  <div>
+    {% if current_user.user_name %} Username: <br />
+    {{ current_user.user_name }} {% endif %}
+  </div>
+  <br />
+  <div>
+    {% if current_user.text %} {{ form.script.label( class="" ) }}: {{
+    form.script( class="bg-gray-200 appearance-none border-2 border-gray-200
+    rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none
+    focus:bg-white focus:border-purple-500", placeholder=current_user.text,
+    disabled=True ) }} {% endif %}
+  </div>
+</div>
+
 <br />
-<p>Text {{ text }}</p>
-
+<hr />
 <br />
-<p class="underline text-blue-300 text-bolder">
-  <a href="{{ url_for('home') }}">Home</a>
-</p>
 
-{% endblock %}
+<div class="w-full max-w-sm">
+  <span>
+    {{ form.record( class="shadow bg-green-500 hover:bg-green-400
+    focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4
+    rounded", id="start-button") }}
+  </span>
+  <span>
+    {{ form.stop( class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline
+    focus:outline-none text-white font-bold py-2 px-4 rounded",
+    id="stop-button") }}
+  </span>
+</div>
+
+<div id="recording-status">Format: start recording to see sample rate</div>
+{% else %}
+
+<h1>User must have a username and their script to proceed to this page.</h1>
+<a href="{{url_for('index')}}">Home</a>
+
+{% endif%} {% endblock %}

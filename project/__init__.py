@@ -36,3 +36,5 @@ app.config['UPLOAD_FOLDER'] = '../app/temp_data/text'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 # app.config['SECRET_KEY'] = os.urandom(24).hex()
 app.config['SECRET_KEY'] = 'secretkeysecretkeysecretkeysecretkey'
+
+from flask_login import UserMixin

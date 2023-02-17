@@ -14,12 +14,16 @@ api copy.py
 PATCH_NOTES.md
 
 # training models
-/project/model/train_sentence.py
+/project/models/*
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
+
+# temps
+*output.css
+*output.js
 
 # testing
 /coverage

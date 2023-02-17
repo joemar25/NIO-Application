@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FileField, SubmitField
-from wtforms.validators import Length, ValidationError
+from wtforms.validators import ValidationError
 from project.models import User
 
 class EntryForm(FlaskForm):
@@ -8,10 +8,10 @@ class EntryForm(FlaskForm):
     # custom validation - to upgrade
     def validate_username(self, input) -> bool:
         """
-            name must be greater than 3
-            and not longer than 20 characters
+        name must be greater than 3
+        and not longer than 20 characters
 
-            need improvement incase, puro space nilagay
+        need improvement incase, puro space nilagay
         """
         username = input.data
         input = username.replace(" ", "")
@@ -29,11 +29,13 @@ class EntryForm(FlaskForm):
     
     # fields
     username = StringField(
-        label="Username"
+        label="Username",
+        render_kw={"placeholder": "Username"}
     )
 
     text_script = TextAreaField(
-        label="Text Script"
+        label="Text Script",
+        render_kw={"placeholder": "Speech Here"}
     )
     
     file_script = FileField(
@@ -41,8 +43,19 @@ class EntryForm(FlaskForm):
     )
     
     submit = SubmitField(
-        label="Proceed"
+        label="Proceed",
+        render_kw={"data-popover-target":"popover-default"}
     )
 
 class RecordForm(FlaskForm):
-    pass
+    record = SubmitField(
+        label="Record"
+    )
+    
+    stop = SubmitField(
+        label="Stop"
+    )
+
+    script = TextAreaField(
+        label="Script"
+    )

@@ -1,23 +1,37 @@
-from wtforms.validators import Length, ValidationError
+# import spacy, re, nltk
+# import collections
+
 
 class Validation:
     
-    ALLOWED_EXTENSIONS = {'txt'}    
+    __ALLOWED_EXTENSIONS = {'txt'}    
+
+    def allowed_file(self, filename):
+        return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in self.__ALLOWED_EXTENSIONS
     
-    def validate_text(self, input) -> bool:
-        """
-        splitting result in world by world counting
-        putting it to n  and  analyze
-        n must be greater than 3
-        and must be less than 5000
-        """
+    def getPercent(first, second, integer = False):
+        percent = first / second * 100
+    
+        if integer:
+            return int(percent)
+        return percent
+        # print(getPercent(9, 9, True))
+
+    def is_valid_sentence(text):
         
-        text = input.data
-        split = text.split()
-        n = len(split)
-        if not (n > 3 and n < 5000):
-            raise ValidationError('not a valid sentence for speech. try again')
-        return
+        # if text has no value
+        if text ==  "":
+            return False
+        
+        # edit the constant 3 for more classification of a specific sentence that matter to the speech 
+        if len(text.split()) < 3:
+            return False
+        
+        # https://www.dataquest.io/blog/tutorial-text-classification-in-python-using-spacy/
+        
+        return True
+
 
 class Logs():
     """
@@ -31,24 +45,18 @@ class Logs():
     def destroy() -> None:
         pass
 
+# sentence = """As far as the laws of mathematics refer to reality they are not certain as far as they are certain they do not refer to reality"""
 
-"""
-    testing below
-"""
-# def main() -> None:
-#     validate = Validation
-#     err = Errors
-#     name = "joemar"
-#     text = "this is a sentence."
+# text = [
+#     "",
+#     "is a great",
+#     "a is a great warrior",
+#     "a is a great warrior.",
+#     "A is a great warrior.",
+#     "Luffy is a great warrior.",
+#     "a a a a aa a.",
+#     "a a a a aa a",
+# ]
 
-#     res = validate.name(name)
-#     print("is valid name length = ", res)
-#     print(err.name_input(res))
-
-#     print()
-#     res = validate.text(text)
-#     print("is valid text length = ", res)
-#     print(err.text_input(res))
-
-# if __name__ == "__main__":
-#     main()
+# res = Validation.is_valid_sentence(text[2])
+# print(res)
