@@ -157,6 +157,10 @@ class Routes:
     def loading():
         return render_template('loading.html')
 
+    @app.route("/help")
+    def help():
+        return render_template("help.html")
+
     @app.route("/destroy", methods=['POST'])
     def destroy():
         return 0

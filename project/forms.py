@@ -43,7 +43,8 @@ class EntryForm(FlaskForm):
     )
     
     submit = SubmitField(
-        label="Proceed"
+        label="Proceed",
+        render_kw={"data-popover-target":"popover-default"}
     )
 
 class RecordForm(FlaskForm):
