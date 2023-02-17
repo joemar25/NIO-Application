@@ -16,6 +16,10 @@ PATCH_NOTES.md
 # training models
 /project/models/*
 
+# testing areas
+/project/scripts/grammar/grammarTest.py
+/tests/*
+
 # dependencies
 /node_modules
 /.pnp
