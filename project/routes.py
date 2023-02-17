@@ -26,7 +26,7 @@ from project import app, db_name, db
 from project.models import User
 from project.forms import EntryForm, RecordForm
 from project.scripts.rules import Validation
-
+from project.scripts.grammar.gingerit_class import Grammar as grammar
 
 # session management
 login_manager = LoginManager()
@@ -134,8 +134,11 @@ class Routes:
     @login_required
     def main():
         form = RecordForm()
-        # return a template holding data
-        return render_template("main.html", username="", text="", form=form)
+
+        # grammar check and correct
+        text = grammar(current_user.text)
+        cgrammar = text.checkGrammar()
+        return render_template("main.html", text=cgrammar, form=form)
 
     @app.route("/rec_handler", methods=['POST'])
     @login_required
