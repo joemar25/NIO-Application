@@ -1,9 +1,14 @@
 Code development documentation
 
-Gingerit issue: 02/15/2023
-- the free API can;t handle more than 600 characters at once, so you have to split the string into smaller chunks.
-- gingerit can't correct some of the grammar mistakes
-- it may have some issues in accuracy
+Grammar feature development:
+    Gingerit issue: 02/15/2023
+    - the free API can;t handle more than 600 characters at once, so you have to split the string into smaller chunks.
+    - gingerit can't correct some of the grammar mistakes
+    - it may have some issues in accuracy
 
-Testing accuracy of Gingerit: 02/16/2023
-- the details of the test is found in "testing of grammar accuracy.txt"
+    Testing accuracy of Gingerit: 02/16/2023
+    - the details of the test is found in "testing of grammar accuracy.txt"
+
+    Testing: 02/17/2023
+    - nouns are also changed when corecting the grammar
+        - ex: names of a person are changed - which should not be
