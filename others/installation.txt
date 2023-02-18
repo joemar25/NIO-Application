@@ -28,3 +28,4 @@ npm run watch
 
 # generate requirements.txt
 pip freeze > requirements.txt
+pip freeze --exclude-editable > requirements.txt
