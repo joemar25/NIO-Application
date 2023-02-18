@@ -56,7 +56,12 @@ themeToggleBtn.addEventListener('click', function () {
 
 // ========================================== Record Audio ==========================================
 
-// USE LIBRARY TO GET WAVE AUDIO RECORDED FILE AND PASS TO FLASK API
+// Wait for user gesture
+document.addEventListener('click', () => {
+});
+
+
+
 
 // ============================================== End ===============================================
 

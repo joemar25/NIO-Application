@@ -1,6 +1,7 @@
+import random
+import string
 # import spacy, re, nltk
 # import collections
-
 
 class Validation:
     
@@ -32,18 +33,10 @@ class Validation:
         
         return True
 
-
-class Logs():
-    """
-    eveytime we create a record it will put it in a file.txt
-    everyime we end the program we erase the contents of that
-    """
-
-    def create(name: str, scores: dict, feedback: str) -> str:
-        pass
-
-    def destroy() -> None:
-        pass
+# Generate a random filename
+class File:
+    name = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+    
 
 # sentence = """As far as the laws of mathematics refer to reality they are not certain as far as they are certain they do not refer to reality"""
 

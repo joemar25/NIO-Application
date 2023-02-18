@@ -28,20 +28,7 @@ body %} {% if current_user.is_authenticated%}
 <hr />
 <br />
 
-<div class="w-full max-w-sm">
-  <span>
-    {{ form.record( class="shadow bg-green-500 hover:bg-green-400
-    focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4
-    rounded", id="start-button") }}
-  </span>
-  <span>
-    {{ form.stop( class="shadow bg-red-500 hover:bg-red-400 focus:shadow-outline
-    focus:outline-none text-white font-bold py-2 px-4 rounded",
-    id="stop-button") }}
-  </span>
-</div>
-
-<div id="recording-status">Format: start recording to see sample rate</div>
+<button id="record-btn">Record</button>
 {% else %}
 
 <h1>User must have a username and their script to proceed to this page.</h1>

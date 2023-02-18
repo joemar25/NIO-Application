@@ -22,12 +22,14 @@
 
           {% if request.path == "/home" %}
           <div class="unselectable flex items-center">
-          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo" title="I am Nio!">
+            <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
+              title="I am Nio!">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
           </div>
           {% else %}
           <a href="{{url_for('index')}}" class="unselectable flex items-center">
-          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo" title="I am Nio!">
+            <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
+              title="I am Nio!">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
           </a>
           {% endif %}
@@ -39,7 +41,8 @@
             <p class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400">
               <!-- Help text-->
 
-              <button class="m-3" data-popover-target="popover-description" data-popover-placement="bottom-end" type="button">
+              <button class="m-3" data-popover-target="popover-description" data-popover-placement="bottom-end"
+                type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="w-5 h-5">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -106,7 +109,6 @@
       </div>
     </div>
 
-    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
 
   </body>

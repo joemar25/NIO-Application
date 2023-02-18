@@ -4,7 +4,7 @@
 
 from gingerit.gingerit import GingerIt as gingerit  #checks grammar
 import nltk.data    #separates sentences
-nltk.download('punkt')  #you can comment this out, once it is already downloaded
+# nltk.download('punkt')  #you can comment this out, once it is already downloaded
 
 class Grammar:
 

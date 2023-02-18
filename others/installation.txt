@@ -1,4 +1,5 @@
-cd app
+# cd project
+
 python -m virtualenv .venv
 .venv\scripts\activate
 
@@ -9,12 +10,14 @@ pip install pytz
 pip install gingerit
 pip install -U WTForms
 pip install -U Flask-WTF
+pip install Flask-Login
+pip install nltk
 python.exe -m pip install --upgrade pip
 
 
 cd project
 npm install -D tailwindcss postcss-cli autoprefixer
-
+npm i browserify
 
 # to activate api
 python api.py

@@ -53,12 +53,6 @@ class User(db.Model, UserMixin):
         db.Text,
         nullable=False
     )
-    audio = db.Column(
-        'audio',
-        db.Text,
-        nullable=True,
-        default=None
-    )
     datetime = db.Column(
         'timestamp',
         db.DateTime,
@@ -90,6 +84,22 @@ class Score(db.Model):
         db.Integer,
         db.ForeignKey("user.id"),
         nullable=False
+    )
+    
+    audio = db.Column(
+        'audio',
+        db.Text,
+        unique=True,
+        nullable=False,
+        default=None
+    )
+    
+    transcribed = db.Column(
+        'transcribed',
+        db.Text,
+        unique=False,
+        nullable=False,
+        default=None
     )
 
     rate = db.Column(

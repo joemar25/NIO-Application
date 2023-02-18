@@ -19,23 +19,35 @@
 
 """
 
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, Response
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from os.path import exists
 from project import app, db_name, db
 from project.models import User
 from project.forms import EntryForm, RecordForm
-from project.scripts.rules import Validation
+from project.scripts.helpers import Validation, File
 from project.scripts.grammar.gingerit_class import Grammar as grammar
+from pydub import AudioSegment
+import os
+
+"""
+todo, In Flask, is there a way to hide a @app.route from everyone but the app itself. My database can be seen from a url in JSON format
+https://stackoverflow.com/questions/57173318/in-flask-is-there-a-way-to-hide-a-app-route-from-everyone-but-the-app-itself
+dl punkt manually, and no need to download everytime we run -> run.app
+"""
 
 # session management
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+# absolute path for export of the temporary data
+temp_dir = os.path.abspath(os.getcwd()+"/project/temp_data/")
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 
 class Routes:
         
@@ -140,16 +152,21 @@ class Routes:
         cgrammar = text.checkGrammar()
         return render_template("main.html", text=cgrammar, form=form)
 
-    @app.route("/rec_handler", methods=['POST'])
-    @login_required
-    def rec_handler():
-        if request.method != "POST":
-            return
+    @app.route('/upload', methods=['POST'])
+    def upload():
+        temp_dir = os.getcwd() + "/project/temp_data/"
         
-        if request.form["status"] == "finished":
-            rec_audio_path = request.form["rec_audio_path"]
+        audio = request.files['audio']
+        audio = AudioSegment.from_file(audio, format="webm")
+
+        # Convert the audio to WAV format
+        audio = audio.set_frame_rate(16000)  # Set the frame rate to 16000 Hz (optional)
+        audio = audio.set_channels(1)  # Set the number of channels to 1 (optional)
         
-        return ('', 204)
+        # export audio file to our absolute path (temp_data)
+        audio.export(os.path.join(temp_dir, File.name + '.wav'), format="wav")
+
+        return "OK"
     
     @app.route("/feedback", methods=['GET'])
     def feedback():

@@ -7,5 +7,8 @@
 
 // important requirements from node_module
 require('flowbite')
+// include recording.js
+require('./recording.js');
 // include the script file, in this same folder
 require('./script.js');
+
