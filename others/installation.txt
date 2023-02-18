@@ -12,6 +12,7 @@ pip install -U WTForms
 pip install -U Flask-WTF
 pip install Flask-Login
 pip install nltk
+pip install pydub
 python.exe -m pip install --upgrade pip
 
 

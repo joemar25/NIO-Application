@@ -1,5 +1,8 @@
-import random
-import string
+from datetime import datetime
+import uuid
+import pytz
+
+
 # import spacy, re, nltk
 # import collections
 
@@ -35,8 +38,16 @@ class Validation:
 
 # Generate a random filename
 class File:
-    name = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     
+    def name() -> str:
+        # uses: uuid, pytz, datetime
+        todays: datetime = datetime.now(pytz.timezone('Asia/Manila')).utcnow()
+        utime: str = f'{uuid.uuid1()}{todays.hour}{todays.minute}{todays.second}'
+
+        deduct: int = -2 if str(todays.year)[1] == '0' else -3
+        udate: str = f"{str(todays.year)[deduct:]}{todays.month}{todays.day}"
+
+        return f"{udate}{utime}"
 
 # sentence = """As far as the laws of mathematics refer to reality they are not certain as far as they are certain they do not refer to reality"""
 

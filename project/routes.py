@@ -164,7 +164,7 @@ class Routes:
         audio = audio.set_channels(1)  # Set the number of channels to 1 (optional)
         
         # export audio file to our absolute path (temp_data)
-        audio.export(os.path.join(temp_dir, File.name + '.wav'), format="wav")
+        audio.export(os.path.join(temp_dir, File.name() + '.wav'), format="wav")
 
         return "OK"
     
