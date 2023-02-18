@@ -18,12 +18,19 @@ __docformat__ = "restructuredtext en"
         
 """
 import os
+import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 
 app = Flask(__name__)
+db_path = os.getcwd() + "/project/database/"
 db_name = 'records.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_name
+db_file = db_path + db_name
+
+if not os.path.exists(db_path):
+    os.makedirs(db_path)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 

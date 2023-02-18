@@ -2,16 +2,13 @@
 /__
 /.venv
 /.vscode
-/instance
+/project/database
 /project/temp_data
 /project/instance/records.db
 /project/node_modules
 /project/__pycache__
 /project/static/css/output.css
 *note.txt
-speedpy.txt
-api copy.py
-PATCH_NOTES.md
 
 # training models
 /project/models/*

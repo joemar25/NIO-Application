@@ -45,6 +45,7 @@ function startRecording() {
 function stopRecording() {
     mediaRecorder.stop();
     stream.getTracks().forEach(track => track.stop());
+    window.location.href = '/feedback'; // Redirect to the success page
 }
 
 const recordBtn = document.getElementById("record-btn");

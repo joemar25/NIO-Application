@@ -22,8 +22,8 @@
 from flask import render_template, redirect, url_for, flash, request, Response
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from os.path import exists
-from project import app, db_name, db
-from project.models import User
+from project import app, db_file, db
+from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
 from project.scripts.grammar.gingerit_class import Grammar as grammar
@@ -47,7 +47,6 @@ temp_dir = os.path.abspath(os.getcwd()+"/project/temp_data/")
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 
 class Routes:
         
@@ -78,7 +77,6 @@ class Routes:
         Function:
             Manage form and it's validation to be put inside the db
         """
-        
         # logout user if this page is accessed
         logout_user()
         
@@ -89,10 +87,6 @@ class Routes:
         if request.method != "POST":
             return render_template("home.html", form=form)
         
-        # if database not exist then create
-        if not exists('./instance/' + db_name):
-            db.create_all()
-
         # [GET] all data in form is submit button is clicked
         user_name = form.username.data
         text = form.text_script.data
@@ -155,6 +149,7 @@ class Routes:
     @app.route('/upload', methods=['POST'])
     def upload():
         temp_dir = os.getcwd() + "/project/temp_data/"
+        file_name = File.name() + '.wav'
         
         audio = request.files['audio']
         audio = AudioSegment.from_file(audio, format="webm")
@@ -164,9 +159,18 @@ class Routes:
         audio = audio.set_channels(1)  # Set the number of channels to 1 (optional)
         
         # export audio file to our absolute path (temp_data)
-        audio.export(os.path.join(temp_dir, File.name() + '.wav'), format="wav")
+        audio.export(os.path.join(temp_dir, file_name), format="wav")
+        
+        # db management
+        audio_query = Score(
+            user_id = current_user.id,
+            audio = file_name,
+            transcribed = "No transciption yet."
+        )
+        db.session.add(audio_query)
+        db.session.commit()
 
-        return "OK"
+        return
     
     @app.route("/feedback", methods=['GET'])
     def feedback():

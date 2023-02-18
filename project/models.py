@@ -14,7 +14,7 @@
 
 """
 
-from project import db
+from project import app, db
 from datetime import datetime
 
 """
@@ -34,7 +34,6 @@ We can use the fields here in 'current_user.field_name' to print or use the data
 """
 
 from flask_login import UserMixin
-
 
 class User(db.Model, UserMixin):
     id = db.Column(
@@ -106,21 +105,27 @@ class Score(db.Model):
         'rate',
         db.Float(),
         unique=False,
-        nullable=False
+        nullable=False,
+        default=0
     )
     grammar = db.Column(
         'grammar',
         db.Float(),
         unique=False,
-        nullable=False
+        nullable=False,
+        default=0
     )
     fluency = db.Column(
         'fluency',
         db.Float(),
         unique=False,
-        nullable=False
+        nullable=False,
+        default=0
     )
 
     # str representation of the model
     def __repr__(self):
         return f"{self.rate} {self.grammar} {self.fluency}"
+
+with app.app_context():
+    db.create_all()
