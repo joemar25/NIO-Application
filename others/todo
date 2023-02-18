@@ -1,8 +1,11 @@
 backend
 
-[] Use session
-[] Grammar correction - template (connect to front-end of possible)
+[/] Database
+[/] Record
+[/] integrated Session
+[/] Use session Information for Query
 [/] Text length validation
+[] Grammar correction - template (connect to front-end of possible)
 [-] Text validation - Ex: length of text should be more than more than 5 sentences
        - to upgade since --> a a a a  a is not valid
        - is can use sentence detection?
@@ -12,6 +15,9 @@ backend
 [] grammar checking
        - accuracy: board exam questions about grammar
 
+personal
+ fix commit
+ do alot of comments on pages
 --------
 
 You can use the following command to list all installed packages in your virtual environment:
