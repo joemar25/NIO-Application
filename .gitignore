@@ -1,5 +1,6 @@
 # my mandatory choice
 *__pycache__
+*.pyc
 # Ignore all files starting with "temp"
 temp*
 test*
