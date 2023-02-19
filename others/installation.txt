@@ -9,8 +9,12 @@ pip install gingerit
 pip install -U WTForms
 pip install -U Flask-WTF
 pip install Flask-Login
-pip install nltk
 pip install pydub
+
+pip install nltk
+# or
+pip install openai
+
 
 python.exe -m pip install --upgrade pip
 # or 
@@ -36,9 +40,10 @@ sudo add-apt-repository universe
 sudo apt update
 sudo apt install ffmpeg
 
-# if your in a mac environment
-brew install ffmpeg
-
+# env for linux
+python3 -m venv venv
+source .venv/bin/activate
+pip install --upgrade pip
 
 
 

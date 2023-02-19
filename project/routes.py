@@ -29,6 +29,9 @@ from project.scripts.helpers import Validation, File
 from project.scripts.grammar.gingerit_class import Grammar as grammar
 from pydub import AudioSegment
 import os
+import openai
+
+openai.api_key = "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"
 
 """
 todo, In Flask, is there a way to hide a @app.route from everyone but the app itself. My database can be seen from a url in JSON format
@@ -102,6 +105,7 @@ class Routes:
                 by decoding it using 'utf-8' for us to get the
                 text data
         """
+
         if not text:
             file = form.file_script.data
             text = file.read().decode('utf-8')
@@ -123,9 +127,14 @@ class Routes:
                 flash(f'{"invalid script text. try again"}', category='danger')
             return render_template("home.html", form=form)
 
-        # correcting the grammar
-        corrected = grammar(text)
-        corrected_text = corrected.checkGrammar()
+        corrected_text = ""
+        try:
+            # correcting the grammar
+            corrected = grammar(text)
+            corrected_text = corrected.checkGrammar()
+        except Exception:
+            flash(f'{"invalid script. try again"}', category='danger')
+            return render_template("home.html", form=form)
 
         # db management
         user = User(
