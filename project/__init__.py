@@ -14,8 +14,6 @@
         upload folder contains the area where we upload file/save file
         
 """
-from flask_login import UserMixin
-from project import routes
 import os
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
@@ -34,6 +32,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 # routes here
+from project import routes
 
 UPLOAD_FOLDER = '../app/temp_data/text'
 ALLOWED_EXTENSIONS = {'txt'}
@@ -41,3 +40,5 @@ app.config['UPLOAD_FOLDER'] = '../app/temp_data/text'
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 # app.config['SECRET_KEY'] = os.urandom(24).hex()
 app.config['SECRET_KEY'] = 'secretkeysecretkeysecretkeysecretkey'
+
+from flask_login import UserMixin
