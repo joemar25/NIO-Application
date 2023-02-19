@@ -88,7 +88,7 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-/* 
-::placeholder {
-  color: #3c4b57;
-} */
+
+@layer components {
+  /* class here */
+}

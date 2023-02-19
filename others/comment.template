@@ -7,3 +7,28 @@ Args:
 Returns:
     bool: True if the text is a valid sentence, False otherwise.
 """
+
+
+
+
+
+--> Grammarly example
+from flask_login import current_user
+from app import db
+from grammarly import grammar
+
+# Get the current user
+user = current_user
+
+# Get the current text from the user's ctext column
+text = user.ctext
+
+# Grammar check and correct the text
+corrected_text = grammar(text).checkGrammar().correctedText
+
+# Update the user's ctext and cgrammar columns
+user.ctext = corrected_text
+user.cgrammar = True
+
+# Commit the changes to the database
+db.session.commit()

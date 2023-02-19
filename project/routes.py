@@ -123,10 +123,15 @@ class Routes:
                 flash(f'{"invalid script text. try again"}', category='danger')
             return render_template("home.html", form=form)
 
+        # correcting the grammar
+        corrected = grammar(text)
+        corrected_text = corrected.checkGrammar()
+
         # db management
         user = User(
             user_name=user_name,
-            text=text
+            text=text,
+            ctext=corrected_text
         )
         db.session.add(user)
         db.session.commit()
@@ -142,11 +147,7 @@ class Routes:
     @login_required
     def main():
         form = RecordForm()
-
-        # grammar check and correct
-        text = grammar(current_user.text)
-        cgrammar = text.checkGrammar()
-        return render_template("main.html", text=cgrammar, form=form)
+        return render_template("main.html", form=form)
 
     @app.route('/upload', methods=['POST'])
     def upload():

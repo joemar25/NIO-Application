@@ -54,6 +54,11 @@ class User(db.Model, UserMixin):
         db.Text,
         nullable=False
     )
+    ctext = db.Column(
+        'ctext',
+        db.Text,
+        nullable=True,
+    )
     datetime = db.Column(
         'timestamp',
         db.DateTime,

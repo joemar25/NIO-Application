@@ -53,10 +53,11 @@ if (recordBtn) {
     recordBtn.addEventListener("click", function () {
         if (mediaRecorder && mediaRecorder.state === "recording") {
             stopRecording();
-            this.innerText = "Record";
+            this.value = "Record";
         } else {
             startRecording();
-            this.innerText = "Stop";
+            this.value = "Stop";
+            // this.classList.replace('ready', 'recording');
         }
     });
 } else {

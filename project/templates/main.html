@@ -19,8 +19,8 @@ body %} {% if current_user.is_authenticated%}
     {% if current_user.text %} {{ form.script.label( class="" ) }}: {{
     form.script( class="bg-gray-200 appearance-none border-2 border-gray-200
     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none
-    focus:bg-white focus:border-purple-500", placeholder=text, disabled=True )
-    }} {% endif %}
+    focus:bg-white focus:border-purple-500", placeholder=current_user.ctext,
+    disabled=True ) }} {% endif %}
   </div>
 </div>
 
@@ -28,8 +28,9 @@ body %} {% if current_user.is_authenticated%}
 <hr />
 <br />
 
-<button id="record-btn">Record</button>
-{% else %}
+{{ form.record( class="shadow bg-green-500 hover:bg-green-400
+focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded",
+id="record-btn" ) }} {% else %}
 
 <h1>User must have a username and their script to proceed to this page.</h1>
 <a href="{{url_for('index')}}">Home</a>
