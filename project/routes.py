@@ -44,12 +44,14 @@ login_manager.login_view = 'login'
 # absolute path for export of the temporary data
 temp_dir = os.path.abspath(os.getcwd()+"/project/temp_data/")
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 class Routes:
-        
+
     @app.route("/")
     def index():
         """
@@ -73,24 +75,24 @@ class Routes:
 
         Returns:
             __template__: 'home' for '/home'
-        
+
         Function:
             Manage form and it's validation to be put inside the db
         """
         # logout user if this page is accessed
         logout_user()
-        
+
         # form instance is created for forms to render on page
         form = EntryForm()
-        
+
         # if request is not post, just render page
         if request.method != "POST":
             return render_template("home.html", form=form)
-        
+
         # [GET] all data in form is submit button is clicked
         user_name = form.username.data
         text = form.text_script.data
-        
+
         """
         check if text script has no strings in it
             
@@ -103,11 +105,11 @@ class Routes:
         if not text:
             file = form.file_script.data
             text = file.read().decode('utf-8')
-            
+
         # add the text error if text is empty
         if not text:
             flash(f'{"no text script. try again"}', category='danger')
-        
+
         # if true return all errors related to forms
         if not form.validate_on_submit():
             if form.errors != {}:
@@ -120,19 +122,19 @@ class Routes:
             if text:
                 flash(f'{"invalid script text. try again"}', category='danger')
             return render_template("home.html", form=form)
-        
+
         # db management
         user = User(
-            user_name = user_name,
-            text = text
+            user_name=user_name,
+            text=text
         )
         db.session.add(user)
         db.session.commit()
-        
+
         # login the current user to the session
         user = User.query.order_by(-User.id).first()
         login_user(user)
-        
+
         # redirect to main page
         return redirect(url_for("main"))
 
@@ -148,30 +150,36 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
+        dir = "project/temp_data"
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+
         temp_dir = os.getcwd() + "/project/temp_data/"
         file_name = File.name() + '.wav'
-        
+
         audio = request.files['audio']
         audio = AudioSegment.from_file(audio, format="webm")
 
         # Convert the audio to WAV format
-        audio = audio.set_frame_rate(16000)  # Set the frame rate to 16000 Hz (optional)
-        audio = audio.set_channels(1)  # Set the number of channels to 1 (optional)
-        
+        # Set the frame rate to 16000 Hz (optional)
+        audio = audio.set_frame_rate(16000)
+        # Set the number of channels to 1 (optional)
+        audio = audio.set_channels(1)
+
         # export audio file to our absolute path (temp_data)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
-        
+
         # db management
         audio_query = Score(
-            user_id = current_user.id,
-            audio = file_name,
-            transcribed = "No transciption yet."
+            user_id=current_user.id,
+            audio=file_name,
+            transcribed="No transciption yet."
         )
         db.session.add(audio_query)
         db.session.commit()
 
-        return
-    
+        return "Upload successful"
+
     @app.route("/feedback", methods=['GET'])
     def feedback():
         # no login required but has error message if user access this page with no login credentials
@@ -188,7 +196,7 @@ class Routes:
     @app.route("/destroy", methods=['POST'])
     def destroy():
         return 0
-    
+
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404

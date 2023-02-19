@@ -1,3 +1,6 @@
 {
-    "git.ignoreLimitWarning": true
+    "python.linting.pylintArgs": [
+        "--disable=all"
+    ],
+    "git.ignoreLimitWarning": true,
 }

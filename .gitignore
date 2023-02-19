@@ -1,7 +1,15 @@
+# my mandatory choice
+*__pycache__
+# Ignore all files starting with "temp"
+temp*
+test*
+# Ignore all files containing the string "temp"
+*temp*
+*test*
+
 # personal choice
 /__
 /.venv
-/.vscode
 /project/database
 /project/temp_data
 /project/instance/records.db

@@ -14,8 +14,11 @@
 
 """
 
+from flask_login import UserMixin
 from project import app, db
 from datetime import datetime
+# inspect import for out database if not exist on databse folder
+from sqlalchemy import inspect
 
 """
 Flask-login requires a User model with the following properties:
@@ -33,7 +36,6 @@ method to do that yourself.
 We can use the fields here in 'current_user.field_name' to print or use the data in it.
 """
 
-from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     id = db.Column(
@@ -84,7 +86,7 @@ class Score(db.Model):
         db.ForeignKey("user.id"),
         nullable=False
     )
-    
+
     audio = db.Column(
         'audio',
         db.Text,
@@ -92,7 +94,7 @@ class Score(db.Model):
         nullable=False,
         default=None
     )
-    
+
     transcribed = db.Column(
         'transcribed',
         db.Text,
@@ -127,5 +129,13 @@ class Score(db.Model):
     def __repr__(self):
         return f"{self.rate} {self.grammar} {self.fluency}"
 
+
+""""
+use the inspect() method from SQLAlchemy's sqlalchemy.inspect module to check if a table exists in the database.
+
+By doing this, you can avoid creating tables that already exist, which can prevent errors or data loss.
+"""
 with app.app_context():
-    db.create_all()
+    inspector = inspect(db.engine)
+    if not inspector.has_table('table_name'):
+        db.create_all()

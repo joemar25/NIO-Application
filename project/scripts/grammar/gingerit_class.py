@@ -1,12 +1,16 @@
-# John Olan S. Gomez
-# SE2 Final project
-# February 16, 2023
+# John Olan S. Gomez | Joemar
+# February 19, 2023 - Update
 
-from gingerit.gingerit import GingerIt as gingerit  #checks grammar
-import nltk.data    #separates sentences
-# nltk.download('punkt')  #you can comment this out, once it is already downloaded
+from gingerit.gingerit import GingerIt as gingerit  # checks grammar
+import nltk.data  # separates sentences
+
 
 class Grammar:
+
+    # Check if the punkt package is already downloaded
+    # If it's not downloaded, download it now
+    if not nltk.download('punkt', quiet=True):
+        nltk.download('punkt')
 
     # Steps:
     # get the paragraph
@@ -24,7 +28,7 @@ class Grammar:
         self.sentences.append(tokenizer.tokenize(data))
 
     def checkGrammar(self):
-        Grammar.separateParagraph(self) # separate the sentences
+        Grammar.separateParagraph(self)  # separate the sentences
         correctSentence = []    # array to hold the corrected sentences
         parser = gingerit()     # parse gingerit
 
@@ -34,6 +38,7 @@ class Grammar:
                 result = parser.parse(j)
                 correctSentence.append(result['result'])
 
-        complete = " ".join(correctSentence)    # join the corrected sentences
+        # join the corrected sentences
+        complete = " ".join(correctSentence)
 
         return complete

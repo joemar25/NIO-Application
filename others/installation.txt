@@ -1,8 +1,6 @@
-# cd project
-
+pip install virtualenv
 python -m virtualenv .venv
 .venv\scripts\activate
-
 pip install flask
 pip install Werkzeug
 pip install Flask-SQLAlchemy
@@ -13,8 +11,10 @@ pip install -U Flask-WTF
 pip install Flask-Login
 pip install nltk
 pip install pydub
-python.exe -m pip install --upgrade pip
 
+python.exe -m pip install --upgrade pip
+# or 
+python -m pip install --upgrade pip
 
 cd project
 npm install -D tailwindcss postcss-cli autoprefixer
@@ -29,3 +29,37 @@ npm run watch
 # generate requirements.txt
 pip freeze > requirements.txt
 pip freeze --exclude-editable > requirements.txt
+
+# if your in a linux environment
+sudo apt update
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install ffmpeg
+
+# if your in a mac environment
+brew install ffmpeg
+
+
+
+
+
+
+
+# overall run
+pip install virtualenv
+python -m virtualenv .venv
+.venv\scripts\activate
+pip install flask
+pip install Werkzeug
+pip install Flask-SQLAlchemy
+pip install pytz
+pip install gingerit
+pip install -U WTForms
+pip install -U Flask-WTF
+pip install Flask-Login
+pip install nltk
+pip install pydub
+python.exe -m pip install --upgrade pip
+cd project
+npm install -D tailwindcss postcss-cli autoprefixer
+npm i browserify
