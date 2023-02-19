@@ -26,12 +26,9 @@ from project import app, db_file, db
 from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
-from project.scripts.grammar.gingerit_class import Grammar as grammar
+from project.scripts.grammar.gingerit import Grammar as grammar
 from pydub import AudioSegment
 import os
-import openai
-
-openai.api_key = "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"
 
 """
 todo, In Flask, is there a way to hide a @app.route from everyone but the app itself. My database can be seen from a url in JSON format

@@ -12,9 +12,6 @@ pip install Flask-Login
 pip install pydub
 
 pip install nltk
-# or
-pip install openai
-
 
 python.exe -m pip install --upgrade pip
 # or 
@@ -48,8 +45,6 @@ pip install --upgrade pip
 
 
 
-
-
 # overall run
 pip install virtualenv
 python -m virtualenv .venv
@@ -68,3 +63,30 @@ python.exe -m pip install --upgrade pip
 cd project
 npm install -D tailwindcss postcss-cli autoprefixer
 npm i browserify
+
+
+
+# linux
+pip install virtualenv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install flask
+pip install Werkzeug
+pip install Flask-SQLAlchemy
+pip install pytz
+pip install gingerit
+pip install -U WTForms
+pip install -U Flask-WTF
+pip install Flask-Login
+pip install nltk
+pip install pydub
+pip install --upgrade pip
+cd project
+npm install -D tailwindcss postcss-cli autoprefixer
+npm install -g npm@9.5.0
+npm i browserify
+
+sudo apt update
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install ffmpeg
