@@ -17,6 +17,7 @@ test*
 /project/instance/records.db
 /project/node_modules
 /project/__pycache__
+/project/scripts/__pycache__/
 /project/static/css/output.css
 *note.txt
 
