@@ -1,0 +1,32 @@
+<body class="overflow-hidden">
+    <div class="min-h-screen bg-gray-100 dark:bg-slate-800">
+        <!-- restricted -->
+        <nav class="rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
+            <div class="flex container mx-auto flex-wrap items-center justify-between">
+                <div class="unselectable flex items-center">
+                    <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"> Nio Application
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <!-- body template area -->
+        <div>
+            <div class="flex h-screen w-full items-center justify-center">
+                <div class="w-full rounded-lg border p-10 text-black shadow-lg sm:w-1/2">
+                    <p class="text-center uppercase">Script</p>
+                    <div
+                        class="mb-4 h-64 overflow-y-scroll rounded border-b border-l border-r border-gray-300 px-4 sm:px-6 lg:px-8">
+                        <p class="sentence text-base">Text Here</p>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button
+                            class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+https://play.tailwindcss.com/

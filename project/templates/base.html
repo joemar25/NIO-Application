@@ -14,7 +14,19 @@
 
   </head>
 
-  <body>
+  <!--
+    This will set the overflow property of the body element to hidden, which will prevent scrolling in the page.
+    However, this approach will completely disable scrolling on the page, even if there is content that extends
+    beyond the visible area of the viewport.
+
+    If you want to allow scrolling in some parts of the page while preventing scrolling in others, you may need
+    to use more specific classes and styles to target those elements.
+    For example, you could set overflow-y: scroll on the specific element that you want
+    to allow scrolling on, while still setting overflow: hidden on the body element to prevent scrolling on the page
+    as a whole.
+  -->
+
+  <body class="overflow-hidden">
 
     <div class="min-h-screen bg-gray-100 dark:bg-slate-800">
       <!-- LOGO AREA -->

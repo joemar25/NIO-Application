@@ -3,12 +3,12 @@
 body %} {% if current_user.is_authenticated%}
 
 <div class="w-full rounded-lg border p-10 text-black shadow-lg sm:w-1/2">
+  <p class="text-center uppercase">Script</p>
   <div
-    class="mb-4 h-64 overflow-y-scroll rounded border-b border-gray-300 px-4 sm:px-6 lg:px-8"
+    class="mb-4 h-64 overflow-y-scroll rounded border-b border-l border-r border-gray-300 px-4 sm:px-6 lg:px-8"
   >
     <p class="sentence text-base">{{ current_user.ctext}}</p>
   </div>
-
   <div class="flex items-center justify-center">
     {{ form.record( class="shadow bg-green-500 hover:bg-green-400
     focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4
@@ -22,3 +22,9 @@ body %} {% if current_user.is_authenticated%}
 <a href="{{url_for('index')}}">Home</a>
 
 {% endif%} {% endblock %}
+
+<!--
+  todo! make buttons for back
+        username welcome
+        button
+-->
