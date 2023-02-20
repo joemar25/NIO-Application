@@ -52,6 +52,37 @@ themeToggleBtn.addEventListener('click', function () {
 
 });
 
+// bar graph backend
+
+const labelsBarChart = [
+  "Feedback 1",
+  "Feedback 2",
+  "Feedback 3",
+  "Feedback 4",
+];
+const dataBarChart = {
+  labels: labelsBarChart,
+  datasets: [
+    {
+      label: "Speech Rating",
+      backgroundColor: "hsl(120, 60%, 50%)",
+      borderColor: "hsl(252, 82.9%, 67.8%)",
+      data: [85,73,90,88,100],
+    },
+  ],
+};
+
+const configBarChart = {
+  type: "bar",
+  data: dataBarChart,
+  options: {},
+};
+
+var chartBar = new Chart(
+  document.getElementById("chartBar"),
+  configBarChart
+);
+
 // ============================================== End ===============================================
 
 // ========================================== Record Audio ==========================================

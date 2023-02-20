@@ -2,10 +2,12 @@
 {% extends 'base.html' %} {% block title %} Score and Feedback {% endblock %} {%
 block body %} {% if current_user.is_authenticated %}
 <h2>Score and Feedback</h2>
-<a class="underline" href="{{ url_for('home') }}"> Home </a>
 {% else %}
 
-<h1>User must have a username and their script to proceed to this page.</h1>
-<a href="{{url_for('index')}}">Home</a>
+<div class="shadow-lg rounded-lg">
+  <canvas class="p-5 h-screen" id="chartBar"></canvas>
+</div>
 
+
+<script type=text/javascript src="{{url_for('static', filename='js/chart.js')}}"></script>
 {% endif%} {% endblock %}
