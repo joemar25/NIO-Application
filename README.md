@@ -1,156 +1,44 @@
-# Project
+# Nio
 
-## Setting Up
+Nio is an application that aims to help students and public speakers become more fluent in their speeches by providing them with tools and resources to improve their speaking skills.
 
-- python
-- project directory
-- install virtualenv (to create virtual environment : so anyone can install the requirements)
-- virtual environment (where everything we installed stored in this folder)
-- install packages
+## Features
 
-```txt
-    1. setup folder
-    2. install virtualenv
-        > pip install virtualenv
-    3. virtualenv setup
-        > python -m virtualenv .venv
-        or
-        > py -3 -m venv .venv
-    4. activate env
-        > .venv\scripts\activate
-    5. install flask
-       > pip install flask
-    6. setup other files
-    7. if finished configuring, run command:
-        > python app.py
-    - start creating, using a web server
-```
+- Speech analysis: Nio can analyze a user's speech and provide feedback on areas for improvement such as pace, tone, and use of filler words.
+- Practice mode: Nio offers a practice mode where users can practice their speeches in a supportive environment and receive real-time feedback.
+- Resources: Nio provides a variety of resources such as videos, articles, and tips on how to improve public speaking skills.
+- Progress tracking: Users can track their progress over time and set goals for improvement.
 
-```cmd
-python -m virtualenv .venv
-.venv\scripts\activate
-pip install flask
+## Installation
 
-```
+To install Nio, follow these steps:
 
-```txt
-    for front end setup
-        requires to install node.js
-        and use command: npx create-react-app frontend
-        to get started, 'frontend' is just a folder name.
-        npx create-react-app .
-        use . to install in current directory
+1. Clone the repository: `git clone https://github.com/joemar25/NIO-Application.git`
+2. Install dependencies: `run.sh`
+3. Start the application: `npm start`
 
-    to go in the front end
-        use command: cd frontend
-                     npm start
-```
+## Usage
 
- npm start
-    Starts the 'development' server.
+To use Nio, follow these steps:
 
-  npm run build
-    Bundles the app into static files for 'production'.
+1. Create an account or log in.
+2. Choose a speech to practice or create a new one.
+3. Enter practice mode and begin speaking.
+4. Receive feedback from Nio and work to improve your speaking skills.
+5. Explore the resources section for additional tips and tools.
 
-  npm test
-    Starts the 'test' runner.
+## Contributing
 
-  npm run eject
-    'Removes' this tool and 'copies' build dependencies, configuration files
-    and scripts into the app directory. If you do this, you can’t go back!
+We welcome contributions to Nio! To contribute, follow these steps:
 
-## Extention needs
+1. Fork the repository.
+2. Make your changes and test them.
+3. Submit a pull request.
 
-- ES7 React/Redux/GraphQL/React-Native snippets
-  - for easy native react coding (example, using rcf and enter)
+## Credits
 
-## Activation
+Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
 
-@important!
+## License
 
-```txt
-  cd app
-  .venv\scripts\activate
-  python server.py
-
-  cd frontend
-  npm start
-
-  or
-
-  npm run start
-```
-
-## Installing the package that will help us get the files we want from forms
-
-```cmd
-  # if error occurs
-  python -m pip install --upgrade pip
-  # install flask_wtf
-  pip install flask_wtf wtforms
-```
-
-> then use it in the file to get forms
-  > source: <https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
-
-## Setting Python Dotenv
-
-```py
-  cd app
-  pip install python-dotenv
-```
-
-## Libraries
-
-- Gingerit
-
-  ```cmd
-  pip install gingerit 
-  ```
-
-- Pytz
-
-  ```cmd
-  pip install pytz
-  ```
-
-## Making Requirements
-
-```cmd
-to generate
-pip freeze > requirements.txt
-or
-pip list --format=freeze > requirements.txt
-
-to install
-pip install -r requirements.txt
-```
-
-## References
-
-<https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment>
-
-solution for file upload
-
-<https://www.askpython.com/python-modules/flask/flask-file-uploading>
-
-<https://stackoverflow.com/questions/61628503/flask-uploads-importerror-cannot-import-name-secure-filename>
-
-<https://blog.miguelgrinberg.com/post/handling-file-uploads-with-flask>
-
-solution for permission error
-
-<https://www.youtube.com/watch?v=bwduoqYRqjA&ab_channel=RomanDoesConsumerTips>
-
-<https://www.youtube.com/watch?v=GeiUTkSAJPs&ab_channel=ArpanNeupane>
-
-<https://flask.palletsprojects.com/en/2.0.x/patterns/fileuploads/>
-
--- Setting up postCSS & tailwind
-<https://tailwindcss.com/docs/installation/using-postcss>
-<https://www.youtube.com/watch?v=h4nI6thys6E>
-command: npm run watch
-
-<https://flask.palletsprojects.com/en/1.0.x/patterns/errorpages/>
-
-<http://exploreflask.com/en/latest/views.html>
+Nio is licensed under the [insert license type here] license. See `LICENSE` for more information.
