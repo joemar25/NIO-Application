@@ -93,3 +93,7 @@ body {
 @layer components {
   /* class here */
 }
+
+#chartBar{
+  height: 400px;
+}
