@@ -104,3 +104,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 /* background design */
+
+#chartBar {
+  height: 400px;
+}
