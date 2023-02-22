@@ -8,11 +8,7 @@ html {
 }
 
 body {
-  background-image: radial-gradient(
-    circle farthest-corner at center,
-    #3c4b57 0%,
-    #1c262b 100%
-  );
+  overflow: hidden;
 }
 
 .loader {
@@ -90,6 +86,21 @@ body {
   user-select: none;
 }
 
-@layer components {
-  /* class here */
+/* scroll invisible */
+div::-webkit-scrollbar {
+  width: 0;
 }
+
+div::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* component of tailwind */
+@layer components {
+}
+
+/* background design */

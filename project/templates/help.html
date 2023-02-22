@@ -1,9 +1,56 @@
 <!-- this extends our base html -->
 {% extends 'base.html' %} {% block title %} Help {% endblock %} {% block body %}
 
-<div class="w-full max-w-sm">
-  <h1>This is the help page</h1>
-  <a href="{{url_for('index')}}">Home</a>
+<div class="flex flex-col justify-center items-center px-4">
+  <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-300 mt-16">
+    Need help?
+  </h1>
+  <p class="text-xl text-center text-gray-600 dark:text-gray-400 mb-8">
+    Here are some frequently asked questions:
+  </p>
+  <div class="w-full max-w-md">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
+      <div class="px-4 py-2 bg-gray-100 border-b border-gray-200">
+        <h2 class="text-xl font-bold text-gray-800">
+          How do I create an account?
+        </h2>
+      </div>
+      <div class="px-4 py-2">
+        <p class="text-gray-600 leading-loose">
+          To create an account, click on the "Sign Up" button on the top right
+          corner of the screen. Then, enter your details and click on "Create
+          Account".
+        </p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
+      <div class="px-4 py-2 bg-gray-100 border-b border-gray-200">
+        <h2 class="text-xl font-bold text-gray-800">
+          How do I reset my password?
+        </h2>
+      </div>
+      <div class="px-4 py-2">
+        <p class="text-gray-600 leading-loose">
+          To reset your password, click on the "Forgot Password" link on the
+          login page. Then, enter your email address and follow the instructions
+          in the email you receive.
+        </p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-4">
+      <div class="px-4 py-2 bg-gray-100 border-b border-gray-200">
+        <h2 class="text-xl font-bold text-gray-800">
+          How do I contact support?
+        </h2>
+      </div>
+      <div class="px-4 py-2">
+        <p class="text-gray-600 leading-loose">
+          You can contact our support team by emailing support@nio.com or by
+          calling our toll-free number at 1-800-123-4567.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

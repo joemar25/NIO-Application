@@ -2,28 +2,24 @@
 {% extends 'base.html' %} {% block title %} Speech Time {% endblock %} {% block
 body %} {% if current_user.is_authenticated%}
 
-<div class="w-full rounded-lg border p-10 text-black shadow-lg sm:w-1/2">
-  <p class="text-center uppercase">Script</p>
-  <div
-    class="mb-4 h-64 overflow-y-scroll rounded border-b border-l border-r border-gray-300 px-4 sm:px-6 lg:px-8"
-  >
-    <p class="sentence text-base">{{ current_user.ctext}}</p>
+<div class="unselectable w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900">
+  <h1 class="mb-4 text-2xl font-bold dark:text-white">Script</h1>
+  <div class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300">
+    <p class="p-6 text-base">{{current_user.ctext}}</p>
   </div>
-  <div class="flex items-center justify-center">
-    {{ form.record( class="shadow bg-green-500 hover:bg-green-400
-    focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4
-    rounded", id="record-btn" ) }}
+  <div class="mt-4 flex justify-end">
+    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2
+          focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
   </div>
-</div>
 
-{% else %}
+  {% else %}
 
-<h1>User must have a username and their script to proceed to this page.</h1>
-<a href="{{url_for('index')}}">Home</a>
+  <h1>User must have a username and their script to proceed to this page.</h1>
+  <a href="{{url_for('index')}}">Home</a>
 
-{% endif%} {% endblock %}
+  {% endif%} {% endblock %}
 
-<!--
+  <!--
   todo! make buttons for back
         username welcome
         button

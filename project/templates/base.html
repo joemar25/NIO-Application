@@ -9,9 +9,8 @@
 
     <!-- our logo here -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon1.jpg') }}" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}" />
-
   </head>
 
   <!--
@@ -26,11 +25,13 @@
     as a whole.
   -->
 
-  <body class="overflow-hidden">
+  <!-- <body class="overflow-hidden"> this is inside the css-->
 
-    <div class="min-h-screen bg-gray-100 dark:bg-slate-800">
-      <!-- LOGO AREA -->
-      <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+  <body>
+
+    <div class="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-slate-800">
+      <!-- restricted -->
+      <nav class="fixed inset-x-0 top-0 z-50 rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
 
           {% if request.path == "/home" %}
@@ -117,13 +118,10 @@
       </nav>
 
       <!-- body template area -->
-      <div class="flex h-screen w-full items-center justify-center">
-        {% block body %} {% endblock %}
-      </div>
-    </div>
+      {% block body %} {% endblock %}
 
-    <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
-
+      <!-- Script Area -->
+      <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
   </body>
 
 </html>
