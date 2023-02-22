@@ -58,7 +58,8 @@ const labelsBarChart = [
   "Rate",
   "Grammar",
   "Fluency",
-  "Feedback 4",
+  "Feedback",
+  "Other",
 ];
 
 const dataBarChart = {

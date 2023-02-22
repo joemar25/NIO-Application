@@ -16,6 +16,15 @@ block body %}
     >
       Go back to home page
     </a>
+
+    {% if current_user.is_authenticated %}
+    <a
+      href="{{url_for('main')}}"
+      class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600 ml-4 md:ml-8"
+    >
+      Go back to main page
+    </a>
+    {% endif %}
   </div>
 </div>
 
