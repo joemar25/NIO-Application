@@ -55,11 +55,12 @@ themeToggleBtn.addEventListener('click', function () {
 // bar graph backend
 
 const labelsBarChart = [
-  "Feedback 1",
-  "Feedback 2",
-  "Feedback 3",
+  "Rate",
+  "Grammar",
+  "Fluency",
   "Feedback 4",
 ];
+
 const dataBarChart = {
   labels: labelsBarChart,
   datasets: [
