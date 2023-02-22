@@ -8,8 +8,9 @@ body %} {% if current_user.is_authenticated%}
     <p class="p-6 text-base">{{current_user.ctext}}</p>
   </div>
   <div class="mt-4 flex justify-end">
-    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2
-          focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
+    text-white hover:bg-blue-600 focus:outline-none focus:ring-2
+    focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
   </div>
 </div>
 
@@ -19,9 +20,3 @@ body %} {% if current_user.is_authenticated%}
 <a href="{{url_for('index')}}">Home</a>
 
 {% endif%} {% endblock %}
-
-<!--
-  todo! make buttons for back
-        username welcome
-        button
--->
