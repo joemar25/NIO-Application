@@ -55,11 +55,12 @@ themeToggleBtn.addEventListener('click', function () {
 // bar graph backend
 
 const labelsBarChart = [
-  "Feedback 1",
-  "Feedback 2",
-  "Feedback 3",
+  "Rate",
+  "Grammar",
+  "Fluency",
   "Feedback 4",
 ];
+
 const dataBarChart = {
   labels: labelsBarChart,
   datasets: [
@@ -67,7 +68,7 @@ const dataBarChart = {
       label: "Speech Rating",
       backgroundColor: "hsl(120, 60%, 50%)",
       borderColor: "hsl(252, 82.9%, 67.8%)",
-      data: [85,73,90,88,100],
+      data: [85,73,81,88,100],
     },
   ],
 };
