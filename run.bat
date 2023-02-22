@@ -1,5 +1,7 @@
 @echo off
 
+echo Mar-Automation...
+
 REM Check if virtual environment exists
 if not exist .venv\Scripts\activate.bat (
   echo Creating a new virtual environment...
