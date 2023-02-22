@@ -6,6 +6,7 @@ from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
 from project.scripts.grammar.gingerit import Grammar as grammar
+from project.scripts.whisper.transcribe import to_text
 from pydub import AudioSegment
 import os
 
@@ -94,7 +95,8 @@ class Routes:
     @app.route('/upload', methods=['POST'])
     def upload():
         # Get the name of the uploaded file and save it to the temp data directory.
-        temp_dir = os.getcwd() + "/project/temp_data/"
+        temp_folder = "/project/temp_data/"
+        temp_dir = os.getcwd() + temp_folder
         file_name = File.name() + '.wav'
 
         # Convert the uploaded file to a WAV file and save it to the temp data directory.
@@ -103,12 +105,17 @@ class Routes:
         audio = audio.set_frame_rate(16000)
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
-
+        
+        # transcribing audio to text
+        wave_path = temp_dir + file_name
+        text = to_text(wave_path)
+        print(text)
+        
         # Add the audio query to the database.
         audio_query = Score(
             user_id=current_user.id,
             audio=file_name,
-            transcribed="No transcription yet."
+            transcribed=text
         )
         db.session.add(audio_query)
         db.session.commit()
@@ -120,6 +127,7 @@ class Routes:
         """
         Displays the feedback page.
         """
+        # process scores here # get current_user.id # get scores by user # add scores
         return render_template("feedback.html")
 
 

@@ -10,8 +10,9 @@ pip install -U WTForms
 pip install -U Flask-WTF
 pip install Flask-Login
 pip install pydub
-
 pip install nltk
+pip install git+https://github.com/openai/whisper.git
+pip install setuptools-rust
 
 python.exe -m pip install --upgrade pip
 # or 
@@ -59,6 +60,8 @@ pip install -U Flask-WTF
 pip install Flask-Login
 pip install nltk
 pip install pydub
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+pip install setuptools-rust
 python.exe -m pip install --upgrade pip
 cd project
 npm install -D tailwindcss postcss-cli autoprefixer
@@ -80,6 +83,8 @@ pip install -U Flask-WTF
 pip install Flask-Login
 pip install nltk
 pip install pydub
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+pip install setuptools-rust
 pip install --upgrade pip
 cd project
 npm install -D tailwindcss postcss-cli autoprefixer

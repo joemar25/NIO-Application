@@ -27,7 +27,7 @@ class Score(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False)
     audio = db.Column('audio', db.Text, unique=True, nullable=False, default=None)
-    transcribed = db.Column('transcribed', db.Text, unique=False, nullable=False, default=None)
+    transcribed = db.Column('transcribed', db.Text, unique=False, nullable=False, default="no transcription")
     rate = db.Column('rate', db.Float(), unique=False, nullable=False, default=0)
     grammar = db.Column('grammar', db.Float(), unique=False, nullable=False, default=0)
     fluency = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)

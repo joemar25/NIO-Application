@@ -10,9 +10,16 @@ db_path = os.getcwd() + "/project/database/"
 db_name = 'records.db'
 db_file = db_path + db_name
 
+# temp data file path
+temp_path = os.getcwd() + "/project/temp_data/"
+
 # Create the database directory if it does not exist
 if not os.path.exists(db_path):
     os.makedirs(db_path)
+    
+# create temp folder
+if not os.path.exists(temp_path):
+    os.makedirs(temp_path)
 
 # Set the configuration options for the app, including the location of the database file and whether to track modifications to the database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_file
