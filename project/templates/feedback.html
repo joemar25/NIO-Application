@@ -2,22 +2,32 @@
 {% extends 'base.html' %} {% block title %} Score and Feedback {% endblock %} {%
 block body %} {% if current_user.is_authenticated %}
 
-<div class="container mx-auto mt-10 px-4 lg:px-0">
-  <div class="mb-8 flex flex-col items-center justify-between lg:flex-row">
-    <h2 class="text-2xl font-bold text-gray-900">Score and Feedback</h2>
-    <div class="mt-4 flex lg:mt-0">
-      <a
-        class="mr-6 text-gray-900 hover:text-gray-700"
-        href="{{ url_for('index') }}"
-        >Another User</a
-      >
-      <a class="text-gray-900 hover:text-gray-700" href="{{ url_for('main') }}"
-        >Back</a
-      >
+<div
+  class="unselectable container mx-auto flex h-screen flex-col justify-center px-4 lg:px-0"
+>
+  <h2 class="text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
+    Result
+  </h2>
+
+  <div class="overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
+    <div class="mx-auto max-w-screen-sm p-5 lg:w-3/4 aspect-w-16 aspect-h-9">
+      <canvas class="w-full h-auto" id="chartBar"></canvas>
     </div>
   </div>
-  <div class="overflow-hidden rounded-lg shadow-lg">
-    <canvas class="mx-auto max-w-screen-sm p-5 lg:w-3/4" id="chartBar"></canvas>
+
+  <div class="mt-8 flex justify-center space-x-4">
+    <a
+      href="{{ url_for('main') }}"
+      class="rounded-lg bg-blue-500 py-2 px-6 font-bold text-white transition duration-300 hover:bg-blue-600 dark:bg-gray-700 dark:text-white"
+    >
+      Practice Again
+    </a>
+    <a
+      href="{{ url_for('index') }}"
+      class="rounded-lg bg-blue-500 py-2 px-6 font-bold text-white transition duration-300 hover:bg-blue-600 dark:bg-gray-700 dark:text-white"
+    >
+      New Session
+    </a>
   </div>
 </div>
 
