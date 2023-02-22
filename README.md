@@ -16,6 +16,10 @@ To install Nio, follow these steps:
 1. Clone the repository: `git clone https://github.com/joemar25/NIO-Application.git`
 2. Run on the current folder: `run.bat`
 
+    or
+
+    Run: `python api.py` - if you setup the app already
+
 ## Usage
 
 To use Nio, follow these steps:
