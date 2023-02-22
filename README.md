@@ -14,8 +14,7 @@ Nio is an application that aims to help students and public speakers become more
 To install Nio, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/joemar25/NIO-Application.git`
-2. Install dependencies: `run.sh`
-3. Start the application: `npm start`
+2. Run on the current folder: `run.bat`
 
 ## Usage
 
