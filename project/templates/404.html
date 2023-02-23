@@ -2,27 +2,28 @@
 {% extends 'base.html' %} {% block title %} Page not found {% endblock %} {%
 block body %}
 
-<div class="container mx-auto px-4 py-8 dark:bg-gray-800">
-  <div class="flex h-screen flex-col items-center justify-center">
-    <h1 class="mb-4 text-4xl font-bold text-gray-900 dark:text-gray-100">
-      404 Page Not Found
-    </h1>
-    <p class="mb-8 text-gray-700 dark:text-gray-300">
-      Sorry, the page you are looking for could not be found.
-    </p>
+<div
+  class="flex min-h-screen flex-col items-center justify-center bg-gray-100 dark:bg-gray-800"
+>
+  <h1 class="mb-4 text-4xl font-bold text-gray-900 dark:text-gray-100">
+    404 Page Not Found
+  </h1>
+  <p class="mb-8 text-gray-700 dark:text-gray-300">
+    Sorry, the page you are looking for could not be found.
+  </p>
+  <div class="flex space-x-4 text-center">
     <a
       href="{{url_for('index')}}"
-      class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600"
     >
-      Go back to home page
+      <span class="leading-6">Go back to home page</span>
     </a>
-
     {% if current_user.is_authenticated %}
     <a
       href="{{url_for('main')}}"
-      class="rounded-full bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600 ml-4 md:ml-8"
+      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600"
     >
-      Go back to main page
+      <span class="leading-6">Go back to main page</span>
     </a>
     {% endif %}
   </div>

@@ -42,6 +42,6 @@ We welcome contributions to Nio! To contribute, follow these steps:
 
 Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
 
-## License
+## References
 
-Nio is licensed under the [insert license type here] license. See `LICENSE` for more information.
+<https://www.write-out-loud.com/speech-rate.html>
