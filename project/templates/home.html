@@ -2,13 +2,20 @@
 {% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
 %}
 
-<form method="POST" action="process-form.php" class="w-full max-w-lg">
+<form
+  method="POST"
+  action="process-form.php"
+  class="mb-4 w-full max-w-lg rounded-lg bg-white px-8 pt-6 pb-8 shadow-lg dark:bg-gray-700"
+>
   <div class="mb-4">
-    <label class="mb-2 block font-bold text-gray-700" for="username">
+    <label
+      class="mb-2 block font-bold text-gray-700 dark:text-white"
+      for="username"
+    >
       Username
     </label>
     <input
-      class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+      class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white"
       id="username"
       type="text"
       placeholder="Enter your username"
@@ -20,11 +27,14 @@
   <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
     <div class="text-center">
       <div class="mb-4">
-        <label class="mb-2 block font-bold text-gray-700" for="text_script">
+        <label
+          class="mb-2 block font-bold text-gray-700 dark:text-white"
+          for="text_script"
+        >
           Text Script
         </label>
         <textarea
-          class="focus:shadow-outline w-full resize-none appearance-none overflow-y-auto rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+          class="focus:shadow-outline w-full resize-none appearance-none overflow-y-auto rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white"
           id="text_script"
           placeholder="Enter your script here"
           name="text_script"
@@ -35,18 +45,18 @@
     </div>
 
     <div
-      class="flex border-t-2 border-l-0 border-gray-300 pl-4 md:border-l-2 md:border-t-0"
+      class="flex border-t-2 border-l-0 border-gray-300 pl-4 dark:border-gray-300 md:border-l-2 md:border-t-0"
     >
       <div class="m-auto">
         <label
-          class="mb-2 mt-4 block font-bold text-gray-700"
+          class="mb-2 mt-4 block font-bold text-gray-700 dark:text-white"
           for="file_script"
         >
           File Script
         </label>
         <div class="relative">
           <input
-            class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+            class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white"
             id="file_script"
             type="file"
             name="file_script"
@@ -58,7 +68,7 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-center md:justify-between">
+  <div class="flex items-center justify-center md:justify-end">
     <button
       class="focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"
       type="submit"
