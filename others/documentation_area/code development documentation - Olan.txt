@@ -10,5 +10,6 @@ Grammar feature development:
     - the details of the test is found in "testing of grammar accuracy.txt"
 
     Testing: 02/17/2023
-    - nouns are also changed when corecting the grammar
+    - nouns are also changed when correcting the grammar
         - ex: names of a person are changed - which should not be
+        Solution: Nouns should be in capital letter
