@@ -52,7 +52,7 @@
 
           <div class="flex md:order-2">
 
-           {% if current_user.is_authenticated %}
+            {% if current_user.is_authenticated %}
             <button class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="History"
               data-modal-target=" staticModal" data-modal-toggle="staticModal" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -172,6 +172,6 @@
 
       <!-- Script Area -->
       <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
-    </body>
+  </body>
 
 </html>
