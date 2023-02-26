@@ -1,0 +1,17 @@
+# only use this if you have fail to have node_module folder on 'project'
+
+
+conda create -n node_env nodejs # CREATE
+conda activate node_env # ACTIVE
+conda env remove --name myenv # REMOVE
+conda deactivate # DEACTIVATE
+conda info --envs # INFO
+
+
+# npm install if in node_env
+npm install inside 'project' folder to install dependencies'
+
+
+# test installation
+npm install blueimp-file-upload
+from: https://github.com/blueimp/jQuery-File-Upload

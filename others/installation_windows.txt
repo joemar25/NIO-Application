@@ -1,0 +1,38 @@
+python.exe -m pip install --upgrade pip
+# or 
+python -m pip install --upgrade pip
+
+cd project
+npm install -D tailwindcss postcss-cli autoprefixer
+npm i browserify
+
+# to activate api
+python api.py
+
+# to activate tailwindcss
+npm run watch
+
+# generate requirements.txt
+pip freeze > requirements.txt
+pip freeze --exclude-editable > requirements.txt
+
+# overall run
+pip install virtualenv
+python -m virtualenv .venv
+.venv\scripts\activate
+pip install flask
+pip install Werkzeug
+pip install Flask-SQLAlchemy
+pip install pytz
+pip install gingerit
+pip install -U WTForms
+pip install -U Flask-WTF
+pip install Flask-Login
+pip install nltk
+pip install pydub
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+pip install setuptools-rust
+python.exe -m pip install --upgrade pip
+cd project
+npm install -D tailwindcss postcss-cli autoprefixer
+npm i browserify
