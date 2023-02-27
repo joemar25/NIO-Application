@@ -1,11 +1,9 @@
 // ========================================== Record Audio ==========================================
 
-// variables for recording
 let chunks = [];
 let mediaRecorder;
 let stream;
 
-// use the blueimp-file-upload widget to upload the audio file when recording is complete
 function startRecording() {
     chunks = []; // reset chunks array
     navigator.mediaDevices.getUserMedia({ audio: true })
@@ -24,11 +22,18 @@ function startRecording() {
                 const audioBlob = new Blob(chunks, { type: chunks[0].type });
                 const timestamp = Date.now(); // use timestamp as filename
                 const formData = new FormData();
-                formData.append("file", audioBlob, `${timestamp}.wav`);
+                formData.append("audio", audioBlob, `${timestamp}.wav`);
 
-                // Use the file upload widget to upload the audio file
-                $('.fileupload').fileupload('send', { files: formData });
-
+                fetch("/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => {
+                        console.log("Audio recording sent to server");
+                    })
+                    .catch(error => {
+                        console.error("Error sending audio recording to server:", error);
+                    });
             });
 
         })
@@ -36,7 +41,6 @@ function startRecording() {
             console.error(error);
         });
 }
-
 
 function stopRecording() {
     mediaRecorder.stop();
@@ -62,4 +66,3 @@ if (recordBtn) {
 }
 
 // ============================================== End ===============================================
-

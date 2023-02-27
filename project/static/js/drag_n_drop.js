@@ -1,5 +1,4 @@
 // this initialize the file upload widget
-const $ = require('jquery');
 
 /* 
 wrap your JavaScript code inside a DOMContentLoaded event listener,
