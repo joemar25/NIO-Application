@@ -69,7 +69,7 @@ const dataBarChart = {
       label: "Speech Rating",
       backgroundColor: "hsl(120, 60%, 50%)",
       borderColor: "hsl(252, 82.9%, 67.8%)",
-      data: [85, 73, 90, 88, 100],
+      data: [85, 73, 90, 88, 81, 100],
     },
   ],
 };

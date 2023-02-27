@@ -3,7 +3,7 @@
 %}
 
 <form method="POST" action="" enctype=multipart/form-data
-  class="mb-4 w-full max-w-lg rounded-lg bg-white px-8 pt-6 pb-8 shadow-lg dark:bg-gray-700">
+  class="mt-4 max-w-screen-md w-full max-h-full rounded-lg bg-white px-8 pt-6 pb-8 shadow-lg dark:bg-gray-700">
 
   {% with messages = get_flashed_messages(with_categories=True) %}
   {% if messages %}
@@ -50,7 +50,7 @@
       )
     }}
     {{ form.username(
-      class="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white text-center"
+      class="focus:shadow-outline max-w-md w-1/2 appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white text-center"
       )
     }}
   </div>
@@ -60,7 +60,7 @@
     <div class="mb-4 text-center">
       <label class="mb-2 block font-bold text-gray-700 dark:text-white" for="text_script"> Text Script </label>
       <textarea
-        class="focus:shadow-outline w-full resize-none appearance-none overflow-y-auto rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white text-center"
+        class="focus:shadow-outline w-full h-56 resize-none appearance-none overflow-y-auto rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none dark:bg-gray-800 dark:text-white text-justify"
         id="text_script" placeholder="Enter your script here" name="text_script" rows="6"></textarea>
     </div>
     <!-- a -->
