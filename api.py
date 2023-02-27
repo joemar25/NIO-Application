@@ -1,4 +1,4 @@
-__version__ = "0.8"
+__version__ = "0.9"
 __docformat__ = "restructuredtext en"
 
 from project import app
