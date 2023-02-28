@@ -2,18 +2,68 @@
 {% extends 'base.html' %} {% block title %} Score and Feedback {% endblock %} {%
 block body %} {% if current_user.is_authenticated %}
 
-<div
-  class="unselectable container mx-auto flex h-screen flex-col justify-center px-4 lg:px-0"
->
+<div class="unselectable w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900">
+
   <h2 class="text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
     Result
   </h2>
 
-  <div class="overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
-    <div class="mx-auto max-w-screen-sm p-5 lg:w-3/4 aspect-w-16 aspect-h-9">
-      <canvas class="w-full h-auto" id="chartBar"></canvas>
+  <div class="gap-8 sm:grid sm:grid-cols-1">
+
+    <div>
+
+      <dl>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
+          <dd class="flex items-center mb-3">
+            <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{'96'}}%"></div>
+            </div>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{'96'}}</span>
+          </dd>
+      </dl>
+
+      <dl>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
+          <dd class="flex items-center mb-3">
+              <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                  <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 89%"></div>
+              </div>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">89</span>
+          </dd>
+      </dl>
+
+      <dl>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
+        <dd class="flex items-center mb-3">
+            <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 69%"></div>
+            </div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">69</span>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Feedback</dt>
+        <dd class="flex items-center mb-3">
+            <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 70%"></div>
+            </div>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70</span>
+        </dd>
+      </dl>
+
     </div>
+
   </div>
+
+    <div class="flex items-center mb-5">
+      <p class="font-medium text-gray-900 dark:text-white">Overall Rating: </p>
+      <p class="ml-2 bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">8.7</p>
+      <p class="ml-2 font-medium text-gray-900 dark:text-white">Excellent</p>
+  </div>
+
+  </div>
+
 
   <div class="mt-8 flex justify-center space-x-4">
     <a
@@ -128,5 +178,10 @@ block body %} {% if current_user.is_authenticated %}
     <!--  modal end -->
   </div>
 </div>
+
+
+
+
+
 
 {% else %} No user {% endif%} {% endblock %}

@@ -10,6 +10,7 @@ require('blueimp-file-upload/js/jquery.fileupload');
 // include local scripts
 require('./drag_n_drop.js');
 require('./recording.js');
-require('./chart.js');
 // include the script file, in this same folder
 require('./script.js');
+
+

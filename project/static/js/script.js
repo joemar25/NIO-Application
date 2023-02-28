@@ -52,39 +52,6 @@ themeToggleBtn.addEventListener('click', function () {
 
 });
 
-// bar graph backend
-
-const labelsBarChart = [
-  "Rate",
-  "Grammar",
-  "Fluency",
-  "Feedback",
-  "Other",
-];
-
-const dataBarChart = {
-  labels: labelsBarChart,
-  datasets: [
-    {
-      label: "Speech Rating",
-      backgroundColor: "hsl(120, 60%, 50%)",
-      borderColor: "hsl(252, 82.9%, 67.8%)",
-      data: [85, 73, 90, 88, 81, 100],
-    },
-  ],
-};
-
-const configBarChart = {
-  type: "bar",
-  data: dataBarChart,
-  options: {},
-};
-
-var chartBar = new Chart(
-  document.getElementById("chartBar"),
-  configBarChart
-);
-
 // ============================================== End ===============================================
 
 
