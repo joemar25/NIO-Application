@@ -138,7 +138,13 @@ class Routes:
         
         return render_template("feedback.html", score=current_score, average=average)
 
-
+    @app.route("/about")
+    def about():
+        """
+        Displays the loading page.
+        """
+        return render_template('about.html')
+    
     @app.route("/loading")
     def loading():
         """
