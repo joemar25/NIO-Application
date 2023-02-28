@@ -12,7 +12,7 @@ test*
 # personal choice
 /__
 /.venv
-/project/package.lock.json
+/project/package-lock.json
 /project/database
 /project/temp_data
 /project/instance/records.db
