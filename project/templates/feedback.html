@@ -16,9 +16,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
           <dd class="flex items-center mb-3">
             <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{'96'}}%"></div>
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['rate']}}%"></div>
             </div>
-              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{'96'}}</span>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['rate']}}</span>
           </dd>
       </dl>
 
@@ -26,9 +26,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
           <dd class="flex items-center mb-3">
               <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-                  <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 89%"></div>
+                  <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['fluency']}}%"></div>
               </div>
-              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">89</span>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['fluency']}}</span>
           </dd>
       </dl>
 
@@ -36,9 +36,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
         <dd class="flex items-center mb-3">
             <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 69%"></div>
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['grammar']}}%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">69</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['grammar']}}</span>
         </dd>
       </dl>
 
@@ -58,7 +58,7 @@ block body %} {% if current_user.is_authenticated %}
 
     <div class="flex items-center mb-5">
       <p class="font-medium text-gray-900 dark:text-white">Overall Rating: </p>
-      <p class="ml-2 bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">8.7</p>
+      <p class="ml-2 bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">{{ average }}</p>
       <p class="ml-2 font-medium text-gray-900 dark:text-white">Excellent</p>
   </div>
 

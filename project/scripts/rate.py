@@ -7,7 +7,7 @@ import os
 import whisper
 import librosa
 
-def get_rate(audio_file) : 
+def get_rate(audio_file, text_data) : 
     
     LOWEST_IDEAL = 2.33
     HIGHEST_IDEAL = 2.67

@@ -127,8 +127,16 @@ class Routes:
         """
         Displays the feedback page.
         """
-        # process scores here # get current_user.id # get scores by user # add scores
-        return render_template("feedback.html")
+        # Get the current user's ID
+        user_id = current_user.id
+
+        # Query the score for the current user
+        current_score = Score.query.filter_by(user_id=user_id).first()
+        
+        # overall rating calculation
+        average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
+        
+        return render_template("feedback.html", score=current_score, average=average)
 
 
     @app.route("/loading")

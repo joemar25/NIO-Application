@@ -2,9 +2,13 @@
 {% extends 'base.html' %} {% block title %} Speech Time {% endblock %} {% block
 body %} {% if current_user.is_authenticated%}
 
-<div class="unselectable w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900">
+<div
+  class="unselectable w-full max-w-md rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900"
+>
   <h1 class="mb-4 text-2xl font-bold dark:text-white">Script</h1>
-  <div class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300">
+  <div
+    class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300"
+  >
     <p class="p-6 text-base">{{current_user.ctext}}</p>
   </div>
   <div class="mt-4 flex justify-end">
