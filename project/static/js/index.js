@@ -12,6 +12,7 @@ require('./loading.js');
 require('./drag_n_drop.js');
 require('./recording.js');
 // include the script file, in this same folder
+require('./verification.js');
 require('./script.js');
 
 
