@@ -9,6 +9,7 @@ from project.scripts.transcribe import to_text
 from project.scripts.rate import get_rate
 from pydub import AudioSegment
 import os
+import time
 
 # session management
 login_manager = LoginManager()
@@ -145,19 +146,25 @@ class Routes:
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
-        """
-        Displays the feedback page.
-        """
-        # Get the current user's ID
-        user_id = current_user.id
+        # Record the start time of the request
+        start_time = time.time()
 
-        # Query the score for the current user
-        current_score = Score.query.filter_by(user_id=user_id).first()
-        
-        # overall rating calculation
-        average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
-        
-        return render_template("feedback.html", score=current_score, average=round(average, 1))
+        # Query the database to get the current user's score
+        current_score = Score.query.filter_by(user_id=current_user.id).first()
+
+        # Calculate the average score if the query is successful
+        if current_score is not None:
+            average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
+
+            # Calculate the response time
+            response_time = time.time() - start_time
+
+            # Render the template with the score and response time
+            return render_template("feedback.html", score=current_score, average=round(average, 1), response_time=response_time)
+        else:
+            flash(f'{"error on fetching the data on the server, try again."}', category='danger')
+            return redirect(url_for("main")) 
+            # return "Error: Could not retrieve score."
 
     @app.route("/about")
     def about():
