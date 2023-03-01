@@ -141,7 +141,7 @@ class Routes:
     @app.route("/about")
     def about():
         """
-        Displays the loading page.
+        Displays the about page.
         """
         return render_template('about.html')
     

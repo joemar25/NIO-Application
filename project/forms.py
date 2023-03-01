@@ -43,7 +43,7 @@ class EntryForm(FlaskForm):
     
     submit = SubmitField(
         label="Proceed",
-        render_kw={"data-popover-target":"popover-default"}
+        render_kw={"data-tooltip-target":"tooltip-animation"}
     )
 
 
@@ -53,12 +53,4 @@ class RecordForm(FlaskForm):
     """
     record = SubmitField(
         label="Record"
-    )
-    
-    stop = SubmitField(
-        label="Stop"
-    )
-
-    script = TextAreaField(
-        label="Script"
     )

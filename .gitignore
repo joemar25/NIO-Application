@@ -3,10 +3,10 @@
 *.pyc
 *.cpython-39.pyc
 # Ignore all files starting with "temp"
-temp*
+# temp*
 test*
 # Ignore all files containing the string "temp"
-*temp*
+# *temp*
 *test*
 
 # personal choice
