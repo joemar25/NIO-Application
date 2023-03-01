@@ -162,7 +162,7 @@ class Routes:
             # Render the template with the score and response time
             return render_template("feedback.html", score=current_score, average=round(average, 1), response_time=response_time)
         else:
-            flash(f'{"error on the server side."}', category='danger')
+            flash(f'{"error on fetching the data on the server, try again."}', category='danger')
             return redirect(url_for("main")) 
             # return "Error: Could not retrieve score."
 
