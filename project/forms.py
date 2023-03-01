@@ -29,7 +29,7 @@ class EntryForm(FlaskForm):
     # fields
     username = StringField(
         label="Username",
-        render_kw={"placeholder": "Enter your Username"}
+        render_kw={"placeholder": "Ex. 'Rolando'"}
     )
 
     text_script = TextAreaField(

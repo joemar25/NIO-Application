@@ -125,17 +125,19 @@ class Routes:
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
         # transcribing audio to text
-        wave_path = temp_dir + file_name
-        text = to_text(wave_path)
-        print(wave_path)
-        print(text)
+        audio_path = temp_dir + file_name
+        text = to_text(audio_path)
+        
+        # get rate score
+        # rate_score = get_rate(audio_path, text)
+        rate_score = 99
         
         # Add the audio query to the database.
         audio_query = Score(
             user_id=current_user.id,
             audio=file_name,
             transcribed=text,
-            rate=22,
+            rate=rate_score,
             grammar=69,
             fluency=88
         )

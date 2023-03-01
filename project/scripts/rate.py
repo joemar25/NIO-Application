@@ -9,7 +9,7 @@ __HIGHEST_IDEAL = 2.67
 __REDUCTION = 0.0683 / 0.17
 __IDEAL_SCORE = 100
 
-def get_rate(audio_file, text_data) : 
+def get_rate(audio_file, text_data): 
     
     audioDuration =  float(librosa.get_duration(filename=(audio_file)))
     wordList      =  str.split(text_data)
