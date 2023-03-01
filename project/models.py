@@ -17,10 +17,6 @@ class User(db.Model, UserMixin):
     # option is used to ensure that the related objects are not loaded until explicitly requested.
     scores = db.relationship('Score', backref='user', lazy='dynamic')
 
-    # Define a string representation for the User object that is useful for debugging.
-    def __repr__(self):
-        return f'User: {self.user_name}\tText: {self.text}\tAudio: {self.audio}'
-
 # Define the Score model to represent a user's score for a specific task.
 class Score(db.Model):
     # Define the columns for the Score table.
@@ -31,10 +27,8 @@ class Score(db.Model):
     rate = db.Column('rate', db.Float(), unique=False, nullable=False, default=0)
     grammar = db.Column('grammar', db.Float(), unique=False, nullable=False, default=0)
     fluency = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
-
-    # Define a string representation for the Score object that is useful for debugging.
-    def __repr__(self):
-        return f'{self.rate} {self.grammar} {self.fluency}'
+    # emotion_nom = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
+    # emotion_num = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
 
 # Use the SQLAlchemy inspect() method to check if the table already exists in the database.
 # If it does not exist, create it using db.create_all().

@@ -7,6 +7,7 @@ __MODEL = 'base'
  
 def to_text(audio_file) : 
     
+    audio_file = r"{audio_file}"
     # text holder
     text = ""
     

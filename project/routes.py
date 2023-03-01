@@ -1,12 +1,12 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from os.path import exists
-from project import app, db_file, db
+from project import app, db
 from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
-from project.scripts.grammar.gingerit import Grammar as grammar
-from project.scripts.whisper.transcribe import to_text
+from project.scripts.grammar import Grammar as grammar
+from project.scripts.transcribe import to_text
+from project.scripts.rate import get_rate
 from pydub import AudioSegment
 import os
 
@@ -90,7 +90,24 @@ class Routes:
     def main():
         # Render the main page.
         form = RecordForm()
-        return render_template("main.html", form=form)
+        
+        # Get the current user's ID
+        user_id = current_user.id
+
+        # score history
+        all_score = Score.query.filter_by(user_id=user_id)
+
+        if all_score.count() == 0:
+            print("No scores found")
+        else:
+            print("Scores found")
+
+        """
+        todo, the problem here is the delay of database update for score
+        resulting to AttributeError: 'NoneType' object has no attribute 'rate'
+        """
+        
+        return render_template("main.html", form=form, score=all_score)
 
     @app.route('/upload', methods=['POST'])
     def upload():
@@ -109,13 +126,17 @@ class Routes:
         # transcribing audio to text
         wave_path = temp_dir + file_name
         text = to_text(wave_path)
+        print(wave_path)
         print(text)
         
         # Add the audio query to the database.
         audio_query = Score(
             user_id=current_user.id,
             audio=file_name,
-            transcribed=text
+            transcribed=text,
+            rate=22,
+            grammar=69,
+            fluency=88
         )
         db.session.add(audio_query)
         db.session.commit()
@@ -136,9 +157,15 @@ class Routes:
         # overall rating calculation
         average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
         
-        return render_template("feedback.html", score=current_score, average=average)
+        return render_template("feedback.html", score=current_score, average=round(average, 1))
 
-
+    @app.route("/about")
+    def about():
+        """
+        Displays the about page.
+        """
+        return render_template('about.html')
+    
     @app.route("/loading")
     def loading():
         """

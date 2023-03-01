@@ -22,13 +22,13 @@ class Grammar:
         self.sentence = sentence
         self.sentences = []
 
-    def separateParagraph(self):
+    def __separateParagraph(self):
         tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
         data = self.sentence
         self.sentences.append(tokenizer.tokenize(data))
 
     def checkGrammar(self):
-        Grammar.separateParagraph(self)  # separate the sentences
+        Grammar.__separateParagraph(self)  # separate the sentences
         correctSentence = []    # array to hold the corrected sentences
         parser = gingerit()     # parse gingerit
 
