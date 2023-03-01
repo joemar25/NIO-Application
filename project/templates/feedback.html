@@ -14,9 +14,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
           <dd class="flex items-center mb-3">
             <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-1">
-                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['rate']}}%"></div>
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{'95'}}%"></div>
             </div>
-              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['rate']}}</span>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{'95'}}</span>
           </dd>
       </dl>
 
@@ -24,9 +24,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
           <dd class="flex items-center mb-3">
               <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-                  <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['fluency']}}%"></div>
+                  <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{'88'}}%"></div>
               </div>
-              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['fluency']}}</span>
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{'88'}}</span>
           </dd>
       </dl>
 
@@ -34,9 +34,9 @@ block body %} {% if current_user.is_authenticated %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
         <dd class="flex items-center mb-3">
             <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['grammar']}}%"></div>
+                <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{'88'}}%"></div>
             </div>
-            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['grammar']}}</span>
+            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{'88'}}</span>
         </dd>
       </dl>
 
