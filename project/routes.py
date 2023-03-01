@@ -4,8 +4,9 @@ from project import app, db
 from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
-from project.scripts.grammar.gingerit import Grammar as grammar
-from project.scripts.whisper.transcribe import to_text
+from project.scripts.grammar import Grammar as grammar
+from project.scripts.transcribe import to_text
+from project.scripts.rate import get_rate
 from pydub import AudioSegment
 import os
 
@@ -102,7 +103,7 @@ class Routes:
             print("Scores found")
 
         """
-        todo., the problem here is the delay of database update for score
+        todo, the problem here is the delay of database update for score
         resulting to AttributeError: 'NoneType' object has no attribute 'rate'
         """
         
@@ -125,12 +126,17 @@ class Routes:
         # transcribing audio to text
         wave_path = temp_dir + file_name
         text = to_text(wave_path)
+        print(wave_path)
+        print(text)
         
         # Add the audio query to the database.
         audio_query = Score(
             user_id=current_user.id,
             audio=file_name,
-            transcribed=text
+            transcribed=text,
+            rate=22,
+            grammar=69,
+            fluency=88
         )
         db.session.add(audio_query)
         db.session.commit()
@@ -151,7 +157,7 @@ class Routes:
         # overall rating calculation
         average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
         
-        return render_template("feedback.html", score=current_score, average=average)
+        return render_template("feedback.html", score=current_score, average=round(average, 1))
 
     @app.route("/about")
     def about():
