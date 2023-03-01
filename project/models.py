@@ -31,6 +31,8 @@ class Score(db.Model):
     rate = db.Column('rate', db.Float(), unique=False, nullable=False, default=0)
     grammar = db.Column('grammar', db.Float(), unique=False, nullable=False, default=0)
     fluency = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
+    # emotion_nom = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
+    # emotion_num = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
 
     # Define a string representation for the Score object that is useful for debugging.
     def __repr__(self):

@@ -1,7 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from os.path import exists
-from project import app, db_file, db
+from project import app, db
 from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
@@ -90,7 +89,24 @@ class Routes:
     def main():
         # Render the main page.
         form = RecordForm()
-        return render_template("main.html", form=form)
+        
+        # Get the current user's ID
+        user_id = current_user.id
+
+        # score history
+        all_score = Score.query.filter_by(user_id=user_id)
+
+        if all_score.count() == 0:
+            print("No scores found")
+        else:
+            print("Scores found")
+
+        """
+        todo., the problem here is the delay of database update for score
+        resulting to AttributeError: 'NoneType' object has no attribute 'rate'
+        """
+        
+        return render_template("main.html", form=form, score=all_score)
 
     @app.route('/upload', methods=['POST'])
     def upload():
@@ -109,7 +125,6 @@ class Routes:
         # transcribing audio to text
         wave_path = temp_dir + file_name
         text = to_text(wave_path)
-        print(text)
         
         # Add the audio query to the database.
         audio_query = Score(
