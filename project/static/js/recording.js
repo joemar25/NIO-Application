@@ -42,16 +42,16 @@ function startRecording() {
                     body: formData
                 })
                     .then(response => {
-                        console.log("Audio recording sent to server");
-                        // hide loading element
-                        loading.style.display = "none";
-                        // redirect to success page
-                        window.location.href = '/feedback';
+                        if (response.ok) {
+                            // the upload was successful, so redirect to the success page
+                            window.location.href = '/process_audio';
+                        } else {
+                            // the upload failed, so show an error message
+                            console.error("Error sending audio recording to server:", response.statusText);
+                        }
                     })
                     .catch(error => {
                         console.error("Error sending audio recording to server:", error);
-                        // hide loading element
-                        loading.style.display = "none";
                     });
             });
 
@@ -69,7 +69,7 @@ function stopRecording() {
     const loading = document.getElementById("loading");
     loading.style.display = "none";
     // redirect to success page
-    window.location.href = '/feedback';
+    // window.location.href = '/process_audio';
 }
 
 const recordBtn = document.getElementById("record-btn");

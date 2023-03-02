@@ -137,22 +137,43 @@ class Routes:
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
-        # Add the audio query to the database.
-        audio_query = Score(
-            user_id=current_user.id,
-            audio=file_name
-        )
-        db.session.add(audio_query)
-        db.session.commit()
+        try:
+            # Add the audio query to the database.
+            audio_query = Score(
+                user_id=current_user.id,
+                audio=file_name
+            )
+            db.session.add(audio_query)
+            db.session.commit()
+        except:
+            return jsonify({"success": False}), 500  # indicate failure with a 500 error
 
-        print("Audio Successfully Uploaded!") 
-        return "Upload Successful"
+        return jsonify({"success": True})  # indicate success with a 200 OK response
+
+    @app.route('/process_audio', methods=['GET'])
+    def process_audio():
+        
+        # process scores to get rate
+        
+        # get current score and update
+        current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
+        current_score.rate = 85
+        current_score.fluency = 55
+        current_score.grammar = 66
+        
+        try:
+            db.session.commit()
+            return redirect(url_for("feedback"))
+        except Exception as e:
+            db.session.rollback()
+            flash("Error updating score: {}".format(str(e)), category='danger')
+            return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
         try:
             # Query the database to get the current user's score
-            current_score = Score.query.filter_by(user_id=current_user.id).first()
+            current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
 
             # Get average
             average = (current_score.rate + current_score.fluency + current_score.grammar) / 3

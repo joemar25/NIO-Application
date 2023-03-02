@@ -8,9 +8,9 @@ run this command on project's folder: browserify static/js/index.js -o static/js
 require('flowbite')
 require('blueimp-file-upload/js/jquery.fileupload');
 // include local scripts
-require('./loading.js');
 require('./drag_n_drop.js');
 require('./recording.js');
+require('./process_audio.js');
 // include the script file, in this same folder
 require('./verification.js');
 require('./script.js');
