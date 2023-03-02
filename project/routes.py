@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from project import app, db
 from project.models import User, Score
@@ -9,7 +9,6 @@ from project.scripts.transcribe import to_text
 from project.scripts.rate import get_rate
 from pydub import AudioSegment
 import os
-import time
 
 # session management
 login_manager = LoginManager()
@@ -96,12 +95,17 @@ class Routes:
         user_id = current_user.id
 
         # score history
-        all_score = Score.query.filter_by(user_id=user_id)
+        # all_score = Score.query.filter_by(user_id=user_id)
+        all_score = {
+            "rate": 93,
+            "grammar": 66,
+            "fluency": 55
+        }
 
-        if all_score.count() == 0:
-            print("No scores found")
-        else:
-            print("Scores found")
+        # if all_score.count() == 0:
+        #     print("No scores found")
+        # else:
+        #     print("Scores found")
 
         """
         todo, the problem here is the delay of database update for score
@@ -109,6 +113,15 @@ class Routes:
         """
         
         return render_template("main.html", form=form, score=all_score)
+
+   # Add a new endpoint for the AJAX request
+    @app.route("/audio_processing", methods=['GET'])
+    def audio_processing():
+
+        # add scores to Scores Model based on the ID of the user
+
+        return jsonify(score=1)
+        # return jsonify(error="Error fetching feedback"), 500
 
     @app.route('/upload', methods=['POST'])
     def upload():
@@ -124,49 +137,31 @@ class Routes:
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
-        # transcribing audio to text
-        audio_path = temp_dir + file_name
-        text = to_text(audio_path)
-        
-        # get rate score
-        # rate_score = get_rate(audio_path, text)
-        rate_score = 99
-        
         # Add the audio query to the database.
         audio_query = Score(
             user_id=current_user.id,
-            audio=file_name,
-            transcribed=text,
-            rate=rate_score,
-            grammar=69,
-            fluency=88
+            audio=file_name
         )
         db.session.add(audio_query)
         db.session.commit()
 
-        return "Upload successful"
+        print("Audio Successfully Uploaded!") 
+        return "Upload Successful"
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
-        # Record the start time of the request
-        start_time = time.time()
+        try:
+            # Query the database to get the current user's score
+            current_score = Score.query.filter_by(user_id=current_user.id).first()
 
-        # Query the database to get the current user's score
-        current_score = Score.query.filter_by(user_id=current_user.id).first()
-
-        # Calculate the average score if the query is successful
-        if current_score is not None:
+            # Get average
             average = (current_score.rate + current_score.fluency + current_score.grammar) / 3
 
-            # Calculate the response time
-            response_time = time.time() - start_time
-
             # Render the template with the score and response time
-            return render_template("feedback.html", score=current_score, average=round(average, 1), response_time=response_time)
-        else:
-            flash(f'{"error on fetching the data on the server, try again."}', category='danger')
+            return render_template("feedback.html", score=current_score, average=round(average, 1))
+        except Exception as e:
+            flash(f"{e}", category='danger')
             return redirect(url_for("main")) 
-            # return "Error: Could not retrieve score."
 
     @app.route("/about")
     def about():
@@ -179,9 +174,8 @@ class Routes:
     def loading():
         """
         Displays the loading page.
-        """
+        """ 
         return render_template('loading.html')
-
 
     @app.route("/help")
     def help():
