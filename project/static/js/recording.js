@@ -4,74 +4,78 @@ let chunks = [];
 let mediaRecorder;
 let stream;
 
-function startRecording() {
+const startRecording = async () => {
     // reset chunks array
     chunks = [];
 
-    // get user media
-    navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(function (audioStream) {
-            // create media recorder
-            stream = audioStream;
-            mediaRecorder = new MediaRecorder(stream, {
-                mimeType: 'audio/webm;codecs=opus',
-            });
+    try {
+        // get user media
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-            // start recording
-            mediaRecorder.start();
-
-            // handle data and stop events
-            mediaRecorder.addEventListener("dataavailable", function (event) {
-                chunks.push(event.data);
-            });
-
-            mediaRecorder.addEventListener("stop", function () {
-                // create audio blob and form data
-                const audioBlob = new Blob(chunks, { type: chunks[0].type });
-                const timestamp = Date.now();
-                const formData = new FormData();
-                formData.append("audio", audioBlob, `${timestamp}.wav`);
-
-                // show loading element
-                const loading = document.getElementById("loading");
-                loading.style.display = "block";
-
-                // send audio to server
-                fetch("/upload", {
-                    method: "POST",
-                    body: formData
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            // the upload was successful, so redirect to the success page
-                            window.location.href = '/process_audio';
-                        } else {
-                            // the upload failed, so show an error message
-                            console.error("Error sending audio recording to server:", response.statusText);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error sending audio recording to server:", error);
-                    });
-            });
-
-        })
-        .catch(function (error) {
-            console.error(error);
+        // create media recorder
+        mediaRecorder = new MediaRecorder(stream, {
+            mimeType: "audio/webm;codecs=opus",
         });
-}
 
+        // handle data and stop events
+        mediaRecorder.addEventListener("dataavailable", ({ data }) => {
+            chunks.push(data);
+        });
 
-function stopRecording() {
+        mediaRecorder.addEventListener("stop", async () => {
+            // create audio blob and form data
+            const audioBlob = new Blob(chunks, { type: chunks[0].type });
+            const timestamp = Date.now();
+            const formData = new FormData();
+            formData.append("audio", audioBlob, `${timestamp}.wav`);
+
+            // show loading element
+            const loading = document.getElementById("loading");
+            loading.style.display = "block";
+
+            try {
+                // send audio to server
+                const response = await fetch("/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const { ok, statusText } = response;
+
+                if (ok) {
+                    // the upload was successful, so redirect to the success page
+                    window.location.href = "/process_audio";
+                } else {
+                    // the upload failed, so show an error message
+                    console.error("Error sending audio recording to server:", statusText);
+                    window.location.href = "/process_audio_fail";
+                }
+            } catch (error) {
+                console.error("Error sending audio recording to server:", error);
+                window.location.href = "/process_audio_fail";
+            }
+
+            loading.style.display = "none";
+        });
+
+        // start recording
+        mediaRecorder.start();
+    } catch (error) {
+        console.error(error);
+        window.location.href = "/process_audio_fail";
+    }
+};
+
+const stopRecording = () => {
     mediaRecorder.stop();
-    stream.getTracks().forEach(track => track.stop());
+    stream.getTracks().forEach((track) => track.stop());
 
     const loading = document.getElementById("loading");
     loading.style.display = "none";
 
-    const record_btn = document.getElementById("record-btn");
-    record_btn.style.display = "none";
-}
+    const recordBtn = document.getElementById("record-btn");
+    recordBtn.style.display = "none";
+};
 
 const recordBtn = document.getElementById("record-btn");
 if (recordBtn) {
@@ -82,12 +86,8 @@ if (recordBtn) {
         } else {
             startRecording();
             this.value = "Stop";
-            // this.classList.replace('ready', 'recording');
         }
     });
-} else {
-    // button is not found in page - no worries, this button is present in recording page/main
-    // console.error("record-btn element not found");
 }
 
 // ============================================== End ===============================================

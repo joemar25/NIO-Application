@@ -166,9 +166,15 @@ class Routes:
             return redirect(url_for("feedback"))
         except Exception as e:
             db.session.rollback()
-            flash("Error updating score: {}".format(str(e)), category='danger')
+            flash("error updating score: {}".format(str(e)), category='danger')
             return redirect(url_for("main"))
 
+    # if audio fails in the javascript
+    @app.route('/process_audio_fail', methods=['GET'])
+    def process_audio_fail():
+        flash("error sending audio recording to server. please try again.", category='danger')
+        return redirect(url_for("main"))
+    
     @app.route("/feedback", methods=['GET'])
     def feedback():
         try:
