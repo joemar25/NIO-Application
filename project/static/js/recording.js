@@ -65,11 +65,12 @@ function startRecording() {
 function stopRecording() {
     mediaRecorder.stop();
     stream.getTracks().forEach(track => track.stop());
-    // hide loading element
+
     const loading = document.getElementById("loading");
     loading.style.display = "none";
-    // redirect to success page
-    // window.location.href = '/process_audio';
+
+    const record_btn = document.getElementById("record-btn");
+    record_btn.style.display = "none";
 }
 
 const recordBtn = document.getElementById("record-btn");
