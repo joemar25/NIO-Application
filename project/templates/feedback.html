@@ -1,119 +1,116 @@
 {% extends 'base.html' %} {% block title %} Score and Feedback {% endblock %} {%
 block body %} {% if current_user.is_authenticated %}
 
-<div class="unselectable w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg dark:bg-gray-900">
+<h2 class="text-center mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100">
+  Result
+</h2>
 
-  <h2 class="text-center mb-5 text-3xl font-bold text-gray-900 dark:text-gray-100">
-    Result
-  </h2>
+<div class="gap-8 sm:grid sm:grid-cols-2">
 
-  <div class="gap-8 sm:grid sm:grid-cols-2">
-
-    <div>
-      <dl>
-        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
-        <dd class="flex items-center mb-3">
-          <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-1">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['rate']}}%"></div>
-          </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['rate']}}</span>
-        </dd>
-      </dl>
-
-      <dl>
-        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
-        <dd class="flex items-center mb-3">
-          <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['fluency']}}%"></div>
-          </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['fluency']}}</span>
-        </dd>
-      </dl>
-
-      <dl>
-        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
-        <dd class="flex items-center mb-3">
-          <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['grammar']}}%"></div>
-          </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['grammar']}}</span>
-        </dd>
-      </dl>
-
-      <dl>
-        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Feedback</dt>
-        <dd class="flex items-center mb-3">
-          <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 70%"></div>
-          </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70</span>
-        </dd>
-      </dl>
-
-    </div>
-
-    <div
-      class="gap-8 justify-center border-t-2 border-l-0 border-gray-300 pl-4 dark:border-gray-300 md:border-l-2 md:border-t-0">
-
-      <div class="flex justify-between mb-1">
-        <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Sad</p>
-        <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Happy</p>
-      </div>
-
-      <div class="flex mb-2">
-        <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full rounded-full bg-green-600 dark:bg-red-green" style="width: 0%"></div>
+  <div>
+    <dl>
+      <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
+      <dd class="flex items-center mb-3">
+        <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-1">
+          <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['rate']}}%"></div>
         </div>
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['rate']}}</span>
+      </dd>
+    </dl>
 
-        <div class="mb-3 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full roundedbg-green-600 dark:bg-green-500" style="width: 85%"></div>
+    <dl>
+      <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
+      <dd class="flex items-center mb-3">
+        <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+          <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['fluency']}}%"></div>
         </div>
-      </div>
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['fluency']}}</span>
+      </dd>
+    </dl>
 
-      <div class="flex justify-between mb-1">
-        <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Nervous</p>
-        <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Calm</p>
-      </div>
-
-      <div class="flex mb-2">
-        <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 0%"></div>
+    <dl>
+      <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
+      <dd class="flex items-center mb-3">
+        <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+          <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['grammar']}}%"></div>
         </div>
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['grammar']}}</span>
+      </dd>
+    </dl>
 
-        <div class="mb-2 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 45%"></div>
+    <dl>
+      <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Feedback</dt>
+      <dd class="flex items-center mb-3">
+        <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
+          <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: 70%"></div>
         </div>
-      </div>
-
-      <div class="flex justify-between mb-1">
-        <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Sample 1</p>
-        <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Sample 2</p>
-      </div>
-
-      <div class="flex">
-        <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 0%"></div>
-        </div>
-
-        <div class="mb-3 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
-          <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 69%"></div>
-        </div>
-      </div>
-
-    </div>
+        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70</span>
+      </dd>
+    </dl>
 
   </div>
 
-  <div class="flex justify-center items-center mt-5 mb-5">
-    <p class="font-medium text-gray-900 dark:text-white">Overall Rating: </p>
-    <p
-      class="ml-2 bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
-      {{ average }}
-    </p>
-    <p class="ml-2 font-medium text-gray-900 dark:text-white">Excellent</p>
+  <div
+    class="gap-8 justify-center border-t-2 border-l-0 border-gray-300 pl-4 dark:border-gray-300 md:border-l-2 md:border-t-0">
+
+    <div class="flex justify-between mb-1">
+      <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Sad</p>
+      <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Happy</p>
+    </div>
+
+    <div class="flex mb-2">
+      <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full rounded-full bg-green-600 dark:bg-red-green" style="width: 0%"></div>
+      </div>
+
+      <div class="mb-3 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full roundedbg-green-600 dark:bg-green-500" style="width: 85%"></div>
+      </div>
+    </div>
+
+    <div class="flex justify-between mb-1">
+      <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Nervous</p>
+      <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Calm</p>
+    </div>
+
+    <div class="flex mb-2">
+      <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 0%"></div>
+      </div>
+
+      <div class="mb-2 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 45%"></div>
+      </div>
+    </div>
+
+    <div class="flex justify-between mb-1">
+      <p class="text-left text-sm font-medium text-gray-500 dark:text-gray-400">Sample 1</p>
+      <p class="text-right text-sm font-medium text-gray-500 dark:text-gray-400">Sample 2</p>
+    </div>
+
+    <div class="flex">
+      <div class="h-2.5 w-full rounded-r-full rotate-180 bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 0%"></div>
+      </div>
+
+      <div class="mb-3 h-2.5 w-full rounded-r-full bg-gray-200 dark:bg-gray-700">
+        <div class="h-2.5 rounded-r-full bg-green-600 dark:bg-green-500" style="width: 69%"></div>
+      </div>
+    </div>
+
   </div>
 
 </div>
+
+<div class="flex justify-center items-center mt-5 mb-5">
+  <p class="font-medium text-gray-900 dark:text-white">Overall Rating: </p>
+  <p
+    class="ml-2 bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center p-1.5 rounded dark:bg-blue-200 dark:text-blue-800">
+    {{ average }}
+  </p>
+  <p class="ml-2 font-medium text-gray-900 dark:text-white">Excellent</p>
+</div>
+
 
 
 <div class="mt-8 flex justify-center space-x-4">
@@ -127,7 +124,7 @@ block body %} {% if current_user.is_authenticated %}
     Practice Again
   </a>
 
-  <a data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+  <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
     class="flex items-center justify-center rounded-lg bg-blue-500 py-2 px-6 font-bold text-white transition duration-300 hover:bg-blue-600 dark:bg-gray-700 dark:text-white">
     <svg class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd"
@@ -141,7 +138,7 @@ block body %} {% if current_user.is_authenticated %}
         clip-rule="evenodd" />
     </svg>
     <span class="text-center">New Session</span>
-  </a>
+  </button>
 
   <!--  modal start -->
   <div id="popup-modal" tabindex="-1"

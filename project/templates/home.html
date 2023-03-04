@@ -1,8 +1,7 @@
 {% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
 %}
 
-<form method="POST" action="" enctype=multipart/form-data
-  class="mt-4 max-w-screen-md w-full max-h-full rounded-lg bg-white px-8 pt-6 pb-8 shadow-lg dark:bg-gray-700">
+<form method="POST" action="" enctype="multipart/form-data">
 
   {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
@@ -91,9 +90,6 @@
       </div>
     </div>
 
-
-  </div>
-
   <div class="flex items-center justify-center md:justify-end">
 
     {{ form.submit(
@@ -101,22 +97,8 @@
       )
     }}
 
-    <div id="tooltip-animation" role="tooltip"
-      class="absolute z-10 invisible inline-block w-64 px-3 py-2 text-sm font-light transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-
-      <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-        <h3 class="font-semibold text-gray-900 dark:text-white">Reminder</h3>
-      </div>
-
-      <div class="px-3 py-2">
-        <p>Make sure that all fields are filled and have a correct values.</p>
-      </div>
-
-      <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
-
-
   </div>
+
 </form>
 
 {% endblock %}

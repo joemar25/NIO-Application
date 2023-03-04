@@ -42,15 +42,11 @@ class EntryForm(FlaskForm):
     )
     
     submit = SubmitField(
-        label="Proceed",
-        render_kw={"data-tooltip-target":"tooltip-animation"}
+        label="Proceed"
     )
 
 
 class RecordForm(FlaskForm):
-    """
-    A form used to record or stop recording audio.
-    """
     record = SubmitField(
         label="Record"
     )

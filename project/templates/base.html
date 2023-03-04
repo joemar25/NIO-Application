@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 
   <head>
     <meta charset="UTF-8" />
@@ -25,160 +25,157 @@
     as a whole.
   -->
 
-  <!-- <body class="overflow-hidden"> this is inside the css-->
-
-  <body class="bg-gray-100 dark:bg-slate-800 dark:text-white">
+  <body class="m-0 dark:bg-gray-800">
 
     <div id="loading-container" class="unselectable">
       <div class="loading"></div>
     </div>
 
-    <div class="flex min-h-screen flex-col items-center justify-center">
-      <!-- restricted -->
-      <nav class="fixed inset-x-0 top-0 z-50 rounded border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4 ">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <nav class="inset-x-0 top-0 z-50 border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
+      <div class="container mx-auto flex flex-wrap items-center justify-between">
+        <!-- Navbar content goes here -->
+        {% if request.path == "/home" %}
+        <div class="unselectable flex items-center">
+          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
+            title="I am Nio!">
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
+        </div>
+        {% else %}
+        <a href="{{url_for('index')}}" class="unselectable flex items-center">
+          <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
+            title="I am Nio!">
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
+        </a>
+        {% endif %}
 
-          {% if request.path == "/home" %}
-          <div class="unselectable flex items-center">
-            <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
-              title="I am Nio!">
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
+
+
+        <div class="flex md:order-2">
+
+          {% if current_user.is_authenticated %}
+          <button class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="History"
+            data-modal-target=" staticModal" data-modal-toggle="staticModal" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+            <span class="sr-only">Show information</span>
+          </button>
+
+          <!-- Main modal -->
+          <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+            class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+            <div class="relative w-full max-w-2xl h-full flex justify-center items-center md:h-auto">
+              <!-- Modal content -->
+              <div class="unselectable relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">
+                    History
+                  </h3>
+                  <button type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="staticModal">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime quasi natus asperiores, accusamus
+                    quo ducimus ad tempore inventore neque reiciendis.
+                  </p>
+                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime quasi natus asperiores, accusamus
+                    quo ducimus ad tempore inventore neque reiciendis.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          {% else %}
-          <a href="{{url_for('index')}}" class="unselectable flex items-center">
-            <img src="{{ url_for('static', filename='images/icon1.jpg') }}" class="h-6 mr-3 sm:h-9" alt="NiO Logo"
-              title="I am Nio!">
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"> Nio Application </span>
-          </a>
           {% endif %}
 
+          <p class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400">
+            <!-- Help text-->
 
-
-          <div class="flex md:order-2">
-
-            {% if current_user.is_authenticated %}
-            <button class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="History"
-              data-modal-target=" staticModal" data-modal-toggle="staticModal" type="button">
+            <button class="m-3" data-popover-target="popover-description" data-popover-placement="bottom-end"
+              type="button">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                  d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
               </svg>
               <span class="sr-only">Show information</span>
             </button>
 
-            <!-- Main modal -->
-            <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-              class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-              <div class="relative w-full max-w-2xl h-full flex justify-center items-center md:h-auto">
-                <!-- Modal content -->
-                <div class="unselectable relative bg-white rounded-lg shadow dark:bg-gray-700">
 
-                  <!-- Modal header -->
-                  <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-center">
-                      History
-                    </h3>
-                    <button type="button"
-                      class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                      data-modal-hide="staticModal">
-                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Modal body -->
-                  <div class="p-6 space-y-6">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime quasi natus asperiores, accusamus
-                      quo ducimus ad tempore inventore neque reiciendis.
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime quasi natus asperiores, accusamus
-                      quo ducimus ad tempore inventore neque reiciendis.
-                    </p>
-                  </div>
-                </div>
-              </div>
+          </p>
+          <div data-popover id="popover-description" role="tooltip"
+            class="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+            <div class="unselectable p-3 space-y-2">
+              <h3 class="font-semibold text-gray-900 dark:text-white">
+                How to..... Something
+              </h3>
+              <p>
+                Detailed on how to...
+              </p>
+              <h3 class="font-semibold text-gray-900 dark:text-white">
+                How to..... Something
+              </h3>
+              <p>
+                Detailed on how to...
+              </p>
+              <a href="{{ url_for('help') }}"
+                class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">
+                Read more
+                <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg></a>
             </div>
-            {% endif %}
-
-            <p class="flex items-center text-sm font-light text-gray-500 dark:text-gray-400">
-              <!-- Help text-->
-
-              <button class="m-3" data-popover-target="popover-description" data-popover-placement="bottom-end"
-                type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                </svg>
-                <span class="sr-only">Show information</span>
-              </button>
-
-
-            </p>
-            <div data-popover id="popover-description" role="tooltip"
-              class="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-              <div class="unselectable p-3 space-y-2">
-                <h3 class="font-semibold text-gray-900 dark:text-white">
-                  How to..... Something
-                </h3>
-                <p>
-                  Detailed on how to...
-                </p>
-                <h3 class="font-semibold text-gray-900 dark:text-white">
-                  How to..... Something
-                </h3>
-                <p>
-                  Detailed on how to...
-                </p>
-                <a href="{{ url_for('help') }}"
-                  class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">
-                  Read more
-                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                      clip-rule="evenodd"></path>
-                  </svg></a>
-              </div>
-              <div data-popper-arrow></div>
-            </div>
-
-            <button id="theme-toggle" type="button"
-              class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="Theme">
-
-              <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-              </svg>
-
-
-              <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-              </svg>
-
-            </button>
-
+            <div data-popper-arrow></div>
           </div>
+
+          <button id="theme-toggle" type="button"
+            class="text-gray-500 dark:text-gray-400 focus:outline-none rounded-lg text-sm p-2.5" title="Theme">
+
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+
+
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+
+          </button>
+
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <!-- body template area -->
-      {% block body %} {% endblock %}
-
-    </div>
+    <main class="mt-10 flex min-h-screen flex-col items-center rounded-lg">
+      <div class="prose unselectable w-10/12 rounded-lg bg-white px-6 py-8 shadow dark:bg-gray-900">
+        <!-- content -->
+        {% block body %} {% endblock %}
+      </div>
+    </main>
 
     <!-- Script Area -->
     <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
-
   </body>
 
 </html>
