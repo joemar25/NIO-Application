@@ -1,8 +1,6 @@
 // ========================================== Record Audio ==========================================
 
-let chunks = [];
-let mediaRecorder;
-let stream;
+let mediaRecorder, stream, chunks = [];
 
 async function startRecording() {
     // reset chunks array
