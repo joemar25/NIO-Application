@@ -114,15 +114,6 @@ class Routes:
         
         return render_template("main.html", form=form, score=all_score)
 
-   # Add a new endpoint for the AJAX request
-    @app.route("/audio_processing", methods=['GET'])
-    def audio_processing():
-
-        # add scores to Scores Model based on the ID of the user
-
-        return jsonify(score=1)
-        # return jsonify(error="Error fetching feedback"), 500
-
     @app.route('/upload', methods=['POST'])
     def upload():
         # Get the name of the uploaded file and save it to the temp data directory.
@@ -137,11 +128,19 @@ class Routes:
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
+        print(f"uploading: {file_name}")
+        
+        
+        # Transcribe text
+        text = to_text(file_name)
+        print(f"transcribed {text}")
+        
         try:
             # Add the audio query to the database.
             audio_query = Score(
                 user_id=current_user.id,
-                audio=file_name
+                audio=file_name,
+                transcribed=text
             )
             db.session.add(audio_query)
             db.session.commit()
@@ -153,12 +152,10 @@ class Routes:
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
         
-        # process scores to get rate
-        
         # get current score and update
         current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
         
-        # getting scores [rate, fluency, grammar]
+        # process: getting scores [rate, fluency, grammar]
         rate = rate_score(current_score.audio, current_score.transcribed)
         fluency = 88 # constant for now
         grammar = 78 # constant for now
@@ -204,13 +201,6 @@ class Routes:
         """
         return render_template('about.html')
     
-    @app.route("/loading")
-    def loading():
-        """
-        Displays the loading page.
-        """ 
-        return render_template('loading.html')
-
     @app.route("/help")
     def help():
         """

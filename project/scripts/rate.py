@@ -12,7 +12,11 @@ __REDUCTION = 0.0683 / 0.17
 __IDEAL_SCORE = 100
 
 # funciton to call to get the rate score of the audio
-def rate_score(audio, text = ""):
+def rate_score(audio, text):
+    
+    # if text or audio has no-value
+    if not (text and audio) or text == "no transcribed text.":
+        return { "score": 0, "wpm": 0, "rating": "" }
     
     # get audio file from temp data by specifying the name of audio from db
     temp_data_folder = os.getcwd() + "/project/temp_data/"
@@ -21,7 +25,7 @@ def rate_score(audio, text = ""):
     """
     warning :  This alias will be removed in version 1.0.
                audioDuration =  float(librosa.get_duration(filename=(audio)))
-    solution: replace filename=(audio) -> path=(audio)
+    solution:  replace filename=(audio) -> path=(audio)
     """
     
     # librosa setup
@@ -59,5 +63,5 @@ def rate_score(audio, text = ""):
     return {
         "score": speechScore,
         "wpm": wpm,
-        "rating": speechRating,
+        "rating": speechRating
     }
