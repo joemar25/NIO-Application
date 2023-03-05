@@ -4,8 +4,6 @@
 import os
 import whisper
 
-__MODEL = 'base'
- 
 def to_text(audio):
     
     # if audio has no-value
@@ -15,8 +13,6 @@ def to_text(audio):
     # get audio file from temp data by specifying the name of audio from db
     temp_data_folder = os.getcwd() + "/project/temp_data/"
     audio = temp_data_folder + audio
-    
-    print(f"audio file ---> to text location in transcribe: {audio}")
     
     # text holder
     text = ""
@@ -35,8 +31,7 @@ def to_text(audio):
             if a != '':
                 text = ' '.join(a.split())
     except Exception as e:
-        print(e)
-        # ...
-        
+        ...
+    
     # checking string text
     return text if not len(text) == 0 else "no transcribed text."

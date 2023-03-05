@@ -128,19 +128,12 @@ class Routes:
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
-        print(f"uploading: {file_name}")
-        
-        
-        # Transcribe text
-        text = to_text(file_name)
-        print(f"transcribed {text}")
-        
         try:
             # Add the audio query to the database.
             audio_query = Score(
                 user_id=current_user.id,
                 audio=file_name,
-                transcribed=text
+                transcribed=to_text(file_name)
             )
             db.session.add(audio_query)
             db.session.commit()

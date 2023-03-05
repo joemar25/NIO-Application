@@ -1,28 +1,22 @@
 {% extends 'base.html' %} {% block title %} Page not found {% endblock %} {%
 block body %}
 
-<div
-  class="flex min-h-screen flex-col items-center justify-center bg-gray-100 dark:bg-gray-800"
->
+<div class="flex flex-col justify-center items-center">
   <h1 class="mb-4 text-4xl font-bold text-gray-900 dark:text-gray-100">
     404 Page Not Found
   </h1>
   <p class="mb-8 text-gray-700 dark:text-gray-300">
     Sorry, the page you are looking for could not be found.
   </p>
-  <div class="flex space-x-4 text-center">
-    <a
-      href="{{url_for('index')}}"
-      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600"
-    >
-      <span class="leading-6">Go back to home page</span>
+  <div class="flex space-x-4 text-center capitalize">
+    <a href="{{url_for('index')}}"
+      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+      <span class="leading-6">Home Page</span>
     </a>
     {% if current_user.is_authenticated %}
-    <a
-      href="{{url_for('main')}}"
-      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 text-base font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600"
-    >
-      <span class="leading-6">Go back to main page</span>
+    <a href="{{url_for('main')}}"
+      class="flex w-full max-w-sm items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white transition-colors duration-300 ease-in-out hover:bg-blue-600 dark:bg-gray-700 dark:hover:bg-gray-600">
+      <span class="leading-6">Recording Page</span>
     </a>
     {% endif %}
   </div>

@@ -53,6 +53,33 @@ themeToggleBtn.addEventListener('click', function () {
 });
 
 // ============================================== End ===============================================
+const hide_submit_home_btn = () => {
+  var submitButton = document.getElementById("home_submit_btn");
+  submitButton.addEventListener("click", function () {
+    submitButton.classList.add("hidden");
+  });
+}
 
+const check_username_input = () => {
+  const usernameInput = document.querySelector('#username-input');
+  const usernameCounter = document.querySelector('#username-counter');
+  const minChars = 3;
+  const maxChars = 10;
 
+  usernameInput.addEventListener('input', () => {
+    const characterCount = usernameInput.value.length;
+    if (characterCount >= minChars && !(characterCount == maxChars)) {
+      usernameCounter.textContent = `${characterCount}/${maxChars} characters`;
+    } else if (characterCount == maxChars) {
+      usernameCounter.textContent = `Maximum ${maxChars} characters reached`;
+    } else {
+      usernameCounter.textContent = '';
+    }
+  });
+}
+
+if (window.location.pathname === "/home") {
+  hide_submit_home_btn();
+  check_username_input();
+}
 
