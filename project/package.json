@@ -1,7 +1,8 @@
 {
-  "name": "app",
+  "name": "nio_app",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "/index.js",
   "scripts": {
     "watch": "postcss ./static/css/style.css -o ./static/css/output.css --watch",
     "postcss": "postcss ./static/css/style.css -o ./static/css/output.css",
