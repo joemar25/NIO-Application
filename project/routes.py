@@ -6,7 +6,7 @@ from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
 from project.scripts.grammar import Grammar as grammar
 from project.scripts.transcribe import to_text
-from project.scripts.rate import get_rate
+from project.scripts.rate import rate_score
 from pydub import AudioSegment
 import os
 
@@ -157,9 +157,16 @@ class Routes:
         
         # get current score and update
         current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
-        current_score.rate = 85
-        current_score.fluency = 55
-        current_score.grammar = 66
+        
+        # getting scores [rate, fluency, grammar]
+        rate = rate_score(current_score.audio, current_score.transcribed)
+        fluency = 88 # constant for now
+        grammar = 78 # constant for now
+        
+        # update the values of the current score
+        current_score.rate = round(rate['score'], 1)
+        current_score.fluency = round(fluency, 1)
+        current_score.grammar = round(grammar, 1)
         
         try:
             db.session.commit()
