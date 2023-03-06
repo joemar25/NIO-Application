@@ -43,7 +43,7 @@ class Routes:
             flash(f'no text script. try again', category='danger')
 
         if not entry_form.validate_on_submit():
-            error_messages = ', '.join(entry_form.errors.values())
+            error_messages = ', '.join([str(x) for x in entry_form.errors.values()])
             flash(f'{error_messages}', category='danger')
             return render_template("home.html", form=entry_form)
 

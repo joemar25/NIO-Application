@@ -48,7 +48,9 @@ const initializeFileUploader = () => {
 const hideSubmitHomeBtn = () => {
     const submitButton = document.getElementById('home_submit_btn');
     submitButton.addEventListener('click', () => {
-        submitButton.classList.add('hidden');
+        setTimeout(() => {
+            submitButton.disabled = true;
+        }, 10);
     });
 };
 

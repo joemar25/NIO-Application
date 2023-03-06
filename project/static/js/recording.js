@@ -60,14 +60,23 @@ async function startRecording() {
 }
 
 function stopRecording() {
+    // Stop recording and release resources
     mediaRecorder.stop();
     stream.getTracks().forEach(track => track.stop());
 
+    // Remove loading
     const loadingContainer = document.getElementById("loading-container");
     loadingContainer.classList.remove("show");
 
+    // Disable record button
     const recordBtn = document.getElementById("record-btn");
-    recordBtn.textContent = "Record";
+    recordBtn.value = "Record";
+    recordBtn.disabled = true;
+
+    // Disable hover effects
+    const style = document.createElement("style");
+    style.innerHTML = `* { pointer-events: none; }`;
+    document.head.appendChild(style);
 }
 
 const recordBtn = document.getElementById("record-btn");
@@ -77,7 +86,7 @@ if (recordBtn) {
             stopRecording();
         } else {
             startRecording();
-            this.textContent = "Stop";
+            this.value = "Stop";
         }
     });
 }
