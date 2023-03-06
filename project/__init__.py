@@ -2,42 +2,24 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-# Initialize a Flask app instance
+# Set up app
 app = Flask(__name__)
 
-# Set the path to the database directory, name of the database file, and create the full path to the database file
-db_path = os.getcwd() + "/project/database/"
-db_name = 'records.db'
-db_file = db_path + db_name
+# Set up paths (database and recorded audio)
+db_path = os.path.join(os.getcwd(), "project", "database", "records.db")
+rc_path = os.path.join(os.getcwd(), "project", "temp_data")
 
-# temp data file path
-temp_path = os.getcwd() + "/project/temp_data/"
+# create directories if they don't exist
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
+os.makedirs(rc_path, exist_ok=True)
 
-# Create the database directory if it does not exist
-if not os.path.exists(db_path):
-    os.makedirs(db_path)
-    
-# create temp folder
-if not os.path.exists(temp_path):
-    os.makedirs(temp_path)
-
-# Set the configuration options for the app, including the location of the database file and whether to track modifications to the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_file
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
-# Initialize the SQLAlchemy database object with the app instance
+# configuration of database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Import the routes for the app
-# NOTE: This import statement must be put after the initialization of the db object, or at the end of the file
+# Set up secret key for secure sessions
+app.config['SECRET_KEY'] = "1A1q21u231z4d1a241sdA123Ja567s87daOEadM99a9da0Asd5Rop"
+
+# Import routes
 from project import routes
-
-# Set the configuration options for file uploads
-UPLOAD_FOLDER = '../app/temp_data/text'
-ALLOWED_EXTENSIONS = {'txt'}
-app.config['UPLOAD_FOLDER'] = '../app/temp_data/text'
-app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
-app.config['SECRET_KEY'] = 'secretkeysecretkeysecretkeysecretkey'
-
-# Import the UserMixin class from Flask-Login
-from flask_login import UserMixin
