@@ -7,6 +7,7 @@ from project.models import User, Score
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
 from project.scripts.grammar import Grammar as grammar
+from project.scripts.grammar import grammar_score
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
 
@@ -110,12 +111,12 @@ class Routes:
     def process_audio():
         current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
         rate = rate_score(current_score.audio, current_score.transcribed)
+        grammar = grammar_score(current_score.transcribed, current_user.ctext)
         fluency = 85
-        grammar = 80
 
         current_score.rate = round(rate['score'], 1)
-        current_score.fluency = round(fluency, 1)
         current_score.grammar = round(grammar, 1)
+        current_score.fluency = round(fluency, 1)
 
         try:
             db.session.commit()

@@ -10,14 +10,13 @@ backend
        - to upgade since --> a a a a  a is not valid
        - is can use sentence detection?
          - pip install spacy
-
-[] Input file read as text
-[] grammar checking
+[/] Input file read as text
+[ ] Database
+[/] grammar checking
        - accuracy: board exam questions about grammar
+[ ] grammar corrector
 
 personal
- fix commit
- do alot of comments on pages
 --------
 
 You can use the following command to list all installed packages in your virtual environment:

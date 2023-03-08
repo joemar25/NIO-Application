@@ -1,9 +1,6 @@
-# John Olan S. Gomez | Joemar
-# February 19, 2023 - Update
-
 from gingerit.gingerit import GingerIt as gingerit  # checks grammar
 import nltk.data  # separates sentences
-
+import difflib
 
 class Grammar:
 
@@ -42,3 +39,15 @@ class Grammar:
         complete = " ".join(correctSentence)
 
         return complete
+
+def grammar_score(input_text, correct_text):
+    if input_text == correct_text:
+        return 100.0
+    text_words = set(input_text.split())
+    correct_words = set(correct_text.split())
+    common_words = text_words & correct_words
+    incorrect_words = text_words - common_words
+    seq = difflib.SequenceMatcher(None, input_text, correct_text)
+    similarity = seq.ratio()
+    score = max((similarity * 100.0) - (len(incorrect_words) * 100.0 / len(text_words)), 0.0)
+    return score
