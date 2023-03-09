@@ -1,5 +1,6 @@
 import nltk, difflib
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
 class Grammar:
 
   def __init__(self):
