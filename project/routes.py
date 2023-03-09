@@ -1,7 +1,7 @@
 import os
+from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from pydub import AudioSegment
 from project import app, db
 from project.models import User, Score
 from project.forms import EntryForm, RecordForm
@@ -54,7 +54,7 @@ class Routes:
             return render_template("home.html", form=entry_form)
 
         try:
-            corrected_text = grammar(text).checkGrammar()
+            corrected_text = grammar().correct(text)
         except Exception:
             flash(f'invalid script. try again', category='danger')
             return render_template("home.html", form=entry_form)

@@ -181,4 +181,6 @@ block body %} {% if current_user.is_authenticated %}
   <!--  modal end -->
 </div>
 
+<div> Transcribed Text = {{score['transcribed']}} </div>
+
 {% else %} No user {% endif%} {% endblock %}

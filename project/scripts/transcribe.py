@@ -30,6 +30,14 @@ def to_text(audio):
         for a in readed_text:
             if a != '':
                 text = ' '.join(a.split())
+                
+        # Capitalize the first letter of the first word
+        text = text[0].upper() + text[1:]
+
+        # Check if the last character is a punctuation mark
+        if not text.endswith(('.', '?', '!')):
+            # If not, add a period at the end
+            text += '.'
     except Exception as e:
         ...
     
