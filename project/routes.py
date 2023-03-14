@@ -82,7 +82,6 @@ class Routes:
 
         return render_template("main.html", form=form, score=all_score)
 
-
     @app.route('/upload', methods=['POST'])
     def upload():
         temp_folder = "/project/temp_data/"

@@ -23,7 +23,8 @@ class Grammar:
     except Exception as e:
       ...
 
-  def __correct(self, input_sentence, max_candidates=1):
+  # __correct
+  def correct(self, input_sentence, max_candidates=1):
       if not self.model_loaded:
           print("Model is not loaded")  
           return None
@@ -43,18 +44,18 @@ class Grammar:
       return list(corrected)[0]
 
 
-  def correct(self, input_sentence):
-    input = self.__correct(input_sentence)
+  # def correct(self, input_sentence):
+  #   input = self.__correct(input_sentence)
 
-    # Capitalize the first letter of the first word
-    text = input[0].upper() + input[1:]
+  #   # Capitalize the first letter of the first word
+  #   text = input[0].upper() + input[1:]
 
-    # Check if the last character is a punctuation mark
-    if not text.endswith(('.', '?', '!')):
-        # If not, add a period at the end
-        text += '.'
+  #   # Check if the last character is a punctuation mark
+  #   if not text.endswith(('.', '?', '!')):
+  #       # If not, add a period at the end
+  #       text += '.'
 
-    return text
+  #   return text
 
 def grammar_score(input_text, correct_text):
     if input_text == correct_text:
