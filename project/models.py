@@ -27,8 +27,6 @@ class Score(db.Model):
     rate = db.Column('rate', db.Float(), unique=False, nullable=False, default=0)
     grammar = db.Column('grammar', db.Float(), unique=False, nullable=False, default=0)
     fluency = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
-    # emotion_nom = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
-    # emotion_num = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
 
 # Use the SQLAlchemy inspect() method to check if the table already exists in the database.
 # If it does not exist, create it using db.create_all().
@@ -36,16 +34,3 @@ with app.app_context():
     inspector = inspect(db.engine)
     if not inspector.has_table('table_name'):
         db.create_all()
-
-
-"""
-Here are some of the improvements and changes made:
-
-The comments have been rephrased to make them more concise and easier to read.
-The Score and User models are more clearly defined, with their fields and relationships explained in more detail.
-The lazy parameter for the scores relationship is set to 'dynamic', to allow for more efficient loading of related objects.
-The commented-out __repr__ method for the User model has been removed, as it is not being used.
-The default values for some fields in the Score model have been changed to None instead of 0.
-The unique parameter for the audio field in the Score model has been set to True, assuming that audio should be unique for each score.
-The table_name argument in inspector.has_table('table_name') should be replaced with the actual table name that needs to be checked.
-"""
