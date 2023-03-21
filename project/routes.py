@@ -53,16 +53,9 @@ class Routes:
                 flash(f'invalid script text. try again', category='danger')
             return render_template("home.html", form=entry_form)
 
-        try:
-            corrected_text = grammar().correct(text)
-        except Exception:
-            flash(f'invalid script. try again', category='danger')
-            return render_template("home.html", form=entry_form)
-
         user = User(
             user_name=username,
             text=text,
-            ctext=corrected_text
         )
         db.session.add(user)
         db.session.commit()
@@ -93,11 +86,15 @@ class Routes:
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
         
+        t_text = to_text(file_name)
+        ct_text = grammar().correct(t_text)
+        
         try:
             audio_query = Score(
-                user_id=current_user.id,
-                audio=file_name,
-                transcribed=to_text(file_name)
+                user_id = current_user.id,
+                audio = file_name,
+                transcribed = t_text,
+                ctranscribed = ct_text
             )
             db.session.add(audio_query)
             db.session.commit()
@@ -108,9 +105,11 @@ class Routes:
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
+        
         current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
+        
         rate = rate_score(current_score.audio, current_score.transcribed)
-        grammar = grammar_score(current_score.transcribed, current_user.ctext)
+        grammar = grammar_score(current_score.transcribed, current_score.ctranscribed)
         fluency = 85
 
         current_score.rate = round(rate['score'], 1)
