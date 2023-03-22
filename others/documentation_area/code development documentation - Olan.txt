@@ -13,3 +13,21 @@ Grammar feature development:
     - nouns are also changed when correcting the grammar
         - ex: names of a person are changed - which should not be
         Solution: Nouns should be in capital letter
+
+Speech emotion feature development: 02/27/2023
+    - Source: https://www.thepythoncode.com/article/building-a-speech-emotion-recognizer-using-sklearn#replies
+    Using a different dataset:
+        - Used the TESS dataset - not yet converted to fit librosa
+            Output:
+                [+] Number of training samples: 2100
+                [+] Number of testing samples: 700
+                [+] Number of features: 180
+                [*] Training the model...
+                Accuracy: 99.86%
+    Problem found: 03/01/2023
+        ravdess dataset: low accuracy but gives different emotions
+        tess dataset: always outputting the "fear" emotion, even though the
+
+    March 22, 2023
+        - built a program that utilizes the model
+
