@@ -62,8 +62,7 @@ class Routes:
         form = RecordForm()
         user_id = current_user.id
 
-        # all_score = Score.query.filter_by(user_id=user_id)
-        all_score = {"rate": 93, "grammar": 66, "fluency": 55}
+        all_score = Score.query.filter_by(user_id=user_id)
 
         return render_template("main.html", form=form, score=all_score)
 
@@ -100,7 +99,7 @@ class Routes:
         
         current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
         
-        rate = rate_score(current_score.audio, current_score.transcribed)
+        rate = rate_score(audio=current_score.audio, text=current_score.transcribed, use_temp_folder=True)
         grammar = grammar_score(current_score.transcribed, current_score.ctranscribed)
         fluency = 85
 

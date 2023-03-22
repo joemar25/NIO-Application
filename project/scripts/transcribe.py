@@ -17,7 +17,7 @@ def to_text(audio, use_temp_folder=True):
     audio = temp_data_folder + audio
     
     try:
-        model = whisper.load_model('small')
+        model = whisper.load_model('base')
         result = model.transcribe(
             audio,
             fp16=False,

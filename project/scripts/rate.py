@@ -1,69 +1,41 @@
-# Olan | Joemar
-# Rate of the Speech
-# Using Librosa Package
-
 import os
 import librosa
 
-# contants
-__LOWEST_IDEAL = 2.33
-__HIGHEST_IDEAL = 2.67
-__REDUCTION = 0.0683 / 0.17
-__IDEAL_SCORE = 100
+__words_per_minute = 160
 
-# funciton to call to get the rate score of the audio
+def estimate_speech_time(script):
+    word_count = len(script.split())
+    time_in_seconds = (word_count / __words_per_minute) * 60
+    return time_in_seconds
+
+def analyze_speech(audio, estimated_time):
+    y, sr = librosa.load(audio)
+    audio_duration = librosa.get_duration(y=y, sr=sr)
+
+    if audio_duration < estimated_time * 0.9:
+        label = "fast"
+    elif audio_duration > estimated_time * 1.1:
+        label = "slow"
+    else:
+        label = "ideal"
+    
+    score = 100 - abs(audio_duration - estimated_time) / max(audio_duration, estimated_time) * 100
+
+    return {"score": score, "label": label}
+
 def rate_score(audio, text, use_temp_folder=True):
     
     # if text or audio has no-value
     if not (text and audio) or text == "no transcribed text.":
-        return { "score": 0, "wpm": 0, "rating": "" }
+        return { "score": 0, "label": "" }
     
     # get audio file from temp data by specifying the name of audio from db
     temp_data_folder = ''
     if use_temp_folder:
         temp_data_folder = temp_data_folder = os.getcwd() + "/project/temp_data/"
     audio = temp_data_folder + audio
-
-    """
-    warning :  This alias will be removed in version 1.0.
-               audioDuration =  float(librosa.get_duration(filename=(audio)))
-    solution:  replace filename=(audio) -> path=(audio)
-    """
     
-    # librosa setup
-    audioDuration =  float(librosa.get_duration(path=(audio)))
-    wordList      =  str.split(text)
-    wordNum       =  int(len(wordList))
-    rate          =  wordNum/audioDuration
-    wpm           =  rate * 60
-
-    # calculate speech score
-    if rate < __LOWEST_IDEAL:
-        speechScore = __LOWEST_IDEAL - rate
-        speechScore = speechScore * __REDUCTION
-        speechScore = __IDEAL_SCORE - speechScore
-
-    elif rate > __HIGHEST_IDEAL:
-        speechScore = rate - __HIGHEST_IDEAL
-        speechScore = speechScore * __REDUCTION
-        speechScore = __IDEAL_SCORE - speechScore
-
-    else:
-        speechScore = __IDEAL_SCORE
-        
-    # determine speed of the speech
-    speechRating = ""
-    if wpm < 140:
-        speechRating = "Slow"
-        
-    elif wpm >= 140 and wpm <= 160:
-        speechRating = "Ideal"
-        
-    else:
-        speechRating = "Fast"
-
-    return {
-        "score": speechScore,
-        "wpm": wpm,
-        "rating": speechRating
-    }
+    # work work work
+    speech_time = estimate_speech_time(text)
+    score = analyze_speech(audio, speech_time)
+    return score
