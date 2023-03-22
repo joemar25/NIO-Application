@@ -19,17 +19,10 @@ class EntryForm(FlaskForm):
             raise ValidationError('Username must be between 3 and 20 characters long.')
         return
 
-    def validate_file_script(self, input) -> bool:
-        """
-        Add validation for the file_script field if needed.
-        """
-        text = input.data
-        return
-    
     # fields
     username = StringField(
         label="Username",
-        render_kw={"placeholder": "Ex. 'Mark Villar'", "id": "username-input", "minlength": "3", "maxlength": "10"}
+        render_kw={"placeholder": "Ex. 'Mark Villar'", "id": "username-input", "maxlength": "10"}
     )
 
     text_script = TextAreaField(

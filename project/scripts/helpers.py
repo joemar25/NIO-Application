@@ -22,17 +22,14 @@ class Validation:
         return percent
         # print(getPercent(9, 9, True))
 
-    def is_valid_sentence(text):
+    def is_valid_username(text):
         
         # if text has no value
         if text ==  "":
             return False
         
-        # edit the constant 3 for more classification of a specific sentence that matter to the speech 
-        if len(text.split()) < 3:
+        if len(text) < 3:
             return False
-        
-        # https://www.dataquest.io/blog/tutorial-text-classification-in-python-using-spacy/
         
         return True
 

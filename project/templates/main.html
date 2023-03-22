@@ -1,7 +1,9 @@
 {% extends 'base.html' %} {% block title %} Speech Time {% endblock %} {% block
 body %}
 
+
 {% if current_user.is_authenticated%}
+<div class="w-10/12 rounded-lg px-6 py-8 shadow">
 
   {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
@@ -62,23 +64,38 @@ body %}
     {% endif %}
     {% endwith %}
 
-    <h1 class="mb-4 text-2xl font-bold dark:text-white">Script</h1>
-    <div
-      class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300"
-    >
-      <p class="p-6 text-base">{{current_user.text}}</p>
+    {% if current_user.text %}
+
+      <h1 class="mb-4 text-2xl font-bold dark:text-white">Script</h1>
+      <div
+        class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300"
+      >
+        <p class="p-6 text-base">{{current_user.text}}</p>
+      </div>
+      <div class="mt-4 flex justify-end">
+        {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
+        text-white hover:bg-blue-600 focus:outline-none focus:ring-2
+        focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+      </div>
+    
+    {% else %}
+    
+    <div class="flex justify-center">
+      <div class="mt-4 flex">
+        {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
+        text-white hover:bg-blue-600 focus:outline-none focus:ring-2
+        focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+      </div>
     </div>
-    <div class="mt-4 flex justify-end">
-      {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
-      text-white hover:bg-blue-600 focus:outline-none focus:ring-2
-      focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
-    </div>
+      
+    {% endif %}
 
     {% else %}
 
     <h1>User must have a username and their script to proceed to this page.</h1>
     <a href="{{url_for('index')}}">Home</a>
 
-  {% endif %}
+  </div>
+{% endif %}
 
 {% endblock %}

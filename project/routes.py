@@ -39,18 +39,10 @@ class Routes:
         if not bool(text):
             file = entry_form.file_script.data
             text = file.read().decode('utf-8')
-
-        if not bool(text):
-            flash(f'no text script. try again', category='danger')
-
-        if not entry_form.validate_on_submit():
-            error_messages = ', '.join([str(x) for x in entry_form.errors.values()])
-            flash(f'{error_messages}', category='danger')
-            return render_template("home.html", form=entry_form)
-
-        if not Validation.is_valid_sentence(text):
-            if text:
-                flash(f'invalid script text. try again', category='danger')
+            
+        if not Validation.is_valid_username(username):
+            if username:
+                flash(f'invalid username. try again', category='danger')
             return render_template("home.html", form=entry_form)
 
         user = User(
@@ -150,6 +142,10 @@ class Routes:
     @app.route("/help")
     def help():
         return render_template("help.html")
+
+    @app.route("/test")
+    def test():
+        return render_template("test_home.html")
 
     @app.route("/destroy", methods=['POST'])
     def destroy():
