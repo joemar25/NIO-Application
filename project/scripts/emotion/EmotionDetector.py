@@ -16,7 +16,7 @@ class EmotionDetector:
         # Extract features and transform with the scaler
         features = self.scaler.transform(self.extract_features(data, sample_rate).reshape(1, -1))
 
-        # Predict the emotions
+        # Predict the emotions (verbose to 0 - notify model false)
         pred_test = self.model.predict(np.expand_dims(features, axis=2), verbose=0)[0]
 
         # Combine into a dictionary
@@ -48,6 +48,16 @@ class EmotionDetector:
         # Return concatenate all the features
         return np.concatenate([result, chroma_stft, mfcc, rms, mel])
 
+def emotion_label(predictions):
+    return {
+        'emotion1': predictions[0][0],
+        'score1': predictions[0][1],
+        'emotion2': predictions[1][0],
+        'score2': predictions[1][1],
+        'emotion3': predictions[2][0],
+        'score3': predictions[2][1],
+    }
+    
 # with demo test
 # detector = EmotionDetector()
 # audio_path = os.getcwd() + "/project/temp_data/your_wave_filename.wav"
