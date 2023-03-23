@@ -50,7 +50,7 @@ class EmotionDetector:
 
 # with demo test
 # detector = EmotionDetector()
-# audio_path = os.getcwd() + "/project/your_wave_filename.wav"
+# audio_path = os.getcwd() + "/project/temp_data/your_wave_filename.wav"
 # predictions = detector.predict_emotion(audio_path)
 # print(predictions)
 
