@@ -10,7 +10,7 @@ class EmotionDetector:
         self.scaler = joblib.load(file_loc + "scaler.pkl")
         self.encoder = joblib.load(file_loc + "encoder.pkl")
 
-    def predict_emotion(self, audio_path):
+    def predict(self, audio_path):
         data, sample_rate = librosa.load(audio_path)
 
         # Extract features and transform with the scaler
@@ -51,7 +51,7 @@ class EmotionDetector:
 # with demo test
 # detector = EmotionDetector()
 # audio_path = os.getcwd() + "/project/temp_data/your_wave_filename.wav"
-# predictions = detector.predict_emotion(audio_path)
+# predictions = detector.predict(audio_path)
 # print(predictions)
 
 
