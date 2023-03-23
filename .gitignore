@@ -8,10 +8,12 @@ test*
 # Ignore all files containing the string "temp"
 *temp*
 *test*
+*dump*
 
 # personal choice
 /__
 /.venv
+/dump
 /project/package-lock.json
 /project/database
 /project/temp_data
@@ -20,6 +22,7 @@ test*
 /project/scripts/__pycache__/
 /project/static/css/output.css
 *note.txt
+*.csv
 georgewbush_rec.ogg
 harvard.wav
 

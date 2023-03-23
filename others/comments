@@ -1,0 +1,40 @@
+List of suggestions/comments:
+
+- User error in transcription is ok
+
+- Why transcribe audio if user uploads text
+
+- Why user needs to upload/type text if there is a transcription
+
+- Why correct grammar before rating(makes user grammar have high rating)
+
+- Rate the raw grammar of the speech(improvement would be gradually observed)
+
+- In objectives it should be:
+#1 Transcribe audio, #2 (Will be the #3), #3 (Will be the #2), #4 retain, #5 retain.
+
+- Upload text is only an option
+
+- Add in scope the conversion of audio to text
+
+- Scope should be based on the 5 objectives (set 1 for each)
+
+- Input of audio and text file is part of scope
+
+- Delimitation is, other form of input is not accepted except for audio.
+
+- Delimitation is lumped into one
+
+- What if the speech is monotone? Try if the app can determine monotone.
+
+- Limitation, not go into topic of the speech itself.
+
+- How long does a 5 minute audio process (verify by trying a maximum 5 minute audio)
+
+- Concern of Feature Driven Development is that after 1 feature is done, the product can be released
+
+- Possible answer for the thesis about FDD is that the objectives are individual/independent variables and aren't interconnected to each other.
+
+- Use Case Diagram to be fixed (Already done @PD4)
+
+- Activity Diagram to be fixed (Already done @PD4)
