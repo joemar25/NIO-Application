@@ -20,6 +20,8 @@ test*
 /project/scripts/__pycache__/
 /project/static/css/output.css
 *note.txt
+georgewbush_rec1.ogg
+harvard1.wav
 
 # training models
 /project/models/*
