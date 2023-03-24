@@ -15,9 +15,9 @@ block body %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</dt>
         <dd class="flex items-center mb-3">
           <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-1">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['rate']}}%"></div>
+            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{ rate }}%"></div>
           </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['rate']}}</span>
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ rate }}</span>
         </dd>
       </dl>
 
@@ -25,9 +25,9 @@ block body %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</dt>
         <dd class="flex items-center mb-3">
           <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['fluency']}}%"></div>
+            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{ fluency }}%"></div>
           </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['fluency']}}</span>
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ fluency }}</span>
         </dd>
       </dl>
 
@@ -35,9 +35,9 @@ block body %}
         <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Grammar</dt>
         <dd class="flex items-center mb-3">
           <div class="w-full bg-gray-200 rounded h-2.5 dark:bg-gray-700 mr-2">
-            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{score['grammar']}}%"></div>
+            <div class="bg-blue-600 h-2.5 rounded dark:bg-white" style="width: {{ grammar }}%"></div>
           </div>
-          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{score['grammar']}}</span>
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ grammar }}</span>
         </dd>
       </dl>
 
@@ -184,7 +184,8 @@ block body %}
     <!--  modal end -->
   </div>
 
-  <div> Transcribed Text = {{score['transcribed']}} </div>
+  <div> Transcribed Text = {{ transcribed }} </div>
+  <div> Corrected Text = {{ ctranscribed }} </div>
 
 </div>
 

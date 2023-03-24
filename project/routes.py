@@ -18,7 +18,8 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return User.query.get_or_404(int(user_id))
+
 
 class Routes:
 
@@ -56,16 +57,13 @@ class Routes:
         login_user(user)
         return redirect(url_for("main"))
 
-
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
         form = RecordForm()
-        user_id = current_user.id
-
-        all_score = Score.query.filter_by(user_id=user_id)
-
-        return render_template("main.html", form=form, score=all_score)
+        scores = Score.query.filter_by(user_id=current_user.id).all()
+        data = { 'form': form, 'scores': scores }
+        return render_template("main.html", **data)
 
     @app.route('/upload', methods=['POST'])
     def upload():
@@ -134,7 +132,7 @@ class Routes:
             current_score.fluency = round(fluency, 1)
 
             db.session.commit()
-            flash("Score updated successfully", category='success')
+            flash("Result successfully updated", category='success')
             return redirect(url_for("feedback"))
 
         except Exception as e:
@@ -144,15 +142,25 @@ class Routes:
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
-        flash("Error sending audio recording to server. Please try again.", category='danger')
+        flash("Error sending audio recording to server", category='danger')
         return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
         try:
-            current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
-            average = round((current_score.rate + current_score.fluency + current_score.grammar) / 3, 1)
-            return render_template("feedback.html", score=current_score, average=average)
+            score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
+            audio = Audio.query.filter_by(score_id=score.id).order_by(Audio.id.desc()).first()
+
+            data = {
+                'rate': score.rate,
+                'fluency': score.fluency,
+                'grammar': score.grammar,
+                'average': round((score.rate + score.fluency + score.grammar) / 3, 1),
+                'transcribed': audio.transcribed,
+                'ctranscribed': audio.ctranscribed
+            }
+
+            return render_template("feedback.html", **data)
         except Exception as e:
             flash(f"Error getting feedback: {e}", category='danger')
             return redirect(url_for("main"))
@@ -171,7 +179,7 @@ class Routes:
 
     @app.route("/destroy", methods=['POST'])
     def destroy():
-        logout_user() # log the user out
+        logout_user()
         return redirect(url_for("index"))
 
     @app.errorhandler(404)

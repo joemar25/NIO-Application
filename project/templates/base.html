@@ -16,7 +16,8 @@
   <body class="m-0 dark:bg-gray-900">
 
     <!-- notification handler -->
-    <div id="alert" class="fixed top-5 left-0 right-0 flex capitalize items-center justify-center animate-fade-in">
+    <div id="alert"
+      class="fixed unselectable top-5 left-0 right-0 flex capitalize items-center justify-center animate-fade-in">
       {% with messages = get_flashed_messages(with_categories=True) %}
       {% if messages %}
       {% for category, message in messages %}

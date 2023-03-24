@@ -1,45 +1,54 @@
-{% extends 'base.html' %} {% block title %} Speech Time {% endblock %} {% block
-body %}
+{% extends 'base.html' %} {% block title %} Speech Time {% endblock %}
 
+{% block body %}
 
 {% if current_user.is_authenticated%}
+
+<!-- display record button | text script -->
 <div class="w-10/12 rounded-lg px-6 py-8 shadow">
 
-  {% if current_user.text %}
+  {% if current_user.script %}
 
   <div class="mb-4 dark:text-white">
     <span class="text-2xl font-bold"> Script </span>
-    <span id="timer" class="text-2xl mt-2 hidden">00:00</span>
   </div>
   <div class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300">
-    <p class="p-6 text-base">{{current_user.text}}</p>
+    <p class="p-6 text-base">{{current_user.script}}</p>
   </div>
+  <span id="timer" class="text-2xl mt-2 hidden">00:00</span>
   <div class="mt-4 flex justify-end">
-    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
-        text-white hover:bg-blue-600 focus:outline-none focus:ring-2
-        focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
   </div>
 
   {% else %}
 
   <div class="flex flex-col items-center mt-4">
     <div class="flex">
-      {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium
-        text-white hover:bg-blue-600 focus:outline-none focus:ring-2
-        focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+      {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
     </div>
     <div id="timer" class="text-2xl font-bold mt-2 dark:text-white hidden">00:00</div>
   </div>
 
-
   {% endif %}
 
-  {% else %}
-
-  <h1>User must have a username and their script to proceed to this page.</h1>
-  <a href="{{url_for('index')}}">Home</a>
-
 </div>
+
+<!-- display score | test for history graph (hidden for now) -->
+<div class="dark:text-white hidden">
+  {% for score in scores %}
+  <p>Rate: {{ score.rate }}</p>
+  <p>Fluency: {{ score.fluency }}</p>
+  <p>Grammar: {{ score.grammar }}</p>
+  <br>
+  {% endfor %}
+</div>
+
+<!-- no authenticated user here -->
+{% else %}
+
+<h1>User must have a username and their script to proceed to this page.</h1>
+<a href="{{url_for('index')}}">Home</a>
+
 {% endif %}
 
 {% endblock %}
