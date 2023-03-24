@@ -1,12 +1,12 @@
 import nltk, difflib
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
+if not nltk.download('punkt', quiet=True):
+  nltk.download('punkt')
+
 class Grammar:
 
   def __init__(self):
-    
-    if not nltk.download('punkt', quiet=True):
-      nltk.download('punkt')
     
     correction_model_tag = "prithivida/grammar_error_correcter_v1"
     device = "cpu"

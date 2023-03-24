@@ -6,26 +6,28 @@ from sqlalchemy import inspect
 # The UserMixin class provides the implementation for Flask-Login's required properties
 # for user models, so we inherit from it to ensure our User model is compatible
 class User(db.Model, UserMixin):
-    # Define the columns for the User table.
-    id = db.Column('id', db.Integer, primary_key=True)
-    user_name = db.Column('user_name', db.String(length=21), unique=False, nullable=False)
-    text = db.Column('text', db.Text, nullable=False)
-    datetime = db.Column('timestamp', db.DateTime, default=datetime.utcnow)
-    
-    scores = db.relationship('Score', backref='user', lazy='dynamic')
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), nullable=False)
+    script = db.Column(db.String(255))
+    created_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    scores = db.relationship('Score', backref='user', lazy=True)
 
 class Score(db.Model):
-    # Define the columns for the Score table.
-    id = db.Column('id', db.Integer, primary_key=True)
-    user_id = db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
-    audio = db.Column('audio', db.Text, unique=True, nullable=False, default=None)
-    transcribed = db.Column('transcribed', db.Text, unique=False, nullable=False, default="no transcription")
-    ctranscribed = db.Column('ctranscribed', db.Text, unique=False, nullable=False, default="no transcription")
-    
-    rate = db.Column('rate', db.Float(), unique=False, nullable=False, default=0)
-    grammar = db.Column('grammar', db.Float(), unique=False, nullable=False, default=0)
-    fluency = db.Column('fluency', db.Float(), unique=False, nullable=False, default=0)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    grammar = db.Column(db.Float, nullable=False)
+    fluency = db.Column(db.Float, nullable=False)
+    rate = db.Column(db.Float, nullable=False)
+    audio = db.relationship('Audio', uselist=False, backref='score')
+
+class Audio(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    score_id = db.Column(db.Integer, db.ForeignKey('score.id'), nullable=False)
+    audio_name = db.Column(db.String(255), nullable=False)
+    transcribed = db.Column(db.String(255))
+    ctranscribed = db.Column(db.String(255))
+    emotion_labels = db.Column(db.String(255))
+    emotion_scores = db.Column(db.String(255))
 
 # Use the SQLAlchemy inspect() method to check if the table already exists in the database.
 # If it does not exist, create it using db.create_all().

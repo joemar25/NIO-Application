@@ -3,13 +3,14 @@ from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from project import app, db
-from project.models import User, Score
+from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
 from project.scripts.grammar import Grammar as grammar
 from project.scripts.grammar import grammar_score
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
+from project.scripts.emotion import emotion_detector
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -46,15 +47,15 @@ class Routes:
             return render_template("home.html", form=entry_form)
 
         user = User(
-            user_name=username,
-            text=text,
+            username=username,
+            script=text,
         )
         db.session.add(user)
         db.session.commit()
 
-        user = User.query.order_by(-User.id).first()
         login_user(user)
         return redirect(url_for("main"))
+
 
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
@@ -76,53 +77,75 @@ class Routes:
         audio = audio.set_frame_rate(16000)
         audio = audio.set_channels(1)
         audio.export(os.path.join(temp_dir, file_name), format="wav")
-        
+
         t_text = to_text(file_name)
         ct_text = grammar().correct(t_text)
-        
+
         try:
-            audio_query = Score(
-                user_id = current_user.id,
-                audio = file_name,
-                transcribed = t_text,
-                ctranscribed = ct_text
+            audio_obj = Audio(
+                audio_name=file_name,
+                transcribed=t_text,
+                ctranscribed=ct_text,
+                emotion_labels="sad,happy,ok",
+                emotion_scores="26.9,55.9,11.9"
             )
-            db.session.add(audio_query)
+            score_obj = Score(
+                user_id=current_user.id,
+                rate=0,
+                grammar=0,
+                fluency=0,
+                audio=audio_obj
+            )
+
+            db.session.add(audio_obj)
+            db.session.add(score_obj)
             db.session.commit()
         except:
             return jsonify({"success": False}), 500
-
-        return jsonify({"success": True}) 
+        return jsonify({"success": True})
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
-        
-        current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
-        
-        rate = rate_score(audio=current_score.audio, text=current_score.transcribed, use_temp_folder=True)
-        grammar = grammar_score(current_score.transcribed, current_score.ctranscribed)
-        fluency = 85
-
-        current_score.rate = round(rate['score'], 1)
-        current_score.grammar = round(grammar, 1)
-        current_score.fluency = round(fluency, 1)
-
         try:
+            current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
+
+            if current_score is None:
+                flash("Failed to load score table in database for current user", category='danger')
+                return redirect(url_for("main"))
+
+            audio = current_score.audio
+            if audio is None:
+                flash("Failed to load audio table in database for current score", category='danger')
+                return redirect(url_for("main"))
+
+            rate = rate_score(audio=audio.audio_name, text=audio.transcribed, use_temp_folder=True)
+            grammar = grammar_score(audio.transcribed, audio.ctranscribed)
+            fluency = 85
+
+            if rate is None:
+                flash("Error processing rate score", category='danger')
+                return redirect(url_for("feedback"))
+            if grammar is None:
+                flash("Error processing grammar score", category='danger')
+                return redirect(url_for("feedback"))
+
+            current_score.rate = round(rate['score'], 1)
+            current_score.grammar = round(grammar, 1)
+            current_score.fluency = round(fluency, 1)
+
             db.session.commit()
+            flash("Score updated successfully", category='success')
+            return redirect(url_for("feedback"))
+
         except Exception as e:
             db.session.rollback()
-            flash("error updating score: {}".format(str(e)), category='danger')
+            flash("Error updating score: {}".format(str(e)), category='danger')
             return redirect(url_for("main"))
-        finally:
-            db.session.close()
-
-        return redirect(url_for("feedback"))
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
         flash("Error sending audio recording to server. Please try again.", category='danger')
         return redirect(url_for("main"))
-
 
     @app.route("/feedback", methods=['GET'])
     def feedback():

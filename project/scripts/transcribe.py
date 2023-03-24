@@ -1,6 +1,3 @@
-# Joemar
-# February 22, 2023
-
 import os
 import whisper
 
@@ -27,6 +24,8 @@ def to_text(audio, use_temp_folder=True):
         
         readed_text = str(result["text"])
         text = readed_text.strip()
+        
+        text = "hello text"
        
     except Exception as e:
         ...
