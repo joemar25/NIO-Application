@@ -1,7 +1,5 @@
 from datetime import datetime
-import uuid
-import pytz
-
+import uuid, pytz
 
 # import spacy, re, nltk
 # import collections
