@@ -23,6 +23,7 @@ test*
 /project/static/css/output.css
 *note.txt
 *.csv
+*.bat
 georgewbush_rec.ogg
 harvard.wav
 
