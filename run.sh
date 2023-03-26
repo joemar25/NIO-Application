@@ -6,7 +6,7 @@ echo "Upgrading pip..."
 pip install --upgrade pip
 
 # Install FFmpeg
-sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
+# sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
 
 # Install required Python packages
 echo "Installing Python packages..."
