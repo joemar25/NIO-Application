@@ -32,3 +32,5 @@ npm install
 # Run dev and bfy commands
 npm run dev &
 npm run bfy &
+
+cd ..
