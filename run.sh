@@ -18,8 +18,11 @@ sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo a
 echo "Installing Python packages..."
 pip install --upgrade --no-deps -r others/requirements.txt
 
-# Change directory to the project folder
-cd "$(dirname "$0")/../NIO-APPLICATION/project"
+# Change to the parent directory of the script
+cd "$(dirname "$0")/.."
+
+# Change to the project directory
+cd project
 
 # Run the postcss command
 echo "Running npm..."
