@@ -10,7 +10,7 @@ pip install --upgrade pip
 pip install flask
 
 # Install FFmpeg
-apt update && add-apt-repository universe && apt update && apt install ffmpeg -y
+sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
 
 # Install required Python packages
 echo "Installing Python packages..."
