@@ -23,10 +23,10 @@ test*
 /project/static/css/output.css
 *note.txt
 *.csv
-*.bat
 *KEYNOTE
 georgewbush_rec.ogg
 harvard.wav
+*.bat
 
 # training models
 /project/models/*
