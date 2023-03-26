@@ -11,16 +11,17 @@ fi
 # Activate virtual environment
 source .venv/bin/activate
 
+# Upgrading pip
+echo "Upgrading pip..."
+pip install --upgrade pip
+
 # Install FFmpeg
-sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
+apt update && add-apt-repository universe && apt update && apt install ffmpeg -y
 
 # Install required Python packages
 echo "Installing Python packages..."
 pip install -r requirements.txt
 
-# Upgrading pip
-echo "Upgrading pip..."
-pip install --upgrade pip
 
 # Change to the project directory
 cd project
