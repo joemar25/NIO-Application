@@ -6,6 +6,9 @@ echo "Mar-Automation..."
 echo "Upgrading pip..."
 pip install --upgrade pip
 
+# Install flask
+pip install flask
+
 # Install FFmpeg
 apt update && add-apt-repository universe && apt update && apt install ffmpeg -y
 
