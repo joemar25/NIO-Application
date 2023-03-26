@@ -2,15 +2,6 @@
 
 echo "Mar-Automation..."
 
-# Check if virtual environment exists
-if [ ! -d .venv ]; then
-  echo "Creating a new virtual environment..."
-  python -m venv .venv
-fi
-
-# Activate virtual environment
-source .venv/bin/activate
-
 # Upgrading pip
 echo "Upgrading pip..."
 pip install --upgrade pip
