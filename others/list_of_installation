@@ -11,4 +11,11 @@ pip install openai-whisper==20230117
 pip install psycopg2-binary
 pip install gunicorn
 pip install keras
-pip install tensorflow
+pip install tensorflow==2.12.0
+
+
+
+
+
+
+pip freeze > requirements.txt
