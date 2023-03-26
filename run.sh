@@ -19,7 +19,7 @@ echo "Installing Python packages..."
 pip install --upgrade --no-deps -r others/requirements.txt
 
 # Change to the parent directory of the script
-cd /workspaces/NIO-Application/project
+cd project
 
 # Run the postcss command
 echo "Running npm..."
