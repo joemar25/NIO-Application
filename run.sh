@@ -29,7 +29,7 @@ cd ..
 
 # Install required Python packages
 echo "Installing Python packages..."
-pip install -r others/requirements.txt
+pip install -r requirements.txt
 
 # Upgrading pip
 echo "Upgrading pip..."
