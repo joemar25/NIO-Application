@@ -18,9 +18,17 @@ sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo a
 echo "Installing Python packages..."
 pip install --upgrade --no-deps -r others/requirements.txt
 
-# Change to the parent directory of the script
+# Upgrading pip
+echo "Upgrading pip..."
+pip install --upgrade pip
+
+# Change to the project directory
 cd project
 
 # Run the postcss command
 echo "Running npm..."
-npm install &
+npm install
+
+# Run dev and bfy commands
+npm run dev &
+npm run bfy &
