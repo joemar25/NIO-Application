@@ -6,16 +6,29 @@ echo "Mar-Automation..."
 echo "Upgrading pip..."
 pip install --upgrade pip
 
-# Install flask
+# Install libries
 pip install flask
+pip install Flask-WTF
+pip install Flask-Login
+pip install Flask-SQLAlchemy
+pip install Werkzeug
+pip install Flask-SQLAlchemy
+pip install pytz
+pip install psycopg2-binary
+pip install gunicorn
+pip install nltk
+pip install librosa
+pip install pydub
+pip install openai-whisper
+pip install tensorflow
+pip install keras
 
 # Install FFmpeg
-sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
-
-# Install required Python packages
-echo "Installing Python packages..."
-pip install -r requirements.txt
-
+sudo apt-get install sudo
+sudo apt update
+sudo add-apt-repository universe
+sudo apt update
+sudo apt install ffmpeg
 
 # Change to the project directory
 cd project
