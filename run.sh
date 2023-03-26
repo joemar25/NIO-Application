@@ -22,9 +22,11 @@ pip install --upgrade --no-deps -r others/requirements.txt
 echo "Upgrading pip..."
 pip install --upgrade pip
 
-# Install gunicorn
-echo "Installing gunicorn..."
-pip install gunicorn
+# Install gunicorn if not already installed
+if ! pip list | grep -q gunicorn; then
+  echo "Installing gunicorn..."
+  pip install gunicorn
+fi
 
 # Change to the project directory
 cd project
@@ -37,5 +39,5 @@ npm install
 npm run dev &
 npm run bfy &
 
-# Change back to the root directory
+# Change back to the parent directory
 cd ..
