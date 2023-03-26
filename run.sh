@@ -14,6 +14,14 @@ source .venv/bin/activate
 # Install FFmpeg
 sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
 
+# Install required Python packages
+echo "Installing Python packages..."
+pip install -r requirements.txt
+
+# Upgrading pip
+echo "Upgrading pip..."
+pip install --upgrade pip
+
 # Change to the project directory
 cd project
 
@@ -27,10 +35,8 @@ npm run bfy &
 
 cd ..
 
-# Install required Python packages
-echo "Installing Python packages..."
-pip install -r requirements.txt
-
-# Upgrading pip
-echo "Upgrading pip..."
-pip install --upgrade pip
+# Install gunicorn if not already installed
+if ! pip list | grep -q gunicorn; then
+  echo "Installing gunicorn..."
+  pip install gunicorn
+fi
