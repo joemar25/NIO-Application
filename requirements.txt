@@ -50,7 +50,7 @@ gunicorn==20.1.0
 h5py==3.8.0
 huggingface-hub==0.13.3
 idna==3.4
-ipykernel==6.21.3
+ipykernel==6.16.2
 ipython==8.11.0
 ipython-genutils==0.2.0
 isoduration==20.11.0
