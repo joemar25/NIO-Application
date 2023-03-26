@@ -24,11 +24,7 @@ pip install tensorflow
 pip install keras
 
 # Install FFmpeg
-sudo apt-get install sudo
-sudo apt update
-sudo add-apt-repository universe
-sudo apt update
-sudo apt install ffmpeg
+sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
 
 # Change to the project directory
 cd project
