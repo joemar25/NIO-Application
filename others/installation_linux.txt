@@ -1,10 +1,12 @@
-python.exe -m pip install --upgrade pip
-# or 
-python -m pip install --upgrade pip
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade -r others/requirements.txt
+npm install &
 
-cd project
-npm install -D tailwindcss postcss-cli autoprefixer
-npm i browserify
+# some commands
+clear
+pip freeze > requirements.txt
+
 
 # to activate api
 python api.py

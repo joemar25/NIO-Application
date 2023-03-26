@@ -11,9 +11,12 @@ fi
 # Activate virtual environment
 source .venv/bin/activate
 
+# Install FFmpeg
+sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
+
 # Install required Python packages
 echo "Installing Python packages..."
-pip install --upgrade --no-deps -r requirements.txt
+pip install --upgrade --no-deps -r others/requirements.txt
 
 # Change directory to the project folder
 cd "$(dirname "$0")/../NIO-APPLICATION/project"
