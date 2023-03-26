@@ -20,7 +20,6 @@ test*
 /project/node_modules
 /project/__pycache__
 /project/scripts/__pycache__/
-/project/static/css/output.css
 *note.txt
 *.csv
 *KEYNOTE
@@ -40,9 +39,6 @@ harvard.wav
 /.pnp
 .pnp.js
 
-# temps
-*output.css
-*output.js
 
 # testing
 /coverage

@@ -26,6 +26,12 @@ pip install keras
 # Install FFmpeg
 # sudo apt update && sudo add-apt-repository universe && sudo apt update && sudo apt install ffmpeg -y
 
+# Install gunicorn if not already installed
+if ! pip list | grep -q gunicorn; then
+  echo "Installing gunicorn..."
+  pip install gunicorn
+fi
+
 # Change to the project directory
 cd project
 
@@ -33,14 +39,5 @@ cd project
 echo "Running npm..."
 npm install
 
-# Run dev and bfy commands
-npm run dev &
-npm run bfy &
-
 cd ..
 
-# Install gunicorn if not already installed
-if ! pip list | grep -q gunicorn; then
-  echo "Installing gunicorn..."
-  pip install gunicorn
-fi
