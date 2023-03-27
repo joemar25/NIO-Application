@@ -27,4 +27,6 @@ sudo apt update
 sudo apt install ffmpeg
 
 
+
+
 pip freeze > requirements.txt
