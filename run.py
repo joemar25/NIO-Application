@@ -11,4 +11,4 @@ if __name__ == "__main__":
         8080 else just put the "proxy": "http://127.0.0.1:5000" since it is the default proxy
     """
 
-    app.run(debug=True, threaded=True, host='localhost', port=8080)
+    app.run(debug=True, threaded=True, host='0.0.0.0', port=8080)
