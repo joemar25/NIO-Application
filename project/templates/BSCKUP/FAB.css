@@ -4,17 +4,17 @@
 
 .fab {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 290px;
+  right: 140px;
   z-index: 9999;
 }
 
 .fab-icon {
   display: block;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: #007bff;
+  background-color: #010305;
   text-align: center;
   line-height: 60px;
   color: #fff;
@@ -29,3 +29,7 @@
 .fa {
   margin-top: 18px;
 }
+
+
+
+
