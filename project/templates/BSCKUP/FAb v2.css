@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   
   background: #f1f1f1;
@@ -33,14 +41,14 @@ h1 {
   width:50px;
   height: 50px;
   margin-left: -40px;
-  position: absolute;
+  position: fixed;
   top: 490px;
   right: 200px;
   color: white;
   text-align: center;
-  line-height: 80px;
-  transform: translate3d(0, 0, 0);
-  transition: transform ease-out 200ms;
+  line-height: 50px;
+  transition: transform ease-out 140ms;
+  
 }
 
 .menu-open {
@@ -57,7 +65,7 @@ h1 {
   left: 50%;
   margin-left: -12.5px;
   margin-top: -1.5px;
-  transition: transform 200ms;
+  transition: transform 140ms;
 }
 
 .hamburger-1 {
@@ -115,7 +123,7 @@ h1 {
 .menu-open-button {
   z-index: 2;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition-duration: 400ms;
+  transition-duration: 200ms;
   transform: scale(1.1, 1.1) translate3d(0, 0, 0);
   cursor: pointer;
 }
