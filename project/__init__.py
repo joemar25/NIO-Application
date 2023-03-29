@@ -1,6 +1,10 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv as ENV_LOAD
+
+# .env
+ENV_LOAD()
 
 # Set up app
 app = Flask(__name__)
