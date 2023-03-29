@@ -34,5 +34,5 @@ pip freeze > requirements.txt
 
 # cloud storage = Backblaze
 
-
+# ngrok python --> https://www.youtube.com/shorts/r6SdH7-W-0E
 

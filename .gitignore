@@ -3,6 +3,7 @@
 *.pyc
 *.cpython-39.pyc
 *.env
+*.envv
 
 # Ignore all files starting with "temp"
 temp*
