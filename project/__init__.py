@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://nio_records_user:mgT1zN4AL
 # set up notification if modification is on set to false
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # set up secret key for secure sessions
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = "secret"
 db = SQLAlchemy(app)
 
 # Import routes
