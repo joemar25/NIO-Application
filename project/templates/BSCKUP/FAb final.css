@@ -10,6 +10,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   
   background: #f1f1f1;
@@ -31,9 +32,6 @@ h1 {
   font-size: 3em;
 }
 
-.menu {
-  filter: url("#shadowed-goo");
-}
 
 .menu-item, .menu-open-button {
   background: #092ae7;
@@ -42,12 +40,10 @@ h1 {
   height: 50px;
   margin-left: -40px;
   position: fixed;
-  top: 490px;
-  right: 200px;
   color: white;
   text-align: center;
   line-height: 50px;
-  transition: transform ease-out 140ms;
+  transition: transform 0.3s ease-in-out;
   
 }
 
@@ -60,12 +56,12 @@ h1 {
   height: 3px;
   background: white;
   display: block;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   margin-left: -12.5px;
   margin-top: -1.5px;
-  transition: transform 140ms;
+  transition: transform 0.3s ease-in-out;
 }
 
 .hamburger-1 {
@@ -91,16 +87,13 @@ h1 {
 }
 
 .menu {
-  position: absolute;
-  left: 50%;
-  margin-left: -80px;
-  padding-top: 20px;
-  padding-left: 80px;
-  width: 650px;
-  height: 150px;
+  position: fixed;
   box-sizing: border-box;
   font-size: 20px;
   text-align: left;
+  bottom: 120px;
+  right: 60px;
+ 
 }
 
 .menu-item:hover {
@@ -143,17 +136,13 @@ h1 {
 }
 .menu-open:checked ~ .menu-item:nth-child(3) {
   transition-duration: 190ms;
-  transform: translate3d(110px, 0, 0);
+  transform: translate3d(0, -60px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(4) {
   transition-duration: 290ms;
-  transform: translate3d(220px, 0, 0);
+  transform: translate3d(0, -120px, 0);
 }
 .menu-open:checked ~ .menu-item:nth-child(5) {
   transition-duration: 390ms;
-  transform: translate3d(330px, 0, 0);
-}
-.menu-open:checked ~ .menu-item:nth-child(6) {
-  transition-duration: 490ms;
-  transform: translate3d(440px, 0, 0);
+  transform: translate3d(0, -180px, 0);
 }
