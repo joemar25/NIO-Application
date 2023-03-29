@@ -30,3 +30,9 @@ sudo apt install ffmpeg
 
 
 pip freeze > requirements.txt
+
+
+# cloud storage = Backblaze
+
+
+

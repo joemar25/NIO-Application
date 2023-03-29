@@ -11,6 +11,8 @@ class User(db.Model, UserMixin):
     script = db.Column(db.String(255))
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     scores = db.relationship('Score', backref='user', lazy=True)
+    
+    # create class init here
 
 class Score(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,6 +21,8 @@ class Score(db.Model):
     fluency = db.Column(db.Float, nullable=False)
     rate = db.Column(db.Float, nullable=False)
     audio = db.relationship('Audio', uselist=False, backref='score')
+    
+    # create class init here
 
 class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,6 +32,8 @@ class Audio(db.Model):
     ctranscribed = db.Column(db.String(255))
     emotion_labels = db.Column(db.String(255))
     emotion_scores = db.Column(db.String(255))
+    
+    # create class init here
 
 # Use the SQLAlchemy inspect() method to check if the table already exists in the database.
 # If it does not exist, create it using db.create_all().
