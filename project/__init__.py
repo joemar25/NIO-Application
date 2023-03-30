@@ -6,6 +6,9 @@ from dotenv import load_dotenv as ENV_LOAD
 # .env
 ENV_LOAD()
 
+# disable the AVX and AVX2 instructions
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # Set up app
 app = Flask(__name__)
 # Set up paths (database and recorded audio)

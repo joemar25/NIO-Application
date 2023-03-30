@@ -1,5 +1,4 @@
-import os
-import whisper
+import os, whisper
 
 def to_text(audio, use_temp_folder=True):
     
@@ -24,8 +23,6 @@ def to_text(audio, use_temp_folder=True):
         
         readed_text = str(result["text"])
         text = readed_text.strip()
-        
-        text = "hello text"
        
     except Exception as e:
         ...
