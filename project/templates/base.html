@@ -87,6 +87,7 @@
     </div>
 
     <!-- floating action button -->
+    <!-- floating action button -->
     <nav class="menu">
       <input type="checkbox" class="menu-open sr-only" name="menu-open" id="menu-open" />
       <label class="menu-open-button" for="menu-open">
@@ -118,8 +119,8 @@
 
       {% else %}
 
-      {% if request.endpoint != 'login' %}
       <!-- home unauthenticated -->
+      {% if request.endpoint != 'login' %}
       <a href="{{ url_for('index') }}" class="menu-item"><i class="fa fa-home"></i></a>
       {% endif %}
 
@@ -131,9 +132,7 @@
       {% endif %}
 
     </nav>
-    <h1>
-      {{request.endpoint}}
-    </h1>
+
     <!-- content -->
     <main class="unselectable flex min-h-screen flex-col items-center px-6 py-8 ">
       {% block body %} {% endblock %}
