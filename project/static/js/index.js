@@ -13,6 +13,7 @@ require('blueimp-file-upload/js/jquery.fileupload');
 require('./toast.js');
 require('./dark_mode.js');
 require('./home_controller.js');
+require('./fab_controller.js');
 require('./recording.js');
 require('./verification.js');
 

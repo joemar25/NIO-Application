@@ -1,7 +1,7 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (process){(function (){
 /**
- * @popperjs/core v2.11.7 - MIT License
+ * @popperjs/core v2.11.6 - MIT License
  */
 
 'use strict';
@@ -48,7 +48,7 @@ var round = Math.round;
 function getUAString() {
   var uaData = navigator.userAgentData;
 
-  if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
+  if (uaData != null && uaData.brands) {
     return uaData.brands.map(function (item) {
       return item.brand + "/" + item.version;
     }).join(' ');
@@ -1179,9 +1179,10 @@ var unsetSides = {
 // Zooming can change the DPR, but it seems to report a value that will
 // cleanly divide the values into the appropriate subpixels.
 
-function roundOffsetsByDPR(_ref, win) {
+function roundOffsetsByDPR(_ref) {
   var x = _ref.x,
       y = _ref.y;
+  var win = window;
   var dpr = win.devicePixelRatio || 1;
   return {
     x: round(x * dpr) / dpr || 0,
@@ -1264,7 +1265,7 @@ function mapToStyles(_ref2) {
   var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
     x: x,
     y: y
-  }, getWindow(popper)) : {
+  }) : {
     x: x,
     y: y
   };
@@ -2003,7 +2004,7 @@ exports.preventOverflow = preventOverflow$1;
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":46}],2:[function(require,module,exports){
+},{"_process":45}],2:[function(require,module,exports){
 /*
  * jQuery File Upload Plugin
  * https://github.com/blueimp/jQuery-File-Upload
@@ -3609,7 +3610,7 @@ exports.preventOverflow = preventOverflow$1;
   });
 });
 
-},{"./vendor/jquery.ui.widget":3,"jquery":42}],3:[function(require,module,exports){
+},{"./vendor/jquery.ui.widget":3,"jquery":41}],3:[function(require,module,exports){
 /*! jQuery UI - v1.12.1+0b7246b6eeadfa9e2696e22f3230f6452f8129dc - 2020-02-20
  * http://jqueryui.com
  * Includes: widget.js
@@ -4416,7 +4417,7 @@ exports.preventOverflow = preventOverflow$1;
   });
 });
 
-},{"jquery":42}],4:[function(require,module,exports){
+},{"jquery":41}],4:[function(require,module,exports){
 const plugin = require('tailwindcss/plugin')
 const merge = require('lodash.merge')
 const castArray = require('lodash.castarray')
@@ -4565,7 +4566,7 @@ module.exports = plugin.withOptions(
   }
 )
 
-},{"./styles":5,"lodash.castarray":43,"lodash.merge":44,"tailwindcss/plugin":52}],5:[function(require,module,exports){
+},{"./styles":5,"lodash.castarray":42,"lodash.merge":43,"tailwindcss/plugin":51}],5:[function(require,module,exports){
 const colors = require('tailwindcss/colors')
 
 const round = (num) =>
@@ -5525,7 +5526,7 @@ module.exports = {
   ...defaultModifiers,
 }
 
-},{"tailwindcss/colors":47}],6:[function(require,module,exports){
+},{"tailwindcss/colors":46}],6:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -6809,36 +6810,6 @@ arguments[4][7][0].apply(exports,arguments)
 arguments[4][8][0].apply(exports,arguments)
 },{"dup":8}],27:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.initFlowbite = void 0;
-var accordion_1 = require("./accordion");
-var carousel_1 = require("./carousel");
-var collapse_1 = require("./collapse");
-var dial_1 = require("./dial");
-var dismiss_1 = require("./dismiss");
-var drawer_1 = require("./drawer");
-var dropdown_1 = require("./dropdown");
-var modal_1 = require("./modal");
-var popover_1 = require("./popover");
-var tabs_1 = require("./tabs");
-var tooltip_1 = require("./tooltip");
-function initFlowbite() {
-    (0, accordion_1.initAccordions)();
-    (0, collapse_1.initCollapses)();
-    (0, carousel_1.initCarousels)();
-    (0, dismiss_1.initDismisses)();
-    (0, dropdown_1.initDropdowns)();
-    (0, modal_1.initModals)();
-    (0, drawer_1.initDrawers)();
-    (0, tabs_1.initTabs)();
-    (0, tooltip_1.initTooltips)();
-    (0, popover_1.initPopovers)();
-    (0, dial_1.initDials)();
-}
-exports.initFlowbite = initFlowbite;
-
-},{"./accordion":6,"./carousel":9,"./collapse":12,"./dial":15,"./dismiss":18,"./drawer":21,"./dropdown":24,"./modal":28,"./popover":31,"./tabs":34,"./tooltip":37}],28:[function(require,module,exports){
-"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -7111,11 +7082,11 @@ function initModals() {
 exports.initModals = initModals;
 exports.default = Modal;
 
-},{}],29:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],30:[function(require,module,exports){
+},{"dup":7}],29:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],31:[function(require,module,exports){
+},{"dup":8}],30:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7231,18 +7202,6 @@ var Popover = /** @class */ (function () {
                 };
         }
     };
-    Popover.prototype._setupKeydownListener = function () {
-        var _this = this;
-        this._keydownEventListener = function (ev) {
-            if (ev.key === 'Escape') {
-                _this.hide();
-            }
-        };
-        document.body.addEventListener('keydown', this._keydownEventListener, true);
-    };
-    Popover.prototype._removeKeydownListener = function () {
-        document.body.removeEventListener('keydown', this._keydownEventListener, true);
-    };
     Popover.prototype._setupClickOutsideListener = function () {
         var _this = this;
         this._clickOutsideEventListener = function (ev) {
@@ -7283,8 +7242,6 @@ var Popover = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._setupClickOutsideListener();
-        // handle esc keydown
-        this._setupKeydownListener();
         // Update its position
         this._popperInstance.update();
         // set visibility to true
@@ -7301,8 +7258,6 @@ var Popover = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._removeClickOutsideListener();
-        // handle esc keydown
-        this._removeKeydownListener();
         // set visibility to false
         this._visible = false;
         // callback function
@@ -7337,11 +7292,11 @@ function initPopovers() {
 exports.initPopovers = initPopovers;
 exports.default = Popover;
 
-},{"@popperjs/core":1}],32:[function(require,module,exports){
+},{"@popperjs/core":1}],31:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],33:[function(require,module,exports){
+},{"dup":7}],32:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],34:[function(require,module,exports){
+},{"dup":8}],33:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7456,11 +7411,11 @@ function initTabs() {
 exports.initTabs = initTabs;
 exports.default = Tabs;
 
-},{}],35:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],36:[function(require,module,exports){
+},{"dup":7}],35:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],37:[function(require,module,exports){
+},{"dup":8}],36:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7561,18 +7516,6 @@ var Tooltip = /** @class */ (function () {
                 };
         }
     };
-    Tooltip.prototype._setupKeydownListener = function () {
-        var _this = this;
-        this._keydownEventListener = function (ev) {
-            if (ev.key === 'Escape') {
-                _this.hide();
-            }
-        };
-        document.body.addEventListener('keydown', this._keydownEventListener, true);
-    };
-    Tooltip.prototype._removeKeydownListener = function () {
-        document.body.removeEventListener('keydown', this._keydownEventListener, true);
-    };
     Tooltip.prototype._setupClickOutsideListener = function () {
         var _this = this;
         this._clickOutsideEventListener = function (ev) {
@@ -7612,8 +7555,6 @@ var Tooltip = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._setupClickOutsideListener();
-        // handle esc keydown
-        this._setupKeydownListener();
         // Update its position
         this._popperInstance.update();
         // set visibility
@@ -7630,8 +7571,6 @@ var Tooltip = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._removeClickOutsideListener();
-        // handle esc keydown
-        this._removeKeydownListener();
         // set visibility
         this._visible = false;
         // callback function
@@ -7664,11 +7603,11 @@ function initTooltips() {
 exports.initTooltips = initTooltips;
 exports.default = Tooltip;
 
-},{"@popperjs/core":1}],38:[function(require,module,exports){
+},{"@popperjs/core":1}],37:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],39:[function(require,module,exports){
+},{"dup":7}],38:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],40:[function(require,module,exports){
+},{"dup":8}],39:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Events = /** @class */ (function () {
@@ -7689,7 +7628,7 @@ var Events = /** @class */ (function () {
 }());
 exports.default = Events;
 
-},{}],41:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -7706,7 +7645,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.initFlowbite = exports.initTooltips = exports.initTabs = exports.initPopovers = exports.initModals = exports.initDropdowns = exports.initDrawers = exports.initDismisses = exports.initDials = exports.initCollapses = exports.initCarousels = exports.initAccordions = exports.Tooltip = exports.Tabs = exports.Popover = exports.Modal = exports.Dropdown = exports.Drawer = exports.Dismiss = exports.Dial = exports.Collapse = exports.Carousel = exports.Accordion = void 0;
+exports.initTooltips = exports.initTabs = exports.initPopovers = exports.initModals = exports.initDropdowns = exports.initDrawers = exports.initDismisses = exports.initDials = exports.initCollapses = exports.initCarousels = exports.initAccordions = exports.Tooltip = exports.Tabs = exports.Popover = exports.Modal = exports.Dropdown = exports.Drawer = exports.Dismiss = exports.Dial = exports.Collapse = exports.Carousel = exports.Accordion = void 0;
 var events_1 = require("./dom/events");
 var accordion_1 = require("./components/accordion");
 var collapse_1 = require("./components/collapse");
@@ -7804,13 +7743,10 @@ var tabs_3 = require("./components/tabs");
 Object.defineProperty(exports, "initTabs", { enumerable: true, get: function () { return tabs_3.initTabs; } });
 var tooltip_3 = require("./components/tooltip");
 Object.defineProperty(exports, "initTooltips", { enumerable: true, get: function () { return tooltip_3.initTooltips; } });
-// export all init functions
-var index_1 = require("./components/index");
-Object.defineProperty(exports, "initFlowbite", { enumerable: true, get: function () { return index_1.initFlowbite; } });
 
-},{"./components/accordion":6,"./components/accordion/interface":7,"./components/accordion/types":8,"./components/carousel":9,"./components/carousel/interface":10,"./components/carousel/types":11,"./components/collapse":12,"./components/collapse/interface":13,"./components/collapse/types":14,"./components/dial":15,"./components/dial/interface":16,"./components/dial/types":17,"./components/dismiss":18,"./components/dismiss/interface":19,"./components/dismiss/types":20,"./components/drawer":21,"./components/drawer/interface":22,"./components/drawer/types":23,"./components/dropdown":24,"./components/dropdown/interface":25,"./components/dropdown/types":26,"./components/index":27,"./components/modal":28,"./components/modal/interface":29,"./components/modal/types":30,"./components/popover":31,"./components/popover/interface":32,"./components/popover/types":33,"./components/tabs":34,"./components/tabs/interface":35,"./components/tabs/types":36,"./components/tooltip":37,"./components/tooltip/interface":38,"./components/tooltip/types":39,"./dom/events":40}],42:[function(require,module,exports){
+},{"./components/accordion":6,"./components/accordion/interface":7,"./components/accordion/types":8,"./components/carousel":9,"./components/carousel/interface":10,"./components/carousel/types":11,"./components/collapse":12,"./components/collapse/interface":13,"./components/collapse/types":14,"./components/dial":15,"./components/dial/interface":16,"./components/dial/types":17,"./components/dismiss":18,"./components/dismiss/interface":19,"./components/dismiss/types":20,"./components/drawer":21,"./components/drawer/interface":22,"./components/drawer/types":23,"./components/dropdown":24,"./components/dropdown/interface":25,"./components/dropdown/types":26,"./components/modal":27,"./components/modal/interface":28,"./components/modal/types":29,"./components/popover":30,"./components/popover/interface":31,"./components/popover/types":32,"./components/tabs":33,"./components/tabs/interface":34,"./components/tabs/types":35,"./components/tooltip":36,"./components/tooltip/interface":37,"./components/tooltip/types":38,"./dom/events":39}],41:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v3.6.4
+ * jQuery JavaScript Library v3.6.3
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -7820,7 +7756,7 @@ Object.defineProperty(exports, "initFlowbite", { enumerable: true, get: function
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2023-03-08T15:28Z
+ * Date: 2022-12-20T21:28Z
  */
 ( function( global, factory ) {
 
@@ -7962,7 +7898,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.6.4",
+	version = "3.6.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -8333,14 +8269,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.10
+ * Sizzle CSS Selector Engine v2.3.9
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2023-02-14
+ * Date: 2022-12-19
  */
 ( function( window ) {
 var i,
@@ -8444,7 +8380,7 @@ var i,
 		whitespace + "+$", "g" ),
 
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-	rleadingCombinator = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace +
+	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace +
 		"*" ),
 	rdescend = new RegExp( whitespace + "|>" ),
 
@@ -8661,7 +8597,7 @@ function Sizzle( selector, context, results, seed ) {
 				// as such selectors are not recognized by querySelectorAll.
 				// Thanks to Andrew Dupont for this technique.
 				if ( nodeType === 1 &&
-					( rdescend.test( selector ) || rleadingCombinator.test( selector ) ) ) {
+					( rdescend.test( selector ) || rcombinators.test( selector ) ) ) {
 
 					// Expand context for sibling selectors
 					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
@@ -8690,6 +8626,27 @@ function Sizzle( selector, context, results, seed ) {
 				}
 
 				try {
+
+					// `qSA` may not throw for unrecognized parts using forgiving parsing:
+					// https://drafts.csswg.org/selectors/#forgiving-selector
+					// like the `:has()` pseudo-class:
+					// https://drafts.csswg.org/selectors/#relational
+					// `CSS.supports` is still expected to return `false` then:
+					// https://drafts.csswg.org/css-conditional-4/#typedef-supports-selector-fn
+					// https://drafts.csswg.org/css-conditional-4/#dfn-support-selector
+					if ( support.cssSupportsSelector &&
+
+						// eslint-disable-next-line no-undef
+						!CSS.supports( "selector(:is(" + newSelector + "))" ) ) {
+
+						// Support: IE 11+
+						// Throw to get to the same code path as an error directly in qSA.
+						// Note: once we only support browser supporting
+						// `CSS.supports('selector(...)')`, we can most likely drop
+						// the `try-catch`. IE doesn't implement the API.
+						throw new Error();
+					}
+
 					push.apply( results,
 						newContext.querySelectorAll( newSelector )
 					);
@@ -8985,22 +8942,29 @@ setDocument = Sizzle.setDocument = function( node ) {
 			!el.querySelectorAll( ":scope fieldset div" ).length;
 	} );
 
-	// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
-	// Make sure the the `:has()` argument is parsed unforgivingly.
-	// We include `*` in the test to detect buggy implementations that are
-	// _selectively_ forgiving (specifically when the list includes at least
-	// one valid selector).
-	// Note that we treat complete lack of support for `:has()` as if it were
-	// spec-compliant support, which is fine because use of `:has()` in such
-	// environments will fail in the qSA path and fall back to jQuery traversal
-	// anyway.
-	support.cssHas = assert( function() {
-		try {
-			document.querySelector( ":has(*,:jqfake)" );
-			return false;
-		} catch ( e ) {
-			return true;
-		}
+	// Support: Chrome 105+, Firefox 104+, Safari 15.4+
+	// Make sure forgiving mode is not used in `CSS.supports( "selector(...)" )`.
+	//
+	// `:is()` uses a forgiving selector list as an argument and is widely
+	// implemented, so it's a good one to test against.
+	support.cssSupportsSelector = assert( function() {
+		/* eslint-disable no-undef */
+
+		return CSS.supports( "selector(*)" ) &&
+
+			// Support: Firefox 78-81 only
+			// In old Firefox, `:is()` didn't use forgiving parsing. In that case,
+			// fail this test as there's no selector to test against that.
+			// `CSS.supports` uses unforgiving parsing
+			document.querySelectorAll( ":is(:jqfake)" ) &&
+
+			// `*` is needed as Safari & newer Chrome implemented something in between
+			// for `:has()` - it throws in `qSA` if it only contains an unsupported
+			// argument but multiple ones, one of which is supported, are fine.
+			// We want to play safe in case `:is()` gets the same treatment.
+			!CSS.supports( "selector(:is(*,:jqfake))" );
+
+		/* eslint-enable */
 	} );
 
 	/* Attributes
@@ -9269,14 +9233,14 @@ setDocument = Sizzle.setDocument = function( node ) {
 		} );
 	}
 
-	if ( !support.cssHas ) {
+	if ( !support.cssSupportsSelector ) {
 
-		// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
-		// Our regular `try-catch` mechanism fails to detect natively-unsupported
-		// pseudo-classes inside `:has()` (such as `:has(:contains("Foo"))`)
-		// in browsers that parse the `:has()` argument as a forgiving selector list.
-		// https://drafts.csswg.org/selectors/#relational now requires the argument
-		// to be parsed unforgivingly, but browsers have not yet fully adjusted.
+		// Support: Chrome 105+, Safari 15.4+
+		// `:has()` uses a forgiving selector list as an argument so our regular
+		// `try-catch` mechanism fails to catch `:has()` with arguments not supported
+		// natively like `:has(:contains("Foo"))`. Where supported & spec-compliant,
+		// we now use `CSS.supports("selector(:is(SELECTOR_TO_BE_TESTED))")`, but
+		// outside that we mark `:has` as buggy.
 		rbuggyQSA.push( ":has" );
 	}
 
@@ -10189,7 +10153,7 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 		matched = false;
 
 		// Combinators
-		if ( ( match = rleadingCombinator.exec( soFar ) ) ) {
+		if ( ( match = rcombinators.exec( soFar ) ) ) {
 			matched = match.shift();
 			tokens.push( {
 				value: matched,
@@ -18775,7 +18739,7 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-},{}],43:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * lodash 4.4.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -18852,7 +18816,7 @@ var isArray = Array.isArray;
 
 module.exports = castArray;
 
-},{}],44:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 (function (global){(function (){
 /**
  * Lodash (Custom Build) <https://lodash.com/>
@@ -20833,13 +20797,13 @@ function stubFalse() {
 module.exports = merge;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],45:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 var x=String;
 var create=function() {return {isColorSupported:false,reset:x,bold:x,dim:x,italic:x,underline:x,inverse:x,hidden:x,strikethrough:x,black:x,red:x,green:x,yellow:x,blue:x,magenta:x,cyan:x,white:x,gray:x,bgBlack:x,bgRed:x,bgGreen:x,bgYellow:x,bgBlue:x,bgMagenta:x,bgCyan:x,bgWhite:x}};
 module.exports=create();
 module.exports.createColors = create;
 
-},{}],46:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -21025,11 +20989,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],47:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 let colors = require('./lib/public/colors')
 module.exports = (colors.__esModule ? colors : { default: colors }).default
 
-},{"./lib/public/colors":48}],48:[function(require,module,exports){
+},{"./lib/public/colors":47}],47:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21362,7 +21326,7 @@ const _default = {
     }
 };
 
-},{"../util/log":51}],49:[function(require,module,exports){
+},{"../util/log":50}],48:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21379,7 +21343,7 @@ function _interopRequireDefault(obj) {
 }
 const _default = _createPlugin.default;
 
-},{"../util/createPlugin":50}],50:[function(require,module,exports){
+},{"../util/createPlugin":49}],49:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21411,7 +21375,7 @@ createPlugin.withOptions = function(pluginFunction, configFunction = ()=>({})) {
 };
 const _default = createPlugin;
 
-},{}],51:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 (function (process){(function (){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
@@ -21472,11 +21436,11 @@ const _default = {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":46,"picocolors":45}],52:[function(require,module,exports){
+},{"_process":45,"picocolors":44}],51:[function(require,module,exports){
 let createPlugin = require('./lib/public/create-plugin')
 module.exports = (createPlugin.__esModule ? createPlugin : { default: createPlugin }).default
 
-},{"./lib/public/create-plugin":49}],53:[function(require,module,exports){
+},{"./lib/public/create-plugin":48}],52:[function(require,module,exports){
 // On page load or when changing themes, best to add inline in `head` to avoid FOUC
 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
   document.documentElement.classList.add('dark');
@@ -21523,6 +21487,25 @@ themeToggleBtn.addEventListener('click', function () {
     }
   }
 
+});
+},{}],53:[function(require,module,exports){
+const menuOpenButton = document.querySelector('.menu-open-button');
+const menu = document.querySelector('.menu');
+const menuOpenCheckbox = document.querySelector('.menu-open');
+
+// add click event listener to the document
+document.addEventListener('click', (event) => {
+    // check if the clicked element is inside the menu
+    if (!menu.contains(event.target) && menuOpenCheckbox.checked) {
+        // set the checked property to false to close the menu
+        menuOpenCheckbox.checked = false;
+    }
+});
+
+// add click event listener to the menu open button
+menuOpenButton.addEventListener('click', (event) => {
+    // stop the event from bubbling up to the document
+    event.stopPropagation();
 });
 },{}],54:[function(require,module,exports){
 /* 
@@ -21621,11 +21604,12 @@ require('blueimp-file-upload/js/jquery.fileupload');
 require('./toast.js');
 require('./dark_mode.js');
 require('./home_controller.js');
+require('./fab_controller.js');
 require('./recording.js');
 require('./verification.js');
 
 
-},{"./dark_mode.js":53,"./home_controller.js":54,"./recording.js":56,"./toast.js":57,"./verification.js":58,"blueimp-file-upload/js/jquery.fileupload":2,"flowbite":41,"flowbite-typography":4}],56:[function(require,module,exports){
+},{"./dark_mode.js":52,"./fab_controller.js":53,"./home_controller.js":54,"./recording.js":56,"./toast.js":57,"./verification.js":58,"blueimp-file-upload/js/jquery.fileupload":2,"flowbite":40,"flowbite-typography":4}],56:[function(require,module,exports){
 let mediaRecorder, stream, chunks = [];
 
 async function startRecording() {

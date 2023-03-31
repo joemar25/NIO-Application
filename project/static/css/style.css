@@ -2,101 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: "Roboto", sans-serif;
-}
-
-/* toast animation */
-#alert {
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-
-.animate-fade-in {
-  animation-name: fade-in;
-}
-
-.animate-fade-up {
-  animation-name: fade-up;
-}
-
-@keyframes rotate-one {
-  0% {
-    transform: rotateX(135deg) rotateY(-45deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(135deg) rotateY(-45deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-two {
-  0% {
-    transform: rotateX(150deg) rotateY(10deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(150deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-three {
-  0% {
-    transform: rotateX(135deg) rotateY(55deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(135deg) rotateY(55deg) rotateZ(360deg);
-  }
-}
-
-/* class to make things unselectable (no copy paste allowed for user) */
-.unselectable {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* scroll invisible */
-div::-webkit-scrollbar {
-  width: 0;
-}
-
-div::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-div::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
 /* component of tailwind */
 @layer components {
+
+  html {
+    font-family: "Roboto", sans-serif;
+  }
+
+  /* toast animation */
+  #alert {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+
+  .animate-fade-in {
+    animation-name: fade-in;
+  }
+
+  .animate-fade-up {
+    animation-name: fade-up;
+  }
+
+  @keyframes rotate-one {
+    0% {
+      transform: rotateX(135deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(135deg) rotateY(-45deg) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotate-two {
+    0% {
+      transform: rotateX(150deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(150deg) rotateY(10deg) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotate-three {
+    0% {
+      transform: rotateX(135deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(135deg) rotateY(55deg) rotateZ(360deg);
+    }
+  }
+
+  /* make things unselectable */
+  .unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* scroll invisible */
+  div::-webkit-scrollbar {
+    width: 0;
+  }
+
+  div::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  div::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 
   /* FAB */
   :root {
@@ -251,14 +251,14 @@ div::-webkit-scrollbar-thumb {
     align-items: center;
     justify-content: center;
   }
-}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
 
-  100% {
-    transform: rotate(360deg);
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

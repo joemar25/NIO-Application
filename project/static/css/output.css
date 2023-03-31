@@ -1400,6 +1400,82 @@ input:checked + .toggle-bg {
 .format-lg :where(.format > :last-child):not(:where([class~="not-format"] *)) {
   margin-bottom: 0;
 }
+html {
+    font-family: "Roboto", sans-serif;
+  }
+/* toast animation */
+#alert {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+@keyframes fade-up {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+  }
+.animate-fade-in {
+    animation-name: fade-in;
+  }
+@keyframes rotate-one {
+    0% {
+      transform: rotateX(135deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(135deg) rotateY(-45deg) rotateZ(360deg);
+    }
+  }
+@keyframes rotate-two {
+    0% {
+      transform: rotateX(150deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(150deg) rotateY(10deg) rotateZ(360deg);
+    }
+  }
+@keyframes rotate-three {
+    0% {
+      transform: rotateX(135deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+      transform: rotateX(135deg) rotateY(55deg) rotateZ(360deg);
+    }
+  }
+/* make things unselectable */
+.unselectable {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+/* scroll invisible */
+div::-webkit-scrollbar {
+    width: 0;
+  }
+div::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+div::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 /* FAB */
 :root {
     --bg-color: #fff;
@@ -1489,11 +1565,6 @@ input:checked + .toggle-bg {
     transition-duration: 390ms;
     transform: translate3d(0, -180px, 0);
   }
-.\!menu {
-    position: fixed !important;
-    bottom: 120px !important;
-    right: 60px !important;
-  }
 .menu {
     position: fixed;
     bottom: 120px;
@@ -1534,6 +1605,15 @@ input:checked + .toggle-bg {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 .sr-only {
   position: absolute;
@@ -1586,9 +1666,6 @@ input:checked + .toggle-bg {
 .left-0 {
   left: 0px;
 }
-.left-1\/2 {
-  left: 50%;
-}
 .right-0 {
   right: 0px;
 }
@@ -1600,9 +1677,6 @@ input:checked + .toggle-bg {
 }
 .top-0 {
   top: 0px;
-}
-.top-1\/2 {
-  top: 50%;
 }
 .top-3 {
   top: 0.75rem;
@@ -1824,9 +1898,6 @@ input:checked + .toggle-bg {
 .w-10\/12 {
   width: 83.333333%;
 }
-.w-12 {
-  width: 3rem;
-}
 .w-14 {
   width: 3.5rem;
 }
@@ -1893,16 +1964,8 @@ input:checked + .toggle-bg {
 .flex-shrink-0 {
   flex-shrink: 0;
 }
-.-translate-x-1\/2 {
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .-translate-x-full {
   --tw-translate-x: -100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .-translate-y-full {
@@ -2461,11 +2524,6 @@ input:checked + .toggle-bg {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
 .transition-colors {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2491,109 +2549,7 @@ input:checked + .toggle-bg {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-html {
-  font-family: "Roboto", sans-serif;
-}
-
-/* toast animation */
-#alert {
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-
-.animate-fade-in {
-  animation-name: fade-in;
-}
-
-.animate-fade-up {
-  animation-name: fade-up;
-}
-
-@keyframes rotate-one {
-  0% {
-    transform: rotateX(135deg) rotateY(-45deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(135deg) rotateY(-45deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-two {
-  0% {
-    transform: rotateX(150deg) rotateY(10deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(150deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-three {
-  0% {
-    transform: rotateX(135deg) rotateY(55deg) rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateX(135deg) rotateY(55deg) rotateZ(360deg);
-  }
-}
-
-/* class to make things unselectable (no copy paste allowed for user) */
-.unselectable {
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-/* scroll invisible */
-div::-webkit-scrollbar {
-  width: 0;
-}
-
-div::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-div::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
 /* component of tailwind */
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .dark .dark\:format-invert {
   --tw-format-body: var(--tw-format-invert-body);
@@ -2614,12 +2570,6 @@ div::-webkit-scrollbar-thumb {
   --tw-format-th-borders: var(--tw-format-invert-th-borders);
   --tw-format-td-borders: var(--tw-format-invert-td-borders);
   --tw-format-th-bg: var(--tw-format-invert-th-bg);
-}
-
-.hover\:scale-110:hover {
-  --tw-scale-x: 1.1;
-  --tw-scale-y: 1.1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:border-gray-300:hover {
