@@ -1,4 +1,4 @@
-import os
+import os, platform
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -71,7 +71,11 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
-        temp_folder = "/project/temp_data/"
+        if platform.system() == 'Windows':
+            temp_folder = "/project/temp_data/"
+        else:
+            temp_folder = "/project/temp_data/"
+
         temp_dir = os.getcwd() + temp_folder
         file_name = File.name() + '.wav'
         audio = request.files['audio']

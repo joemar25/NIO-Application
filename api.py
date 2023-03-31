@@ -1,13 +1,10 @@
-__docformat__ = "restructuredtext en"
-
+# from pyngrok import ngrok
 from project import app
 
+_port = 8080
+# ngrok.set_auth_token(os.getenv('NGROK_KEY'))
+# public_url = ngrok.connect(_port).public_url
+
 if __name__ == "__main__":
-
-    """
-        port=8080 is important for us; when connecting to the client's frontent we will
-        configure package.json and set the to "proxy": "http://127.0.0.1:8080" since we use
-        8080 else just put the "proxy": "http://127.0.0.1:5000" since it is the default proxy
-    """
-
-    app.run(debug=True, threaded=True, host='0.0.0.0', port=8080)
+    # print("Access Link:", public_url)
+    app.run(debug=True, threaded=True, host='0.0.0.0', port=_port)
