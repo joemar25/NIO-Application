@@ -20,10 +20,14 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.query.get_or_404(int(user_id))
 
+@app.context_processor
+def inject_current_page():
+    return dict(current_page=request.path)
 
 class Routes:
 
     @app.route("/")
+    @app.route("/index")
     def index():
         return redirect(url_for("login"))
 

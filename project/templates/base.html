@@ -106,22 +106,34 @@
       </a>
 
       {% if current_user.is_authenticated %}
-      <!-- history -->
-      <a href="#" class="menu-item"><i class="fa fa-history"></i></a>
 
-      {% if request.path != '/main.html' %}
-      <!-- home -->
+      <!-- home authenticated -->
       <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="menu-item"><i
           class="fa fa-home"></i></a>
+
+      <!-- history -->
+      {% if request.endpoint != 'feedback' %}
+      <a href="#" class="menu-item"><i class="fa fa-history"></i></a>
       {% endif %}
 
       {% else %}
+
+      {% if request.endpoint != 'login' %}
+      <!-- home unauthenticated -->
+      <a href="{{ url_for('index') }}" class="menu-item"><i class="fa fa-home"></i></a>
+      {% endif %}
+
       <!-- about -->
-      <a href="#" class="menu-item"><i class="fa fa-users"></i></a>
+      {% if request.endpoint != 'about' %}
+      <a href="{{ url_for('about') }}" class="menu-item"><i class="fa fa-users"></i></a>
+      {% endif %}
+
       {% endif %}
 
     </nav>
-
+    <h1>
+      {{request.endpoint}}
+    </h1>
     <!-- content -->
     <main class="unselectable flex min-h-screen flex-col items-center px-6 py-8 ">
       {% block body %} {% endblock %}
