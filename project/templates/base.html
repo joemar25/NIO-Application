@@ -11,6 +11,9 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon1.jpg') }}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/FAb final.css') }}" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
 
   <body class="m-0 dark:bg-gray-900">
@@ -82,7 +85,41 @@
     </div>
 
     <!-- nav/floating action button (fab) -->
-    <!-- to be added -->
+    <nav class="menu">
+      <input type="checkbox" class="menu-open sr-only" name="menu-open" id="menu-open" />
+      <label class="menu-open-button absolute z-20 transition-all duration-300 ease-in-out transform hover:scale-110"
+        for="menu-open" aria-label="Open menu">
+        <span
+          class="hamburger hamburger-1 block w-4 h-1 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out"></span>
+        <span
+          class="hamburger hamburger-2 block w-4 h-1 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out"></span>
+        <span
+          class="hamburger hamburger-3 block w-4 h-1 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-in-out"></span>
+      </label>
+      <ul class="menu-items">
+        <li>
+          <a href="javascript:void(0)"
+            class="menu-item bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center text-white transition-all duration-300 ease-in-out hover:bg-white hover:text-blue-700"
+            aria-label="Home">
+            <i class="fa fa-home text-xl"></i>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="menu-item bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center text-white transition-all duration-300 ease-in-out hover:bg-white hover:text-blue-700"
+            aria-label="About">
+            <i class="fa fa-info text-xl"></i>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)"
+            class="menu-item bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center text-white transition-all duration-300 ease-in-out hover:bg-white hover:text-blue-700"
+            aria-label="Contact">
+            <i class="fa fa-envelope text-xl"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <!-- theme controller -->
     <button id="theme-toggle" type="button"
@@ -107,6 +144,26 @@
 
     <!-- Script Area -->
     <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
+    <script>
+      const menuOpenButton = document.querySelector('.menu-open-button');
+      const menu = document.querySelector('.menu');
+      const menuOpenCheckbox = document.querySelector('.menu-open');
+
+      // add click event listener to the document
+      document.addEventListener('click', (event) => {
+        // check if the clicked element is inside the menu
+        if (!menu.contains(event.target) && menuOpenCheckbox.checked) {
+          // set the checked property to false to close the menu
+          menuOpenCheckbox.checked = false;
+        }
+      });
+
+      // add click event listener to the menu open button
+      menuOpenButton.addEventListener('click', (event) => {
+        // stop the event from bubbling up to the document
+        event.stopPropagation();
+      });
+    </script>
   </body>
 
 </html>

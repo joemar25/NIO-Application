@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 import numpy as np
-import librosa
 import librosa.display
 from joblib import dump
 
@@ -11,8 +10,8 @@ from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout
 
-file_loc = os.getcwd() + "/project/scripts/emotion/"
-directory = file_loc + "features.csv"
+file_loc = os.getcwd()
+directory = file_loc + "/features.csv"
 
 Features = pd.read_csv(directory)
 
@@ -65,7 +64,7 @@ model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics =
 model.fit(x_train, y_train, batch_size=32, epochs=50, validation_data=(x_test, y_test))
 
 # initialize location path for saving
-file_loc = os.getcwd() + "/project/scripts/emotion/"
+file_loc = os.getcwd()
 model_save = file_loc + "emotion_detect.h5"
 scaler_save = file_loc + "scaler.pkl"
 encoder_save = file_loc + "encoder.pkl"
