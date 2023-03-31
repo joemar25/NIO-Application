@@ -41,7 +41,8 @@ We welcome contributions to Nio! To contribute, follow these steps:
 ## Credits
 
 Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
-a
+
+- icons are from: https://fontawesome.com/v4/icons/
 
 ## References
 

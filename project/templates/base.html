@@ -5,11 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- page title -->
     <title>{% block title %} {% endblock %}</title>
 
     <!-- our logo here -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/icon1.jpg') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}" />
+
     <!-- external -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -17,7 +20,7 @@
 
   <body class="m-0 dark:bg-gray-900">
 
-    <!-- notification handler -->
+    <!-- notification -->
     <div id="alert"
       class="fixed unselectable top-5 left-0 right-0 flex capitalize items-center justify-center animate-fade-in">
       {% with messages = get_flashed_messages(with_categories=True) %}
@@ -83,7 +86,7 @@
       <div class="loading"></div>
     </div>
 
-    <!-- fab -->
+    <!-- floating action button -->
     <nav class="menu">
       <input type="checkbox" class="menu-open sr-only" name="menu-open" id="menu-open" />
       <label class="menu-open-button" for="menu-open">
@@ -92,7 +95,7 @@
         <span class="hamburger hamburger-3"></span>
       </label>
 
-      <!-- theme controller -->
+      <!-- theme -->
       <a id="theme-toggle" class="menu-item">
         <span id="theme-toggle-dark-icon" class="hidden w-5 h-5">
           <i class="hidden fa fa-sun-o"></i>
@@ -106,12 +109,16 @@
       <!-- history -->
       <a href="#" class="menu-item"><i class="fa fa-history"></i></a>
 
+      {% if request.path != '/main.html' %}
       <!-- home -->
-      <a href="#" class="menu-item"><i class="fa fa-home"></i></a>
+      <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="menu-item"><i
+          class="fa fa-home"></i></a>
       {% endif %}
 
+      {% else %}
       <!-- about -->
       <a href="#" class="menu-item"><i class="fa fa-users"></i></a>
+      {% endif %}
 
     </nav>
 
@@ -119,6 +126,45 @@
     <main class="unselectable flex min-h-screen flex-col items-center px-6 py-8 ">
       {% block body %} {% endblock %}
     </main>
+
+    <!--  modal -->
+    <div id="popup-modal" tabindex="-1"
+      class="h-modal fixed top-0 left-0 right-0 z-50 hidden overflow-y-auto overflow-x-hidden">
+      <div class="h-full flex justify-center items-center">
+        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+          <button type="button"
+            class="absolute top-3 right-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+            data-modal-hide="popup-modal">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+          <div class="p-6 text-center">
+            <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+              Are you sure you want to end this Session?
+            </h3>
+            <button data-modal-hide="popup-modal" type="button" onclick="window.location.href='{{ url_for('index') }}';"
+              class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
+              Yes, I'm sure
+            </button>
+
+            <button data-modal-hide="popup-modal" type="button"
+              class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600">
+              No, cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Script Area -->
     <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
