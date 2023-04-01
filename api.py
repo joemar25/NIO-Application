@@ -1,10 +1,9 @@
-# from pyngrok import ngrok
 from project import app
+import webbrowser
 
-_port = 8080
-# ngrok.set_auth_token(os.getenv('NGROK_KEY'))
-# public_url = ngrok.connect(_port).public_url
+_port = 8000
+url = 'https://nio-application.loca.lt'
 
 if __name__ == "__main__":
-    # print("Access Link:", public_url)
-    app.run(debug=True, threaded=True, host='0.0.0.0', port=_port)
+    webbrowser.open(url)
+    app.run(debug=False, threaded=True, host='0.0.0.0', port=_port)

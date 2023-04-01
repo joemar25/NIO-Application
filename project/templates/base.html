@@ -96,7 +96,7 @@
       </label>
 
       <!-- theme -->
-      <a id="theme-toggle" class="menu-item">
+      <a id="theme-toggle" class="menu-item" title="Theme">
         <span id="theme-toggle-dark-icon" class="hidden w-5 h-5">
           <i class="hidden fa fa-sun-o"></i>
         </span>
@@ -108,24 +108,31 @@
       {% if current_user.is_authenticated %}
 
       <!-- home authenticated -->
-      <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="menu-item"><i
-          class="fa fa-home"></i></a>
+      <a data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="menu-item" title="Home">
+        <i class="fa fa-home"></i>
+      </a>
 
       <!-- history -->
       {% if request.endpoint != 'feedback' %}
-      <a href="#" class="menu-item"><i class="fa fa-history"></i></a>
+      <a class="menu-item" title="History">
+        <i class="fa fa-history"></i>
+      </a>
       {% endif %}
 
       {% else %}
 
       <!-- home unauthenticated -->
       {% if request.endpoint != 'login' %}
-      <a href="{{ url_for('index') }}" class="menu-item"><i class="fa fa-home"></i></a>
+      <a href="{{ url_for('index') }}" class="menu-item" title="Home">
+        <i class="fa fa-home"></i>
+      </a>
       {% endif %}
 
       <!-- about -->
       {% if request.endpoint != 'about' %}
-      <a href="{{ url_for('about') }}" class="menu-item"><i class="fa fa-users"></i></a>
+      <a href="{{ url_for('about') }}" class="menu-item" title="About">
+        <i class="fa fa-users"></i>
+      </a>
       {% endif %}
 
       {% endif %}

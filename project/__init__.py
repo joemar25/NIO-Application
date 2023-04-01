@@ -3,7 +3,6 @@ from flask import Flask
 
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv as ENV_LOAD
-# from pyngrok import ngrok
 
 # .env
 ENV_LOAD()
@@ -24,9 +23,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # set up secret key for secure sessions
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db = SQLAlchemy(app)
-
-# hosting
-# ngrok.set_auth_token(os.getenv('NGROK_KEY'))
 
 # Import routes
 from project import routes
