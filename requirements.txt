@@ -34,7 +34,7 @@ idna==3.4
 itsdangerous==2.1.2
 jax==0.4.8
 Jinja2==3.1.2
-joblib==1.1.1
+joblib==1.2.0
 keras==2.12.0
 kiwisolver==1.4.4
 lazy_loader==0.2
