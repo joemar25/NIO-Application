@@ -23,7 +23,6 @@ class Grammar:
     except Exception as e:
       ...
 
-  # __correct
   def correct(self, input_sentence, max_candidates=1):
       if not self.model_loaded:
           print("Model is not loaded")  
@@ -43,20 +42,6 @@ class Grammar:
       corrected = set(self.correction_tokenizer.decode(pred, skip_special_tokens=True).strip() for pred in preds)
       return list(corrected)[0]
 
-
-  # def correct(self, input_sentence):
-  #   input = self.__correct(input_sentence)
-
-  #   # Capitalize the first letter of the first word
-  #   text = input[0].upper() + input[1:]
-
-  #   # Check if the last character is a punctuation mark
-  #   if not text.endswith(('.', '?', '!')):
-  #       # If not, add a period at the end
-  #       text += '.'
-
-  #   return text
-
 def grammar_score(input_text, correct_text):
     if input_text == correct_text:
         return 100.0
@@ -68,7 +53,3 @@ def grammar_score(input_text, correct_text):
     similarity = seq.ratio()
     score = max((similarity * 100.0) - (len(incorrect_words) * 100.0 / len(text_words)), 0.0)
     return score
-
-# b = Grammar()
-# a = b.checkGrammar("incorrect grammar here")
-# print(a)
