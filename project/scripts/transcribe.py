@@ -9,7 +9,7 @@ def to_text(audio, use_temp_folder=True):
     # get audio file from temp data by specifying the name of audio from db
     text = temp_data_folder = ''
     if use_temp_folder:
-        temp_data_folder = temp_data_folder = os.getcwd() + "/project/temp_data/"
+        temp_data_folder = os.getcwd() + "/project/temp_data/"
     audio = temp_data_folder + audio
     
     try:

@@ -1,5 +1,4 @@
-import os
-import librosa
+import os, librosa
 
 __words_per_minute = 160
 
@@ -23,17 +22,15 @@ def analyze_speech(audio, estimated_time):
 
     return {"score": score, "label": label}
 
-def rate_score(audio, text, use_temp_folder=True):
+def rate_score(audio, text, use_temp_folder=True, use_cloud_storage=False):
     
-    # if text or audio has no-value
     if not (text and audio) or text == "no transcribed text.":
         return { "score": 0, "label": "" }
     
-    # get audio file from temp data by specifying the name of audio from db
     temp_data_folder = ''
-    if use_temp_folder:
-        temp_data_folder = temp_data_folder = os.getcwd() + "/project/temp_data/"
-    audio = temp_data_folder + audio
+    if use_temp_folder and not use_cloud_storage:
+        temp_data_folder = os.getcwd() + "/project/temp_data/"
+        audio = temp_data_folder + audio
     
     # work work work
     speech_time = estimate_speech_time(text)

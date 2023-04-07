@@ -1,16 +1,31 @@
-import os, platform
+import os, platform, firebase, urllib
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from project import app, db
+from project import app, db, mode
 from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
-from project.scripts.grammar import Grammar as grammar
-from project.scripts.grammar import grammar_score
+from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
 from project.scripts.emotion import emotion_detector
+
+# firebase config
+config = {
+  'apiKey': "AIzaSyAAbWrX6aXoW5ykkFDEPDLl5BnqqMbBdKk",
+  'authDomain': "nio-application.firebaseapp.com",
+   "databaseURL": "gs://nio-application.appspot.com",
+  'projectId': "nio-application",
+  'storageBucket': "nio-application.appspot.com",
+  'messagingSenderId': "738476225376",
+  'appId': "1:738476225376:web:0e840888904b7891f4a405",
+  'measurementId': "G-0PWN8WQ4CT"
+}
+
+config = firebase.initialize_app(config)
+storage = config.storage()
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -33,6 +48,9 @@ class Routes:
 
     @app.route("/home", methods=['GET', 'POST'])
     def login():
+        
+        print("\n\n\n\nin home....\n\n\n\n")
+        
         logout_user()
         entry_form = EntryForm()
 
@@ -64,6 +82,9 @@ class Routes:
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
+        
+        print("\n\n\n\nin main....\n\n\n\n")
+        
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
         data = { 'form': form, 'scores': scores }
@@ -71,22 +92,22 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
-        if platform.system() == 'Windows':
-            temp_folder = "/project/temp_data/"
-        else:
-            temp_folder = "/project/temp_data/"
 
-        temp_dir = os.getcwd() + temp_folder
+        print("\n\n\n\nin upload....\n\n\n\n")
+        
         file_name = File.name() + '.wav'
+        # Load audio from request and process it
         audio = request.files['audio']
         audio = AudioSegment.from_file(audio, format="webm")
         audio = audio.set_frame_rate(16000)
         audio = audio.set_channels(1)
-        audio.export(os.path.join(temp_dir, file_name), format="wav")
-
-        t_text = to_text(file_name)
+        cloud_path = 'recorded_audio/' + file_name
+        audio_bytes = audio.raw_data
+        storage.child(cloud_path).put(audio_bytes)
+        
+        t_text = to_text(cloud_path, use_temp_folder=False, use_cloud_storage=True)
         ct_text = grammar().correct(t_text)
-
+        
         try:
             audio_obj = Audio(
                 audio_name=file_name,
@@ -112,6 +133,9 @@ class Routes:
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
+        
+        print("\n\n\n\nin processing audio....\n\n\n\n")
+        
         try:
             current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
 
@@ -124,7 +148,15 @@ class Routes:
                 flash("Failed to load audio table in database for current score", category='danger')
                 return redirect(url_for("main"))
 
-            rate = rate_score(audio=audio.audio_name, text=audio.transcribed, use_temp_folder=True)
+            # read file
+            cloud_path = 'recorded_audio/' + audio.audio_name
+            audio_file = raw_file
+            # need a validation for this file url if exist (filename check if same - integrity)
+            url = storage.child(cloud_path).get_url(None)
+            response = urllib.request.urlopen(url)
+            audio = io.BytesIO(response.read())
+            
+            rate = rate_score(audio=audio, text=audio.transcribed, use_temp_folder=False, use_cloud_storage=True)
             grammar = grammar_score(audio.transcribed, audio.ctranscribed)
             fluency = 85
 
@@ -144,17 +176,26 @@ class Routes:
             return redirect(url_for("feedback"))
 
         except Exception as e:
+            
+            print("\n\n\n\nin processing audio fail....\n\n\n\n")
+            
             db.session.rollback()
             flash("Error updating score: {}".format(str(e)), category='danger')
             return redirect(url_for("main"))
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
+        
+        print("\n\n\n\nin processing audio fail area....\n\n\n\n")
+        
         flash("Error sending audio recording to server", category='danger')
         return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
+        
+        print("\n\n\n\nin feedback....\n\n\n\n")
+        
         try:
             score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
             audio = Audio.query.filter_by(score_id=score.id).order_by(Audio.id.desc()).first()

@@ -10,8 +10,13 @@ class EmotionDetector:
         self.scaler = joblib.load(file_loc + "scaler.pkl")
         self.encoder = joblib.load(file_loc + "encoder.pkl")
 
-    def predict(self, audio_path):
-        data, sample_rate = librosa.load(audio_path)
+    def predict(self, audio, use_temp_folder=True, use_cloud_storage=False):
+        
+        if use_temp_folder and not use_cloud_storage:
+            temp_data_folder = os.path.join(os.getcwd(), "project", "temp_data")
+            audio = os.path.join(temp_data_folder, audio)
+        
+        data, sample_rate = librosa.load(audio)
 
         # Extract features and transform with the scaler
         features = self.scaler.transform(self.extract_features(data, sample_rate).reshape(1, -1))
