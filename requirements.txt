@@ -58,7 +58,7 @@ msgpack==1.0.5
 networkx==2.6.3
 nltk==3.8.1
 numba==0.56.4
-numpy==1.23.5
+numpy==1.21.6
 nvidia-cublas-cu11==11.10.3.66
 nvidia-cuda-cupti-cu11==11.7.101
 nvidia-cuda-nvrtc-cu11==11.7.99
