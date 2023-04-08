@@ -97,7 +97,7 @@ six==1.16.0
 soundfile==0.12.1
 soxr==0.3.4
 SQLAlchemy==2.0.9
-sympy==1.11.1
+sympy==1.10.1
 tensorboard==2.12.1
 tensorboard-data-server==0.7.0
 tensorboard-plugin-wit==1.8.1
