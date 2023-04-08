@@ -1,7 +1,7 @@
 from project import app
 # import webbrowser
 
-_port = 8080
+_port = 8000
 url = 'https://nio-application.loca.lt'
 
 if __name__ == "__main__":
