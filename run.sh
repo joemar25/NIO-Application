@@ -11,6 +11,7 @@ pip install --upgrade pip
 # Install required Python packages
 echo "Installing Python packages..."
 # pip install -r requirements.txt
+pip install future --use-pep517
 pip install keras
 pip install openai-whisper==20230117
 pip install tensorflow==2.11.0
@@ -26,7 +27,6 @@ pip install nltk
 pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
-pip install future --use-pep517
 
 # Change to the project directory
 cd project
