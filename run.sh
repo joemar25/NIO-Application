@@ -19,4 +19,8 @@ cd project
 echo "Running npm..."
 npm install
 
+# Install required Python packages
+echo "Installing Python packages..."
+pip install gunicorn
+
 cd ..
