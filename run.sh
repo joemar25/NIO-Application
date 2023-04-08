@@ -27,6 +27,7 @@ pip install nltk
 pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
+pip install dotenv
 
 # Change to the project directory
 cd project
