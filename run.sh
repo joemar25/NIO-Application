@@ -26,6 +26,7 @@ pip install nltk
 pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
+pip install future --use-pep517
 
 # Change to the project directory
 cd project
