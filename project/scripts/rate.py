@@ -22,7 +22,7 @@ def analyze_speech(audio, estimated_time):
 
     return {"score": score, "label": label}
 
-def rate_score(audio, text, use_temp_folder=True, use_cloud_storage=False):
+def rate_score(audio, text, use_temp_folder=True):
     
     if not (text and audio) or text == "no transcribed text.":
         return { "score": 0, "label": "" }

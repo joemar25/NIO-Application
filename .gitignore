@@ -12,6 +12,7 @@ test*
 *temp*
 *test*
 *dump*
+*.deb
 
 # personal choice
 /__
