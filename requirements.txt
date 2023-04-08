@@ -71,7 +71,7 @@ nvidia-cusparse-cu11==11.7.4.91
 nvidia-nccl-cu11==2.14.3
 nvidia-nvtx-cu11==11.7.91
 oauthlib==3.2.2
-openai-whisper==20230314
+openai-whisper==20230306
 opt-einsum==3.3.0
 packaging==23.0
 pkce==1.0.3
