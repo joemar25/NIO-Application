@@ -3,7 +3,8 @@ echo "Mar-Automation..."
 
 # Upgrading pip
 echo "Upgrading pip..."
-python3 -m venv .venv
+sudo apt-get install python3.10
+python3.10 -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
 
