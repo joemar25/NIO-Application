@@ -15,7 +15,7 @@ pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
 pip install keras
-pip install openai-whisper=
+pip install openai-whisper==20230117
 pip install tensorflow==2.11.0
 pip install firebase-rest-api
 

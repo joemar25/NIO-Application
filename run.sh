@@ -11,6 +11,10 @@ pip install --upgrade pip
 # Install required Python packages
 echo "Installing Python packages..."
 # pip install -r requirements.txt
+pip install keras
+pip install openai-whisper==20230117
+pip install tensorflow==2.11.0
+pip install firebase-rest-api
 pip install flask
 pip install Flask-WTF
 pip install Flask-Login
@@ -22,10 +26,6 @@ pip install nltk
 pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
-pip install keras
-pip install openai-whisper==20230117
-pip install tensorflow==2.11.0
-pip install firebase-rest-api
 
 # Change to the project directory
 cd project
