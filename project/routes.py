@@ -1,9 +1,9 @@
-import os, firebase, urllib, tempfile, io
-import platform
+import os, urllib, tempfile, io, platform # platform to know what system
+
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from project import app, db, mode
+from project import app, db, storage, mode
 from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation, File
@@ -11,22 +11,6 @@ from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
 from project.scripts.emotion import emotion_detector
-
-# firebase config
-config = {
-  'apiKey': "AIzaSyAAbWrX6aXoW5ykkFDEPDLl5BnqqMbBdKk",
-  'authDomain': "nio-application.firebaseapp.com",
-   "databaseURL": "gs://nio-application.appspot.com",
-  'projectId': "nio-application",
-  'storageBucket': "nio-application.appspot.com",
-  'messagingSenderId': "738476225376",
-  'appId': "1:738476225376:web:0e840888904b7891f4a405",
-  'measurementId': "G-0PWN8WQ4CT"
-}
-
-config = firebase.initialize_app(config)
-storage = config.storage()
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)

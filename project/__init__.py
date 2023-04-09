@@ -1,6 +1,6 @@
-import os
-from flask import Flask
+import os, firebase
 
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv as env_load
 
@@ -23,6 +23,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # set up secret key for secure sessions
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 db = SQLAlchemy(app)
+
+# firebase config
+config = {
+    'apiKey': os.getenv('apiKey'),
+    'authDomain': os.getenv('authDomain'),
+    "databaseURL": os.getenv('databaseURL'),
+    'projectId': os.getenv('projectId'),
+    'storageBucket': os.getenv('storageBucket'),
+    'messagingSenderId': os.getenv('messagingSenderId'),
+    'appId': os.getenv('appId'),
+    'measurementId': os.getenv('measurementId')
+}
+
+config = firebase.initialize_app(config)
+storage = config.storage()
 
 mode = "dev" # dev or prod
 
