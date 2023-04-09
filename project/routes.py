@@ -10,7 +10,7 @@ from project.scripts.helpers import Validation, File
 from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
-from project.scripts.emotion import emotion_detector
+from project.scripts.emotion import emotion_detector, emotion_label
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -94,8 +94,8 @@ class Routes:
                 audio_name=file_name,
                 transcribed="",
                 ctranscribed="",
-                emotion_labels="sad,happy,ok",
-                emotion_scores="26.9,55.9,11.9"
+                emotion_labels="",
+                emotion_scores=""
             )
             score_obj = Score(
                 user_id=current_user.id,
@@ -145,6 +145,8 @@ class Routes:
             rate = rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
             fluency_score = 85.0
             grammar_score_val = grammar_score(t_text, ct_text)
+            emo = emotion_detector.predict(audio=audio_file_path, use_temp_folder=False)
+            emo_label = emotion_label(emo)
             
             print("transcribed text is =", t_text)
             # print("corrected transcribed text is =", ct_text)
@@ -153,15 +155,19 @@ class Routes:
                 flash("Error processing rate score", category='danger')
                 return redirect(url_for("feedback"))
 
+            emo_str = f"{emo_label['emotion1']},{emo_label['emotion2']},{emo_label['emotion3']}"
+            emo_score_str = f"{emo_label['score1']},{emo_label['score2']},{emo_label['score3']}"
+
             current_score.rate = round(rate['score'], 1)
             current_score.grammar = round(grammar_score_val, 1)
             current_score.fluency = round(fluency_score, 1)
 
             current_audio.transcribed = t_text
             current_audio.ctranscribed = ct_text
+            current_audio.emotion_labels = emo_str
+            current_audio.emotion_scores = emo_score_str
 
             db.session.commit()
-
             os.remove(audio_file_path)
             flash("Result successfully updated", category='success')
             return redirect(url_for("feedback"))
@@ -184,13 +190,27 @@ class Routes:
             score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
             audio = Audio.query.filter_by(score_id=score.id).order_by(Audio.id.desc()).first()
 
+            emo_label = audio.emotion_labels
+            emo_scores = audio.emotion_scores
+            
+            emotion_labels = emo_label.split(",")
+            emotion_scores = emo_scores.split(",")
+            print(emotion_labels)
+            print(emotion_scores)
+            
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
                 'grammar': score.grammar,
                 'average': round((score.rate + score.fluency + score.grammar) / 3, 1),
                 'transcribed': audio.transcribed,
-                'ctranscribed': audio.ctranscribed
+                'ctranscribed': audio.ctranscribed,
+                'emo_label_1': emotion_labels[0],
+                'emo_label_2': emotion_labels[1],
+                'emo_label_3': emotion_labels[2],
+                'emo_score_1': emotion_scores[0],
+                'emo_score_2': emotion_scores[1],
+                'emo_score_3': emotion_scores[2]
             }
 
             return render_template("feedback.html", **data)

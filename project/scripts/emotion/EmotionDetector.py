@@ -10,9 +10,9 @@ class EmotionDetector:
         self.scaler = joblib.load(file_loc + "scaler.pkl")
         self.encoder = joblib.load(file_loc + "encoder.pkl")
 
-    def predict(self, audio, use_temp_folder=True, use_cloud_storage=False):
+    def predict(self, audio, use_temp_folder=True):
         
-        if use_temp_folder and not use_cloud_storage:
+        if use_temp_folder:
             temp_data_folder = os.path.join(os.getcwd(), "project", "temp_data")
             audio = os.path.join(temp_data_folder, audio)
         
