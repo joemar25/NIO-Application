@@ -9,7 +9,7 @@
 # 2. Count the number of filler words and pauses in the audio file using "myspsolution.praat".
 # 3. (Optional) Generate a TextGrid file to visualize the analysis in Praat.
 
-import os, wave, parselmouth, tempfile
+import os, wave, tempfile
 from parselmouth.praat import run_file
 
 class FluencyEvaluator:
