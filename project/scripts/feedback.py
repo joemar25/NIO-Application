@@ -7,5 +7,5 @@ Feedback Class
 
 class feedback:
 
-    def generate() -> str:
+    def generate(rate, grammar, fluency, emotion) -> str:
         return ""

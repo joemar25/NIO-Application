@@ -133,20 +133,14 @@ class Routes:
                 f.write(audio_data)
                 audio_file_path = f.name
 
-            # t_text = to_text(audio_file_path, use_temp_folder=False)
-            # ct_text = grammar().correct(t_text)
-            
             t_text = to_text(audio_file_path, use_temp_folder=False)
-            ct_text = "sample correct"
+            ct_text = grammar().correct(t_text)
 
             rate = rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
             fluency_score = fluency_detector.filler_score(audio_file_path)
             grammar_score_val = grammar_score(t_text, ct_text)
             emo = emotion_detector.predict(audio=audio_file_path, use_temp_folder=False)
             emo_label = emotion_label(emo)
-            
-            print("transcribed text is =", t_text)
-            # print("corrected transcribed text is =", ct_text)
             
             if rate is None:
                 flash("Error processing rate score", category='danger')
