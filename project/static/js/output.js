@@ -21734,15 +21734,19 @@ if (recordBtn) {
 
 },{}],57:[function(require,module,exports){
 window.addEventListener("DOMContentLoaded", () => {
-    const alertElement = document.querySelector("#alert");
+    const alertElements = document.querySelectorAll("#alert > div");
 
-    if (alertElement) {
-        setTimeout(() => {
-            alertElement.classList.add("animate-fade-up");
+    if (alertElements) {
+        let delay = 5000;
+        alertElements.forEach((alertElement) => {
             setTimeout(() => {
-                alertElement.remove();
-            }, 1000);
-        }, 4000);
+                alertElement.classList.add("animate-fade-up");
+                setTimeout(() => {
+                    alertElement.remove();
+                }, 1000);
+            }, delay);
+            delay += 1000; // increase delay for the next element
+        });
     }
 });
 
