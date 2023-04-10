@@ -28,6 +28,7 @@ pip install librosa
 pip install psycopg2-binary
 pip install gunicorn
 pip install python-dotenv
+pip install my-voice-analysis
 
 # Change to the project directory
 cd project
