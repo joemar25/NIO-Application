@@ -1,4 +1,4 @@
-import os, urllib, tempfile, io, platform # platform to know what system
+import os, urllib, tempfile, io, platform
 
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
