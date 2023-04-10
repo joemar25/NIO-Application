@@ -13,6 +13,7 @@ test*
 *test*
 *dump*
 *.deb
+*.TextGrid
 
 # personal choice
 /__

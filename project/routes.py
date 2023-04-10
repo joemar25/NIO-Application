@@ -11,6 +11,7 @@ from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate_score
 from project.scripts.emotion import emotion_detector, emotion_label
+from project.scripts.fluency import fluency_detector
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -33,7 +34,6 @@ class Routes:
 
     @app.route("/home", methods=['GET', 'POST'])
     def login():
-        print("in home....")
         logout_user()
         entry_form = EntryForm()
 
@@ -65,7 +65,6 @@ class Routes:
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
-        print("main....")
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
         data = { 'form': form, 'scores': scores }
@@ -73,13 +72,12 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
-        print("uploading....")
         # file config
         file_name = request.files['audio'].filename
 
         # convert audio file to WAV format
         audio = AudioSegment.from_file(request.files['audio'], format="webm")
-        audio = audio.set_frame_rate(16000)
+        audio = audio.set_frame_rate(44000) # 16000 -> 44000 sample rate
         audio = audio.set_channels(1)
 
         # write audio to a buffer
@@ -114,7 +112,6 @@ class Routes:
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
-        print("processing audio....")
         try:
             current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
             if current_score is None:
@@ -143,7 +140,7 @@ class Routes:
             ct_text = "sample correct"
 
             rate = rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
-            fluency_score = 85.0
+            fluency_score = fluency_detector.filler_score(audio_file_path)
             grammar_score_val = grammar_score(t_text, ct_text)
             emo = emotion_detector.predict(audio=audio_file_path, use_temp_folder=False)
             emo_label = emotion_label(emo)
@@ -179,13 +176,11 @@ class Routes:
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
-        print("in processing audio fail....")
         flash("Error sending audio recording to server", category='danger')
         return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
-        print("in feedback....")
         try:
             score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
             audio = Audio.query.filter_by(score_id=score.id).order_by(Audio.id.desc()).first()
@@ -195,13 +190,12 @@ class Routes:
             
             emotion_labels = emo_label.split(",")
             emotion_scores = emo_scores.split(",")
-            print(emotion_labels)
-            print(emotion_scores)
             
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
                 'grammar': score.grammar,
+                'fluency': score.fluency,
                 'average': round((score.rate + score.fluency + score.grammar) / 3, 1),
                 'transcribed': audio.transcribed,
                 'ctranscribed': audio.ctranscribed,
