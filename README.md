@@ -42,8 +42,15 @@ We welcome contributions to Nio! To contribute, follow these steps:
 
 Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
 
-- icons are from: https://fontawesome.com/v4/icons/
+- icons are from: <https://fontawesome.com/v4/icons/>
 
 ## References
 
 <https://www.write-out-loud.com/speech-rate.html>
+
+## Mar notes
+
+- the render postgress db used is just temporary since it has expiration date on free users
+- move to another hosting database that has more capacity and reliability
+- try hosting in: <https://railway.app/dashboard>
+- try hosting in: <https://www.youtube.com/watch?v=AgTr5mw4zdI&ab_channel=CloudWithDjango>, render

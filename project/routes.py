@@ -52,13 +52,10 @@ class Routes:
                 flash(f'invalid username. try again', category='danger')
             return render_template("home.html", form=entry_form)
 
-        user = User(
-            username=username,
-            script=text,
-        )
+        user = User(username=username, script=text)
         db.session.add(user)
         db.session.commit()
-
+        
         login_user(user)
         return redirect(url_for("main"))
 
@@ -88,25 +85,24 @@ class Routes:
             storage.child("recorded_audio/" + file_name).put(buffer.read())
         
         try:
-            audio_obj = Audio(
-                audio_name=file_name,
-                transcribed="",
-                ctranscribed="",
-                emotion_labels="",
-                emotion_scores=""
-            )
             score_obj = Score(
                 user_id=current_user.id,
-                rate=0,
-                grammar=0,
-                fluency=0,
-                audio=audio_obj
             )
-
-            db.session.add(audio_obj)
             db.session.add(score_obj)
             db.session.commit()
-        except:
+            
+            s_id = 1
+            score = Score.query.order_by(Score.id.desc()).first()
+            if score:
+                s_id = score.id
+                
+            audio_obj = Audio(
+                score_id=s_id,
+                audio_name=file_name,
+            )
+            db.session.add(audio_obj)
+            db.session.commit()
+        except Exception as e:
             return jsonify({"success": False}), 500
         return jsonify({"success": True})
 
@@ -166,7 +162,6 @@ class Routes:
         except Exception as e:
             flash(f"Error updating score. Error message: {str(e)}", category='danger')
             return redirect(url_for("feedback"))
-
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
