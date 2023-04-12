@@ -1,37 +1,49 @@
-import os, firebase
+"""
+This script sets up a Flask application with a SQLite database, secure sessions, and a Firebase configuration.
+The script also creates the necessary directories and loads environment variables from the .env file.
 
+Dependencies:
+    - (to be added)
+    - Flask, Flask_SQLAlchemy
+    - firebase
+    - dotenv
+
+Author: NioAppTeam
+Date: April 12, 2023
+"""
+
+import os
+import firebase
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv as env_load
 
-# .env
+# Load environment variables
 env_load()
 
-# disable the AVX and AVX2 instructions
+# Disable AVX and AVX2 instructions
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# Set up app
+# Initialize Flask app
 app = Flask(__name__)
 
-# Set up paths (database and recorded audio)
+# Set up paths for storing database and audio files
 rc_path = os.path.join(os.getcwd(), "project", "temp_data")
 
-# create directories if they don't exist
+# Create directories if they don't exist
 os.makedirs(rc_path, exist_ok=True)
 
-# configuration of db
+# Set up database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-
-# set up notification if modification is on set to false
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# set up secret key for secure sessions
+# Set up secret key for secure sessions
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-# db set
+# Initialize SQLAlchemy database
 db = SQLAlchemy(app)
 
-# firebase config
+# Set up Firebase configuration
 config = {
     'apiKey': os.getenv('apiKey'),
     'authDomain': os.getenv('authDomain'),
@@ -46,7 +58,8 @@ config = {
 config = firebase.initialize_app(config)
 storage = config.storage()
 
-mode = "dev" # dev or prod
+# Set mode
+mode = "dev"
 
 # Import routes
 from project import routes

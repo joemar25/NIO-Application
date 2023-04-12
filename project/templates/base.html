@@ -21,7 +21,7 @@
   <body class="m-0 dark:bg-gray-900">
 
     <!-- notification -->
-    <div id="alert" class="fixed left-auto right-0 top-0 mx-auto mb-4 max-w-xs justify-center p-4 animate-fade-in">
+    <div id="alert" class="fixed unselectable left-auto right-0 top-0 mx-auto mb-4 max-w-xs justify-center p-4 animate-fade-in">
       {% with messages = get_flashed_messages(with_categories=True) %}
       {% if messages %}
       {% for category, message in messages %}
@@ -79,21 +79,6 @@
       {% endif %}
       {% endwith %}
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- loading indicator -->
     <div id="loading-container" class="unselectable">
