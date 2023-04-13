@@ -57,3 +57,4 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 - host 
 - history
 - class feedback
+- protobuf==3.20
