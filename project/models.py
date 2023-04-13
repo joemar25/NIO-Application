@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     scores = db.relationship('Score', backref='user', lazy=True)
 
-    def __init__(self, username, script=None, created_date=None):
+    def __init__(self, username, script="", created_date=None):
         self.username = username
         self.script = script
         if created_date is None:
@@ -37,7 +37,7 @@ class Score(db.Model):
     rate = db.Column(db.Float)
     audio = db.relationship('Audio', uselist=False, backref='score')
 
-    def __init__(self, user_id, grammar=None, fluency=None, rate=None):
+    def __init__(self, user_id, grammar=0, fluency=0, rate=0):
         self.user_id = user_id
         self.grammar = grammar
         self.fluency = fluency
@@ -52,7 +52,7 @@ class Audio(db.Model):
     emotion_labels = db.Column(db.String(255))
     emotion_scores = db.Column(db.String(255))
 
-    def __init__(self, score_id, audio_name, transcribed=None, ctranscribed=None, emotion_labels=None, emotion_scores=None):
+    def __init__(self, score_id, audio_name, transcribed="", ctranscribed="", emotion_labels="", emotion_scores=""):
         self.score_id = score_id
         self.audio_name = audio_name
         self.transcribed = transcribed

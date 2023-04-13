@@ -3,10 +3,7 @@ This script sets up a Flask application with a SQLite database, secure sessions,
 The script also creates the necessary directories and loads environment variables from the .env file.
 
 Dependencies:
-    - (to be added)
-    - Flask, Flask_SQLAlchemy
-    - firebase
-    - dotenv
+    - Flask, Flask_SQLAlchemy, firebase, dotenv
 
 Author: NioAppTeam
 Date: April 12, 2023

@@ -6,10 +6,10 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from project import app, db, storage, mode
 from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
-from project.scripts.helpers import Validation, File
+from project.scripts.helpers import Validation
 from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
-from project.scripts.rate import rate_score
+from project.scripts.rate import rate
 from project.scripts.emotion import emotion_detector, emotion_label
 from project.scripts.fluency import fluency_detector
 
@@ -85,21 +85,14 @@ class Routes:
             storage.child("recorded_audio/" + file_name).put(buffer.read())
         
         try:
-            score_obj = Score(
-                user_id=current_user.id,
-            )
+            score_obj = Score( user_id=current_user.id )
             db.session.add(score_obj)
             db.session.commit()
             
-            s_id = 1
             score = Score.query.order_by(Score.id.desc()).first()
-            if score:
-                s_id = score.id
-                
-            audio_obj = Audio(
-                score_id=s_id,
-                audio_name=file_name,
-            )
+            s_id = score.id if score else 1
+
+            audio_obj = Audio( score_id=s_id, audio_name=file_name )
             db.session.add(audio_obj)
             db.session.commit()
         except Exception as e:
@@ -132,7 +125,7 @@ class Routes:
             t_text = to_text(audio_file_path, use_temp_folder=False)
             ct_text = grammar().correct(t_text)
 
-            rate = rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
+            rate_score_val = rate.rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
             fluency_score = fluency_detector.filler_score(audio_file_path)
             grammar_score_val = grammar_score(t_text, ct_text)
             emo = emotion_detector.predict(audio=audio_file_path, use_temp_folder=False)
@@ -144,8 +137,8 @@ class Routes:
 
             emo_str = f"{emo_label['emotion1']},{emo_label['emotion2']},{emo_label['emotion3']}"
             emo_score_str = f"{emo_label['score1']},{emo_label['score2']},{emo_label['score3']}"
-
-            current_score.rate = round(rate['score'], 1)
+            
+            current_score.rate = round(rate_score_val['score'], 1)
             current_score.grammar = round(grammar_score_val, 1)
             current_score.fluency = round(fluency_score, 1)
 
@@ -176,7 +169,7 @@ class Routes:
 
             emo_label = audio.emotion_labels
             emo_scores = audio.emotion_scores
-            
+
             emotion_labels = emo_label.split(",")
             emotion_scores = emo_scores.split(",")
             
