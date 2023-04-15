@@ -12,6 +12,7 @@ from project.scripts.transcribe import to_text
 from project.scripts.rate import rate
 from project.scripts.emotion import emotion_detector, emotion_label
 from project.scripts.fluency import fluency_detector
+from project.scripts.feedback import feedback
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -173,6 +174,11 @@ class Routes:
             emotion_labels = emo_label.split(",")
             emotion_scores = emo_scores.split(",")
             
+            # for feedback
+            feedback.rate = score.rate
+            feedback.fluency = score.fluency
+            feedback.grammar = score.grammar
+            
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
@@ -186,7 +192,8 @@ class Routes:
                 'emo_label_3': emotion_labels[2],
                 'emo_score_1': emotion_scores[0],
                 'emo_score_2': emotion_scores[1],
-                'emo_score_3': emotion_scores[2]
+                'emo_score_3': emotion_scores[2],
+                'feedback_msg': feedback.feedback()
             }
 
             return render_template("feedback.html", **data)
