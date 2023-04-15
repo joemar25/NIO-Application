@@ -1,3 +1,28 @@
+"""
+Grammar class to correct grammatical errors in the input sentence and
+calculate the grammar score of input and correct sentences.
+
+Attributes:
+
+correction_tokenizer: tokenizer to encode input sentence before passing to
+correction_model for grammatical correction.
+correction_model: model to correct grammatical errors.
+device: device on which the correction_model is loaded.
+model_loaded: boolean variable to check if the correction_model is loaded.
+Methods:
+
+init(self): Constructor method to initialize Grammar class attributes.
+correct(self, input_sentence, max_candidates=1): Method to correct grammatical
+errors in input_sentence using correction_model.
+grammar_score(input_text, correct_text): Method to calculate grammar score
+of input_text and correct_text using similarity ratio of text_words and
+correct_words, and count of incorrect_words.
+Usage:
+grammar = Grammar()
+corrected_sentence = grammar.correct("He go to school")
+grammar_score = grammar.grammar_score("He go to school", "He goes to school")
+"""
+
 import nltk, difflib
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
