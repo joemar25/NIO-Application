@@ -18,7 +18,7 @@ from datetime import datetime
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False)
-    script = db.Column(db.String(255))
+    script = db.Column(db.Text)
     created_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     scores = db.relationship('Score', backref='user', lazy=True)
 
@@ -47,8 +47,8 @@ class Audio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     score_id = db.Column(db.Integer, db.ForeignKey('score.id'), nullable=False)
     audio_name = db.Column(db.String(255), nullable=False)
-    transcribed = db.Column(db.String(255))
-    ctranscribed = db.Column(db.String(255))
+    transcribed = db.Column(db.Text)
+    ctranscribed = db.Column(db.Text)
     emotion_labels = db.Column(db.String(255))
     emotion_scores = db.Column(db.String(255))
 

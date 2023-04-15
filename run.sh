@@ -28,6 +28,7 @@ pip install psycopg2-binary
 pip install gunicorn
 pip install python-dotenv
 pip install my-voice-analysis
+pip install protobuf==3.20.0
 
 # Change to the project directory
 cd project
