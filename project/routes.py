@@ -7,10 +7,10 @@ from project import app, db, storage, mode
 from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
 from project.scripts.helpers import Validation
-from project.scripts.grammar import grammar_score, Grammar as grammar
 from project.scripts.transcribe import to_text
 from project.scripts.rate import rate
 from project.scripts.emotion import emotion_detector, emotion_label
+from project.scripts.grammar import grammar, grammar_score
 from project.scripts.fluency import fluency_detector
 from project.scripts.feedback import feedback
 
