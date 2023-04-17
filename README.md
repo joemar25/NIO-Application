@@ -53,8 +53,7 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 - the render postgress db used is just temporary since it has expiration date on free users
 - move to another hosting database that has more capacity and reliability
 - try hosting in: <https://railway.app/dashboard>
-- try hosting in: <https://www.youtube.com/watch?v=AgTr5mw4zdI&ab_channel=CloudWithDjango>, - - maintain (/), added feedback - - -template
-- host 
+- try hosting in: <https://www.youtube.com/watch?v=AgTr5mw4zdI&ab_channel=CloudWithDjango>
 - history
-- class feedback
 - protobuf==3.20
+- issues learning: <https://www.youtube.com/watch?v=-nfUgBLBTIo&ab_channel=DevLeonardo>
