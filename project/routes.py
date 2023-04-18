@@ -211,7 +211,7 @@ class Routes:
 
     @app.route("/test")
     def test():
-        return render_template("test_home.html")
+        return render_template("temp.html")
 
     @app.route("/destroy", methods=['POST'])
     def destroy():

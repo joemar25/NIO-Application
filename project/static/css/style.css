@@ -9,6 +9,10 @@
     font-family: "Roboto", sans-serif;
   }
 
+  .group:hover .group-hover\:block {
+    display: block;
+  }
+
   /* toast animation */
   #alert {
     animation-duration: 0.5s;
