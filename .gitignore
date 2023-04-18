@@ -6,8 +6,10 @@
 *.envv
 
 # Ignore all files starting with "temp"
+temp*
 test*
 # Ignore all files containing the string "temp"
+*temp*
 *test*
 *dump*
 *.deb
