@@ -1,4 +1,8 @@
-import os, urllib, tempfile, io, platform
+import os
+import urllib
+import tempfile
+import io
+import platform
 
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
@@ -18,13 +22,16 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get_or_404(int(user_id))
 
+
 @app.context_processor
 def inject_current_page():
     return dict(current_page=request.path)
+
 
 class Routes:
 
@@ -47,16 +54,15 @@ class Routes:
         if not bool(text):
             file = entry_form.file_script.data
             text = file.read().decode('utf-8')
-            
+
         if not Validation.is_valid_username(username):
-            if username:
-                flash(f'invalid username. try again', category='danger')
+            flash(f'Invalid Username. Try Again', category='danger')
             return render_template("home.html", form=entry_form)
 
         user = User(username=username, script=text)
         db.session.add(user)
         db.session.commit()
-        
+
         login_user(user)
         return redirect(url_for("main"))
 
@@ -65,7 +71,7 @@ class Routes:
     def main():
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
-        data = { 'form': form, 'scores': scores }
+        data = {'form': form, 'scores': scores}
         return render_template("main.html", **data)
 
     @app.route('/upload', methods=['POST'])
@@ -75,7 +81,7 @@ class Routes:
 
         # convert audio file to WAV format
         audio = AudioSegment.from_file(request.files['audio'], format="webm")
-        audio = audio.set_frame_rate(44000) # 16000 -> 44000 sample rate
+        audio = audio.set_frame_rate(44000)  # 16000 -> 44000 sample rate
         audio = audio.set_channels(1)
 
         # write audio to a buffer
@@ -84,16 +90,16 @@ class Routes:
             buffer.seek(0)
             # store the audio file in Firebase Storage
             storage.child("recorded_audio/" + file_name).put(buffer.read())
-        
+
         try:
-            score_obj = Score( user_id=current_user.id )
+            score_obj = Score(user_id=current_user.id)
             db.session.add(score_obj)
             db.session.commit()
-            
+
             score = Score.query.order_by(Score.id.desc()).first()
             s_id = score.id if score else 1
 
-            audio_obj = Audio( score_id=s_id, audio_name=file_name )
+            audio_obj = Audio(score_id=s_id, audio_name=file_name)
             db.session.add(audio_obj)
             db.session.commit()
         except Exception as e:
@@ -103,14 +109,17 @@ class Routes:
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
         try:
-            current_score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
+            current_score = Score.query.filter_by(
+                user_id=current_user.id).order_by(Score.id.desc()).first()
             if current_score is None:
-                flash("Failed to load score table in database for current user", category='danger')
+                flash(
+                    "Failed to load score table in database for current user", category='danger')
                 return redirect(url_for("main"))
 
             current_audio = current_score.audio
             if current_audio is None:
-                flash("Failed to load audio table in database for current score", category='danger')
+                flash(
+                    "Failed to load audio table in database for current score", category='danger')
                 return redirect(url_for("main"))
 
             # retrieve audio
@@ -126,19 +135,21 @@ class Routes:
             t_text = to_text(audio_file_path, use_temp_folder=False)
             ct_text = grammar().correct(t_text)
 
-            rate_score_val = rate.rate_score(audio=audio_file_path, text=t_text, use_temp_folder=False)
+            rate_score_val = rate.rate_score(
+                audio=audio_file_path, text=t_text, use_temp_folder=False)
             fluency_score = fluency_detector.filler_score(audio_file_path)
             grammar_score_val = grammar_score(t_text, ct_text)
-            emo = emotion_detector.predict(audio=audio_file_path, use_temp_folder=False)
+            emo = emotion_detector.predict(
+                audio=audio_file_path, use_temp_folder=False)
             emo_label = emotion_label(emo)
-            
+
             if rate is None:
                 flash("Error processing rate score", category='danger')
                 return redirect(url_for("feedback"))
 
             emo_str = f"{emo_label['emotion1']},{emo_label['emotion2']},{emo_label['emotion3']}"
             emo_score_str = f"{emo_label['score1']},{emo_label['score2']},{emo_label['score3']}"
-            
+
             current_score.rate = round(rate_score_val['score'], 1)
             current_score.grammar = round(grammar_score_val, 1)
             current_score.fluency = round(fluency_score, 1)
@@ -154,7 +165,8 @@ class Routes:
             return redirect(url_for("feedback"))
 
         except Exception as e:
-            flash(f"Error updating score. Error message: {str(e)}", category='danger')
+            flash(
+                f"Error updating score. Error message: {str(e)}", category='danger')
             return redirect(url_for("feedback"))
 
     @app.route('/process_audio_fail', methods=['GET'])
@@ -165,20 +177,22 @@ class Routes:
     @app.route("/feedback", methods=['GET'])
     def feedback():
         try:
-            score = Score.query.filter_by(user_id=current_user.id).order_by(Score.id.desc()).first()
-            audio = Audio.query.filter_by(score_id=score.id).order_by(Audio.id.desc()).first()
+            score = Score.query.filter_by(
+                user_id=current_user.id).order_by(Score.id.desc()).first()
+            audio = Audio.query.filter_by(
+                score_id=score.id).order_by(Audio.id.desc()).first()
 
             emo_label = audio.emotion_labels
             emo_scores = audio.emotion_scores
 
             emotion_labels = emo_label.split(",")
             emotion_scores = emo_scores.split(",")
-            
+
             # for feedback
             feedback.rate = score.rate
             feedback.fluency = score.fluency
             feedback.grammar = score.grammar
-            
+
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
