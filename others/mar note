@@ -2,3 +2,9 @@ lt --subdomain nioapp --port 8080
 
 # equivalent to 'from hello import create_app; create_app()'
 $ waitress-serve --host 127.0.0.1 api:app
+
+To set your Git username and email address, you can use the following commands:
+> git config --global user.name "Your Name": Sets your Git username to "Your Name". Replace "Your Name" with your actual name.
+> git config --global user.email "youremail@example.com": Sets your Git email address to "youremail@example.com". Replace the email address with your actual email address.
+Note that the --global flag makes these settings apply to all Git repositories on your machine. If you only want to set the username and email address for a specific repository, remove the --global flag and run the commands inside the repository directory.
+

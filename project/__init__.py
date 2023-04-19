@@ -25,10 +25,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 app = Flask(__name__)
 
 # Set up paths for storing database and audio files
-rc_path = os.path.join(os.getcwd(), "project", "temp_data")
+# rc_path = os.path.join(os.getcwd(), "project", "temp_data") -> comment for now
 
 # Create directories if they don't exist
-os.makedirs(rc_path, exist_ok=True)
+# os.makedirs(rc_path, exist_ok=True) -> make dir comment for now
 
 # Set up database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
