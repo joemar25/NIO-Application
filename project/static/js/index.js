@@ -5,15 +5,14 @@ run this command on project's folder: browserify static/js/index.js -o static/js
 */
 
 // important requirements from node_module
-require('flowbite')
-require('flowbite-typography');
-require('blueimp-file-upload/js/jquery.fileupload');
+require("flowbite");
+require("flowbite-typography");
+require("blueimp-file-upload/js/jquery.fileupload");
 
 // include local scripts
-require('./toast.js');
-require('./dark_mode.js');
-require('./home_controller.js');
-require('./fab_controller.js');
-require('./recording.js');
-require('./verification.js');
-
+require("./toast.js");
+require("./dark_mode.js");
+require("./home_controller.js");
+require("./fab_controller.js");
+require("./recording.js");
+require("./verification.js");
