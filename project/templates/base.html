@@ -114,7 +114,7 @@
 
       <!-- history -->
       {% if request.endpoint != 'feedback' %}
-      <a data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal" class="menu-item" title="History">
+      <a data-modal-target="large-modal" data-modal-toggle="large-modal" class="menu-item" title="History">
         <i class="fa fa-history"></i>
       </a>
       {% endif %}
@@ -184,20 +184,20 @@
     </div>
 
     <!-- history modal -->
-    <div id="extralarge-modal" tabindex="-1"
-      class="fixed unselectable left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0">
-      <div class="relative max-h-full w-full max-w-7xl">
-
-        <!-- modal content for history -->
-        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
-
+    <div id="large-modal" tabindex="-1"
+      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative w-full max-w-4xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white dark:bg-gray-700 rounded-lg shadow">
           <!-- Modal header -->
-          <div class="flex items-center justify-between rounded-t border-b p-5 dark:border-gray-600">
-            <h3 class="text-xl font-medium text-gray-900 dark:text-white">History</h3>
+          <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+              History
+            </h3>
             <button type="button"
-              class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="extralarge-modal">
-              <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-hide="large-modal">
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -207,12 +207,12 @@
             </button>
           </div>
 
-          <!--  sss -->
-          <canvas id="line-chart"></canvas>
+          <!-- line graph -->
+          <div class="w-full p-4">
+            <canvas id="line-chart" class="w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80 dark:text-white"></canvas>
+          </div>
 
         </div>
-        <!-- modal content end for history -->
-
       </div>
     </div>
 
@@ -220,19 +220,66 @@
     <script type=text/javascript src="{{url_for('static', filename='js/output.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@grammarly/editor-sdk?clientId=client_NS9qsVGBH9NCBFhWJKX6Di"></script>
 
-    <!--  -->
+    <!-- chart extra -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
       const chartData = JSON.parse('{{ chart_data|safe }}');
+      const lineChart = document.getElementById('line-chart');
+      const themeToggle = document.getElementById('theme-toggle');
+
+      let isDarkMode = false;
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        isDarkMode = true;
+      }
+
       const dataLine = {
         type: 'line',
         data: chartData,
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                  fontColor: isDarkMode ? '#fff' : '#000',
+                },
+              },
+            ],
+            xAxes: [
+              {
+                ticks: {
+                  fontColor: isDarkMode ? '#fff' : '#000',
+                },
+              },
+            ],
+          },
+          legend: {
+            labels: {
+              fontColor: isDarkMode ? '#fff' : '#000',
+            },
+          },
+        },
       };
-      new Chart(document.getElementById('line-chart'), dataLine);
+
+      const lineChartObj = new Chart(lineChart, dataLine);
+
+      themeToggle.addEventListener('click', function () {
+        // update isDarkMode based on the current theme
+        isDarkMode = document.documentElement.classList.contains('dark');
+
+        // update the chart options based on the new theme
+        lineChartObj.options.scales.yAxes[0].ticks.fontColor = isDarkMode ? '#fff' : '#000';
+        lineChartObj.options.scales.xAxes[0].ticks.fontColor = isDarkMode ? '#fff' : '#000';
+        lineChartObj.options.legend.labels.fontColor = isDarkMode ? '#fff' : '#000';
+
+        // re-render the chart with the updated options
+        lineChartObj.update();
+      });
     </script>
     <!-- default cross out ung dalawa tas pindot nalang -->
+
   </body>
 
 </html>
