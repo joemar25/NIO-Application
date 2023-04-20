@@ -23,8 +23,14 @@
   {% else %}
 
   <div class="flex flex-col items-center mt-4">
+    <div id="countdown" class="text-2xl font-bold mt-2 hidden"></div>
     <div class="flex">
-      {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
+      {{ form.record(class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn", data_state="ready", value="Ready") }}
+      <!-- <button
+        class="rounded-md bg-gray-500 ml-4 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        id="cancel-btn" style="display:none;">
+        Cancel
+      </button> -->
     </div>
     <div id="timer" class="text-2xl font-bold mt-2 dark:text-white hidden">00:00</div>
   </div>

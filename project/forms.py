@@ -47,6 +47,4 @@ class EntryForm(FlaskForm):
 
 
 class RecordForm(FlaskForm):
-    record = SubmitField(
-        label="Record"
-    )
+    record = SubmitField()
