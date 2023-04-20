@@ -3,6 +3,7 @@ import urllib
 import tempfile
 import io
 import platform
+import json
 
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
@@ -71,8 +72,34 @@ class Routes:
     def main():
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
-        data = {'form': form, 'scores': scores}
-        return render_template("main.html", **data)
+        # print(scores[0].grammar)
+        grammar_score = [5, 10, 50]
+        fluency_score = [5, 10, 50]
+        # score.fluency
+        # score.grammar
+
+        chart_data = {
+            "labels": ["Attempt 1", "Attempt 2", "Attempt 3"],
+            "datasets": [
+                {
+                    "label": "Grammar",
+                    "data": grammar_score,
+                    "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                    "borderColor": "rgba(255, 99, 132, 1)",
+                    "borderWidth": 1
+                },
+                {
+                    "label": "Fluency",
+                    "data": fluency_score,
+                    "backgroundColor": "rgba(54, 162, 235, 0.2)",
+                    "borderColor": "rgba(54, 162, 235, 1)",
+                    "borderWidth": 1
+                }
+            ]
+        }
+
+        chart_data_json = json.dumps(chart_data)
+        return render_template("main.html", form=form, chart_data=chart_data_json)
 
     @app.route('/upload', methods=['POST'])
     def upload():
