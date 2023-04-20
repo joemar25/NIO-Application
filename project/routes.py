@@ -72,28 +72,48 @@ class Routes:
     def main():
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
-        # print(scores[0].grammar)
-        grammar_score = [5, 10, 50]
-        fluency_score = [5, 10, 50]
-        # score.fluency
-        # score.grammar
+        
+        count = 0
+        attempts_str = [0]
+        rate_scores = [0]
+        grammar_scores = [0] 
+        fluency_scores = [0]
+            
+        for score in scores:
+            count += 1
+            grammar_scores.append(score.grammar)
+            fluency_scores.append(score.fluency)
+            rate_scores.append(score.rate)
+            attempts_str.append(f"Attempt {count}")
 
         chart_data = {
-            "labels": ["Attempt 1", "Attempt 2", "Attempt 3"],
+            "labels": attempts_str,
             "datasets": [
                 {
                     "label": "Grammar",
-                    "data": grammar_score,
+                    "data": grammar_scores,
                     "backgroundColor": "rgba(255, 99, 132, 0.2)",
                     "borderColor": "rgba(255, 99, 132, 1)",
-                    "borderWidth": 1
+                    "borderWidth": 1,
+                    "color": "#FF6384",
+                },
+                {
+                    "label": "Rate",
+                    "data": rate_scores,
+                    "backgroundColor": "rgba(54, 162, 235, 0.2)",
+                    "borderColor": "rgba(54, 162, 235, 1)",
+                    "borderWidth": 1,
+                    "color": "#36A2EB",
+                    "hidden": "true"
                 },
                 {
                     "label": "Fluency",
-                    "data": fluency_score,
-                    "backgroundColor": "rgba(54, 162, 235, 0.2)",
-                    "borderColor": "rgba(54, 162, 235, 1)",
-                    "borderWidth": 1
+                    "data": fluency_scores,
+                    "backgroundColor": "rgba(255, 206, 86, 0.2)",
+                    "borderColor": "rgba(255, 206, 86, 1)",
+                    "borderWidth": 1,
+                    "color": "#FFCE56",
+                    "hidden": "true"
                 }
             ]
         }
