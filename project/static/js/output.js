@@ -21609,6 +21609,22 @@ require("./recording.js");
 require("./verification.js");
 
 },{"./dark_mode.js":52,"./fab_controller.js":53,"./home_controller.js":54,"./recording.js":56,"./toast.js":57,"./verification.js":58,"blueimp-file-upload/js/jquery.fileupload":2,"flowbite":40,"flowbite-typography":4}],56:[function(require,module,exports){
+/*
+ * This is a JavaScript class that defines a simple audio recorder. The recorder
+ * allows users to record audio from their device's microphone and upload it to
+ * a server for further processing. The recorder interface displays a timer that
+ * shows the elapsed time during recording, a countdown before recording starts,
+ * and a button to start and stop the recording.
+ *
+ * The class uses the Web Audio API and the MediaRecorder API to capture and
+ * record audio data, and the fetch() function to upload the recorded audio to
+ * a server. The recorder also includes error handling for cases where the user
+ * denies access to the microphone or the server returns an error response.
+ *
+ * This code was written for educational purposes only and should not be used in
+ * production environments without proper testing and security considerations.
+ */
+
 class Recorder {
   constructor() {
     this.mediaRecorder = null;
