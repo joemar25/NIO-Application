@@ -14,7 +14,7 @@ Deprecated==1.2.13
 ffmpeg-python==0.2.0
 filelock==3.11.0
 firebase-rest-api==1.10.0
-Flask==2.2.3
+Flask==2.3.2
 Flask-Login==0.6.2
 Flask-SQLAlchemy==3.0.3
 Flask-WTF==1.1.1
