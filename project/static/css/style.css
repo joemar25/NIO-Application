@@ -17,6 +17,8 @@
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    position: fixed;
+    z-index: 999;
   }
 
   @keyframes fade-in {
