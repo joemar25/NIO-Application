@@ -9,6 +9,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FileField, SubmitField
 from wtforms.validators import ValidationError
 
+
 class EntryForm(FlaskForm):
     def validate_username(self, input) -> bool:
         """
@@ -18,13 +19,14 @@ class EntryForm(FlaskForm):
         input = username.replace(" ", "")
         n = len(input)
         if not (n > 2 and n < 21):
-            raise ValidationError('Username must be between 3 and 20 characters long.')
+            raise ValidationError(
+                'Username must be between 3 and 20 characters long.')
         return
 
     username = StringField(
         label="Username",
         render_kw={
-            "placeholder": "Ex. 'Mark Villar'",
+            "placeholder": "Ex. 'Marimar'",
             "id": "username-input",
             "maxlength": "10"
         }
@@ -36,11 +38,11 @@ class EntryForm(FlaskForm):
             "placeholder": "Speech Here"
         }
     )
-    
+
     file_script = FileField(
         label="File Script"
     )
-    
+
     submit = SubmitField(
         label="Proceed"
     )

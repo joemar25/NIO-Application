@@ -4,7 +4,6 @@
 
 /* component of tailwind */
 @layer components {
-
   html {
     font-family: "Roboto", sans-serif;
   }
@@ -115,6 +114,11 @@
     }
   }
 
+  .menu {
+    position: fixed;
+    z-index: 999;
+  }
+
   .menu-item,
   .menu-open-button {
     width: 50px;
@@ -153,15 +157,15 @@
     transform: translate3d(0, 8px, 0);
   }
 
-  .menu-open:checked+.menu-open-button .hamburger-1 {
+  .menu-open:checked + .menu-open-button .hamburger-1 {
     transform: translate3d(0, 0, 0) rotate(45deg);
   }
 
-  .menu-open:checked+.menu-open-button .hamburger-2 {
+  .menu-open:checked + .menu-open-button .hamburger-2 {
     transform: scale(0.1, 1);
   }
 
-  .menu-open:checked+.menu-open-button .hamburger-3 {
+  .menu-open:checked + .menu-open-button .hamburger-3 {
     transform: translate3d(0, 0, 0) rotate(-45deg);
   }
 
@@ -185,27 +189,27 @@
     transform: scale(1.2) translate3d(0, 0, 0);
   }
 
-  .menu-open:checked+.menu-open-button {
+  .menu-open:checked + .menu-open-button {
     transition-duration: 200ms;
     transition-timing-function: linear;
     transform: scale(0.95) translate3d(0, 0, 0);
   }
 
-  .menu-open:checked~.menu-item {
+  .menu-open:checked ~ .menu-item {
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .menu-open:checked~.menu-item:nth-child(3) {
+  .menu-open:checked ~ .menu-item:nth-child(3) {
     transition-duration: 190ms;
     transform: translate3d(0, -60px, 0);
   }
 
-  .menu-open:checked~.menu-item:nth-child(4) {
+  .menu-open:checked ~ .menu-item:nth-child(4) {
     transition-duration: 290ms;
     transform: translate3d(0, -120px, 0);
   }
 
-  .menu-open:checked~.menu-item:nth-child(5) {
+  .menu-open:checked ~ .menu-item:nth-child(5) {
     transition-duration: 390ms;
     transform: translate3d(0, -180px, 0);
   }
@@ -264,5 +268,10 @@
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  .placeholder-center::placeholder {
+    text-align: center;
+    line-height: calc(8.5em + 0.75rem);
   }
 }
