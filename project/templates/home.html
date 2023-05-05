@@ -8,10 +8,13 @@
 <div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
   <!-- first col -->
   <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
-    <div class="top-0 text-center">
-      <img
-        src="https://scontent.fmnl9-4.fna.fbcdn.net/v/t1.15752-9/344100833_779614320437842_7786002033456972677_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeF4EcB4NVmo2x4-ejDx6xgUVQMuXK3QcDNVAy5crdBwM5vkmrDlTCPgLm3mK7iHNVW9r53uFuJSbpLfaICGg9L_&_nc_ohc=T03B6kcm8AwAX9SWFOQ&_nc_ht=scontent.fmnl9-4.fna&oh=03_AdToZZAOL9zsr-UuRIC0OLNRetP7dxLmcRxLjnU60og6sw&oe=647597F7"
-        class="h-[200px] w-[300px]" />
+    <div class="flex justify-center items-center">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Nio logo" class="h-20 w-20">
+      <div class="h-20 w-20 flex justify-center items-center">
+        <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">
+          Nio
+        </div>
+      </div>
     </div>
 
     <div class="text-sm text-gray-400 dark:text-gray-300">Step 1 of 3</div>
@@ -89,7 +92,8 @@
           </grammarly-editor-plugin>
 
           <div class="absolute bottom-2 right-2">
-            <label for="file_script" class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:bg-[#5548E4]">
+            <label for="file_script"
+              class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:bg-[#5548E4]">
               Upload
               <input type="file" id="file_script" name="file_script" class="hidden" multiple />
             </label>
