@@ -26,7 +26,7 @@ class EntryForm(FlaskForm):
     username = StringField(
         label="Username",
         render_kw={
-            "placeholder": "Username'",
+            "placeholder": "Username",
             "id": "username-input",
             "maxlength": "10"
         }
