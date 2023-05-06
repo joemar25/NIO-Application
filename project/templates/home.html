@@ -1,115 +1,88 @@
-{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block body
-%}
+{% extends 'base.html' %} {% block title %}
+  Welcome
+{% endblock %} {% block body %}
+  <div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
+    <!-- first col -->
+    <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
+      <div class="flex justify-center items-center">
+        <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Nio logo" class="h-20 w-20" />
+        <div class="h-20 w-20 flex justify-center items-center">
+          <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">NiO</div>
+        </div>
+      </div>
 
-<!-- https://coolors.co/palette/221e4b-5548e4-2e2868-ffffff-111827 -->
-<!-- https://scontent.fmnl9-4.fna.fbcdn.net/v/t1.15752-9/344100833_779614320437842_7786002033456972677_n.png?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeF4EcB4NVmo2x4-ejDx6xgUVQMuXK3QcDNVAy5crdBwM5vkmrDlTCPgLm3mK7iHNVW9r53uFuJSbpLfaICGg9L_&_nc_ohc=T03B6kcm8AwAX9SWFOQ&_nc_ht=scontent.fmnl9-4.fna&oh=03_AdToZZAOL9zsr-UuRIC0OLNRetP7dxLmcRxLjnU60og6sw&oe=647597F7 -->
-<!-- https://scontent.fmnl9-1.fna.fbcdn.net/v/t1.15752-9/341837729_227229043330140_5454585562848250575_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEg0jQCg3RsWn-8uG40kPSlMv8XqaV2S-Ey_xeppXZL4QP_b3lQj-yiKexN23qA2Lr0rG-ZO1J6TSC83HX9yvTP&_nc_ohc=P9Tq7aReBN8AX_4bLm9&_nc_ht=scontent.fmnl9-1.fna&oh=03_AdTxpyfK21TzWcGYxpYGUL_ZbR_9ePQ0C2FlUr1PI3WC7A&oe=64756316 -->
+      <div class="text-sm text-gray-400 dark:text-gray-300">Step 1 of 3</div>
+      <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
 
-<div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
-  <!-- first col -->
-  <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
-    <div class="flex justify-center items-center">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Nio logo" class="h-20 w-20">
-      <div class="h-20 w-20 flex justify-center items-center">
-        <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">
-          Nio
+      <div class="hidden md:block">
+        <div class="group m-4 flex items-center">
+          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full">
+              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">1</span>
+            </div>
+          </div>
+          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+              <p class="ml-14 p-4 text-sm">Enter your username</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="group m-4 flex items-center">
+          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full">
+              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">2</span>
+            </div>
+          </div>
+          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+              <p class="ml-14 p-4 text-sm">
+                Upload a text file or script in the text box <i>(optional)</i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="group m-4 flex items-center">
+          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full">
+              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">3</span>
+            </div>
+          </div>
+          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+              <p class="ml-14 p-4 text-sm">Press Start</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="text-sm text-gray-400 dark:text-gray-300">Step 1 of 3</div>
-    <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
+    <!-- second col -->
+    <div class="relative z-10 mb-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
+      <form method="POST" action="" enctype="multipart/form-data" class="space-y-8 rounded-3xl p-6 shadow-lg dark:bg-[#221E4B] dark:text-[#7A7280] md:p-10">
+        {{ form.hidden_tag() }}
 
-    <div class="hidden md:block">
-      <div class="group m-4 flex items-center">
-        <div
-          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-          <div class="flex h-10 w-10 items-center justify-center rounded-full">
-            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">1</span>
-          </div>
-        </div>
-        <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-            <p class="ml-14 p-4 text-sm">Enter your username</p>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div class="relative z-10 flex flex-col items-start justify-start space-y-8 rounded-xl pb-10 pl-4 pr-4 pt-10 dark:bg-[#221E4B] md:pl-10 md:pr-10">
+          {{ form.username(class = 'mt-2 block w-full rounded-full border border-gray-600 dark:border-gray-100 dark:bg-gray-100 px-4 py-4 text-center text-base
+          placeholder-gray-500 focus:border-white focus:outline-none') }}
 
-    <div class="hidden md:block">
-      <div class="group m-4 flex items-center">
-        <div
-          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-          <div class="flex h-10 w-10 items-center justify-center rounded-full">
-            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">2</span>
-          </div>
-        </div>
-        <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-            <p class="ml-14 p-4 text-sm">Upload a text file or script in the text box <i>(optional)</i></p>
-          </div>
-        </div>
-      </div>
-    </div>
+          <div class="relative w-full">
+            <grammarly-editor-plugin>
+              <textarea class="placeholder-center placeholder-text-center mt-2 block h-56 w-full resize-none rounded-3xl border border-gray-600 px-4 py-4 text-base placeholder-opacity-50 focus:border-white focus:outline-none dark:border-gray-100 dark:bg-gray-100" id="text_script" placeholder="Script (Optional)" name="text_script" rows="6"></textarea>
+            </grammarly-editor-plugin>
 
-    <div class="hidden md:block">
-      <div class="group m-4 flex items-center">
-        <div
-          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-          <div class="flex h-10 w-10 items-center justify-center rounded-full">
-            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">3</span>
+            <div class="absolute bottom-2 right-2">
+              <label for="file_script" class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:bg-[#5548E4]">Upload<input type="file" id="file_script" name="file_script" class="hidden" multiple /></label>
+            </div>
           </div>
+          <button type="submit" class="mx-auto inline-block w-40 rounded-full border-2 border-gray-100 bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:border-gray-100 dark:bg-[#5548E4]">start</button>
         </div>
-        <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-            <p class="ml-14 p-4 text-sm">Press Start</p>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
-
-  <!-- second col -->
-  <div class="relative z-10 mb-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
-    <form method="POST" action="" enctype="multipart/form-data"
-      class="space-y-8 rounded-3xl p-6 shadow-lg dark:bg-[#221E4B] dark:text-[#7A7280] md:p-10">
-
-      {{ form.hidden_tag() }}
-
-      <div
-        class="relative z-10 flex flex-col items-start justify-start space-y-8 rounded-xl pb-10 pl-4 pr-4 pt-10 dark:bg-[#221E4B] md:pl-10 md:pr-10">
-        {{ form.username(
-          class="mt-2 block w-full rounded-full border border-gray-600 dark:border-gray-100 dark:bg-gray-100 px-4 py-4 text-center text-base
-          placeholder-gray-500 focus:border-white focus:outline-none"
-          )
-        }}
-
-        <div class="relative w-full">
-          <grammarly-editor-plugin>
-            <textarea
-              class="placeholder-center placeholder-text-center mt-2 block h-56 w-full resize-none rounded-3xl border border-gray-600 px-4 py-4 text-base placeholder-opacity-50 focus:border-white focus:outline-none dark:border-gray-100 dark:bg-gray-100"
-              id="text_script" placeholder="Script (Optional)" name="text_script" rows="6"></textarea>
-          </grammarly-editor-plugin>
-
-          <div class="absolute bottom-2 right-2">
-            <label for="file_script"
-              class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:bg-[#5548E4]">
-              Upload
-              <input type="file" id="file_script" name="file_script" class="hidden" multiple />
-            </label>
-          </div>
-        </div>
-        <button type="submit"
-          class="mx-auto inline-block w-40 rounded-full border-2 border-gray-100 bg-indigo-500 px-3 py-2 text-base font-medium uppercase text-white transition duration-200 hover:bg-indigo-600 dark:border-gray-100 dark:bg-[#5548E4]">start</button>
-      </div>
-    </form>
-  </div>
-</div>
-
 {% endblock %}
-
-<!-- todo:
-the page must be always at the back to use the fab 
-on mobile panget ung mga text box
-same with icon
--->
