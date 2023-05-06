@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- our logo here -->
+
+        <!-- external -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    </head>
+
+    <body class="m-0">
+        <!-- notification -->
+
+        <!-- loading indicator -->
+
+        <!-- floating action button -->
+
+        <!-- content -->
+        <main class="unselectable flex min-h-screen items-center justify-center">
+            <!-- s -->
+            <div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
+                <!-- first col -->
+                <div
+                    class="mb-1 flex flex-col items-center justify-between pl-10 pr-10 pt-5 lg:mb-20 lg:w-1/2 lg:pt-20">
+                    hello</div>
+
+                <!-- second col -->
+                <div class="relative z-10 mb-10 ml-10 mr-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
+                    <div class="space-y-8 rounded-xl bg-white p-10 shadow-lg">
+                        <div
+                            class="relative z-10 flex flex-col items-center justify-start space-y-8 rounded-xl bg-white pb-5 pl-5 pr-5 pt-5 text-center">
+                            <!-- when recording -->
+                            <div class="text-sm text-gray-400 dark:text-gray-300">Step 2 of 3</div>
+                            <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
+
+                            <div class="text-2xl font-bold text-gray-800 dark:text-gray-300">Tap the mic to start
+                                recording</div>
+
+                            <button class="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mic-icon">
+                                    <path d="M11 6h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2M8 9v4M16 9v4" />
+                                    <path d="M12 19a4 4 0 0 1-4-4V9a4 4 0 0 1 8 0v6a4 4 0 0 1-4 4z" />
+                                </svg>
+                            </button>
+
+                            <p>00:30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- e -->
+        </main>
+
+        <!--  modal -->
+
+        <!-- history modal -->
+    </body>
+
+</html>
+
+<!-- https://www.javatpoint.com/record-animation-using-css -->
