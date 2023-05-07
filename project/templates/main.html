@@ -4,52 +4,44 @@
 
 {% if current_user.is_authenticated %}
 
-<!-- display record button | text script -->
-<div class="w-10/12 rounded-lg px-6 py-8 shadow">
+<div class="flex w-5/6 flex-col items-center justify-center lg:flex-row">
 
   {% if current_user.script %}
-
-  <div class="mb-4 dark:text-white">
-    <span class="text-2xl font-bold"> Script </span>
-  </div>
-  <div class="h-64 overflow-y-scroll border border-gray-300 px-4 text-gray-800 dark:border-gray-700 dark:text-gray-300">
-    <p class="p-6 text-base">{{current_user.script}}</p>
-  </div>
-  <span id="timer" class="text-2xl mt-2 hidden">00:00</span>
-  <div class="mt-4 flex justify-end">
-    {{ form.record( class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn" ) }}
-  </div>
-
-  {% else %}
-
-  <div class="flex flex-col items-center mt-4">
-    <div id="countdown" class="text-2xl font-bold mt-2 hidden"></div>
-    <div class="flex">
-      {{ form.record(class="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2", id="record-btn", data_state="ready", value="Ready") }}
-      <!-- <button
-        class="rounded-md bg-gray-500 ml-4 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-        id="cancel-btn" style="display:none;">
-        Cancel
-      </button> -->
+  <div class="mb-10 ml-10 mr-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
+    <div class="space-y-8 rounded-xl bg-white p-10 shadow-lg dark:bg-[#2E2868]">
+      <div class="relative z-10 flex flex-col items-center justify-between text-center dark:bg-[#2E2868]">
+        <div class="mb-4 dark:text-white">
+          <span class="text-2xl font-bold">Script</span>
+        </div>
+        <div
+          class="h-28 lg:h-64 w-full overflow-y-scroll rounded-xl text-gray-800 dark:border-gray-700 dark:text-gray-300 lg:w-full">
+          <p class="text-left leading-relaxed text-gray-600 dark:text-gray-400">{{current_user.script}}</p>
+        </div>
+      </div>
     </div>
-    <div id="timer" class="text-2xl font-bold mt-2 dark:text-white hidden">00:00</div>
   </div>
-
   {% endif %}
 
+  <div class="relative z-10 mb-10 ml-10 mr-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
+    <div class="space-y-8 rounded-xl bg-white p-10 shadow-lg dark:bg-[#2E2868]">
+      <div
+        class="relative z-10 flex flex-col items-center justify-center space-y-8 rounded-xl bg-white pb-5 pl-5 pr-5 pt-5 text-center dark:bg-[#2E2868]">
+        <div class="text-sm text-gray-400 dark:text-gray-300">Step 2 of 3</div>
+        <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">Record 1 - 5 minute audio</div>
+        <div id="notif" class="text-xl text-gray-800 dark:text-gray-300">Tap to start recording</div>
+
+        <div class="h-64">
+          <button id="record-btn" class="record" data-state="ready" value="Ready">
+            <span id="record-icon"></span>
+          </button>
+          <div id="countdown" class="mt-2 hidden text-2xl font-bold dark:text-white"></div>
+          <div id="timer" class="mt-2 hidden text-2xl font-bold dark:text-white">00:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- display score | test for history graph (hidden for now) -->
-<div class="dark:text-white hidden">
-  {% for score in scores %}
-  <p>Rate: {{ score.rate }}</p>
-  <p>Fluency: {{ score.fluency }}</p>
-  <p>Grammar: {{ score.grammar }}</p>
-  <br>
-  {% endfor %}
-</div>
-
-<!-- no authenticated user here -->
 {% else %}
 
 <h1>User must have a username and their script to proceed to this page.</h1>

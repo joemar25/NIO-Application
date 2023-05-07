@@ -276,4 +276,64 @@
     text-align: center;
     line-height: calc(8.5em + 0.75rem);
   }
+
+  /* record */
+  .record {
+    --size: 90%;
+    --radius: 50%;
+    border: 6px solid #f56565;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    position: relative;
+    background-color: transparent;
+    transition: all 0.25s ease-in-out;
+  }
+
+  .record:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .record span#record-icon {
+    background-color: #f56565;
+    border-radius: var(--radius);
+    bottom: 0;
+    display: block;
+    height: var(--size);
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: var(--size);
+    transition: all 0.25s ease-in-out;
+  }
+
+  .record[data-state="recording"] span#record-icon {
+    --size: 50%;
+    --radius: 10%;
+    transform: rotateZ(180deg);
+    animation: recording-animation 0.25s cubic-bezier(1, 0, 0, 0.2) forwards;
+    /* animation-delay: 3s; */
+    /* opacity: 0; */
+  }
+
+  @keyframes recording-animation {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
