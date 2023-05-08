@@ -58,3 +58,6 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 - protobuf==3.20
 - issues learning: <https://www.youtube.com/watch?v=-nfUgBLBTIo&ab_channel=DevLeonardo>
 - image picker for color pallate (https://coolors.co/image-picker)
+
+- ngrok.exe
+- ngrok.exe http _host_
