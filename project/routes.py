@@ -131,6 +131,14 @@ class Routes:
         audio = audio.set_frame_rate(44000)  # 16000 -> 44000 sample rate
         audio = audio.set_channels(1)
 
+        # get duration of audio in seconds
+        # audio_length = audio.duration_seconds
+        # print(f'audio length is {audio_length}')
+        # print(f'is audio good={audio_length >= 1}')
+        # if audio_length >= 1:
+        #     flash(f'Audio must be at least...', category='danger')
+        #     return redirect(url_for("main"))
+
         # write audio to a buffer
         with io.BytesIO() as buffer:
             audio.export(buffer, format="wav")
@@ -212,8 +220,7 @@ class Routes:
             return redirect(url_for("feedback"))
 
         except Exception as e:
-            flash(
-                f"Error updating score. Error message: {str(e)}", category='danger')
+            # flash(f"Error updating score. Error message: {str(e)}", category='danger')
             return redirect(url_for("feedback"))
 
     @app.route('/process_audio_fail', methods=['GET'])
@@ -259,7 +266,8 @@ class Routes:
 
             return render_template("feedback.html", **data)
         except Exception as e:
-            flash(f"Error getting feedback: {e}", category='danger')
+            # flash(f"Error getting feedback: {e}", category='danger')
+            flash(f"Audio must be clear and must be at least 5 seconds.", category='danger')
             return redirect(url_for("main"))
 
     @app.route("/about")
