@@ -57,7 +57,7 @@ class Routes:
             text = file.read().decode('utf-8')
 
         if not Validation.is_valid_username(username):
-            flash(f'Invalid Username. Try Again', category='danger')
+            flash(f'Username must be atleast 3 characters long.', category='danger')
             return render_template("home.html", form=entry_form)
 
         user = User(username=username, script=text)

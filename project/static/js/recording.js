@@ -50,7 +50,7 @@ class Recorder {
     } else if (state === "recording") {
       this.recordBtn.dataset.state = "ready";
       this.stopRecording();
-      this.notif.textContent = "Audio is now processing";
+      this.notif.textContent = "Processing audio...";
     }
   }
 
@@ -160,7 +160,7 @@ class Recorder {
       window.location.href = "/process_audio_fail";
     }
 
-    loadingContainer.classList.remove("show");
+    // loadingContainer.classList.remove("show");
   }
 
   stopRecording() {

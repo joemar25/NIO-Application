@@ -4,10 +4,13 @@ block body %}
 {% if current_user.is_authenticated %}
 <div class="w-10/12 rounded-lg px-6 py-8 shadow">
   <div class="text-sm text-gray-400 dark:text-gray-300 text-center">Step 3 of 3</div>
-        <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300 text-center">View Result</div>
+      <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300 text-center mb-4">
+        View Result
+      </div>
 
   <div class="gap-8 sm:grid sm:grid-cols-2 capitalize">
     <div>
+      <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300 text-center">Score</div>
       <div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Rate</div>
         <div class="mb-3 flex items-center">
@@ -17,7 +20,7 @@ block body %}
           <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ rate }}</span>
         </div>
       </div>
-
+      
       <div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Fluency</div>
         <div class="mb-3 flex items-center">
@@ -40,6 +43,7 @@ block body %}
     </div>
 
     <div>
+      <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300 text-center">Emotion</div>
       <div>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ emo_label_1 }}</div>
         <div class="mb-3 flex items-center">
