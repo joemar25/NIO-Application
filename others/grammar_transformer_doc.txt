@@ -1,7 +1,0 @@
-happy transformer
-
-kudos website for ser vennify
-https://www.vennify.ai/
-
-official webpage for this library
-https://happytransformer.com/save-load-model/

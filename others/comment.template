@@ -1,9 +1,0 @@
-"""
-Check if the given text is a valid sentence.
-
-Args:
-    text (str): The text to check.
-
-Returns:
-    bool: True if the text is a valid sentence, False otherwise.
-"""

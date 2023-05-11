@@ -25,6 +25,7 @@ test*
 /project/node_modules
 /project/__pycache__
 /project/scripts/__pycache__/
+/others
 *note.txt
 *.csv
 *KEYNOTE
