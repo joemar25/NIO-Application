@@ -1,9 +1,8 @@
-import os
-import urllib
-import tempfile
-import io
-import platform
-import json
+# unused; platform for determining the current os of the PC, and mode is for development/deployment
+# import platform
+# from project import mode
+
+import os, io, urllib, tempfile, json
 
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
@@ -72,13 +71,13 @@ class Routes:
     def main():
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
-        
+
         count = 0
         attempts_str = [0]
         rate_scores = [0]
-        grammar_scores = [0] 
+        grammar_scores = [0]
         fluency_scores = [0]
-            
+
         for score in scores:
             count += 1
             grammar_scores.append(score.grammar)
@@ -128,7 +127,7 @@ class Routes:
 
         # convert audio file to WAV format
         audio = AudioSegment.from_file(request.files['audio'], format="webm")
-        audio = audio.set_frame_rate(44000)  # 16000 -> 44000 sample rate
+        audio = audio.set_frame_rate(44000)
         audio = audio.set_channels(1)
 
         # get duration of audio in seconds
@@ -267,7 +266,8 @@ class Routes:
             return render_template("feedback.html", **data)
         except Exception as e:
             # flash(f"Error getting feedback: {e}", category='danger')
-            flash(f"Audio must be clear and must be at least 5 seconds.", category='danger')
+            flash(f"Audio must be clear and must be at least 5 seconds.",
+                  category='danger')
             return redirect(url_for("main"))
 
     @app.route("/about")
