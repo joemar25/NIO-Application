@@ -10,9 +10,9 @@ require("flowbite-typography");
 require("blueimp-file-upload/js/jquery.fileupload");
 
 // include local scripts
+require("./gstarter.js");
 require("./toast.js");
 require("./dark_mode.js");
 require("./home_controller.js");
 require("./fab_controller.js");
 require("./recording.js");
-require("./verification.js");
