@@ -326,7 +326,6 @@ class Routes:
             # flash(f"Error getting feedback: {e}", category='danger')
             flash(f"Audio must be clear and must be at least 5 seconds.",
                   category='danger')
-            print(e)
             return redirect(url_for("main"))
 
     @app.route("/about")
