@@ -11,6 +11,7 @@ import json
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+
 from project import app, db, storage, mode
 from project.models import User, Score, Audio
 from project.forms import EntryForm, RecordForm
@@ -254,6 +255,54 @@ class Routes:
             feedback.fluency = score.fluency
             feedback.grammar = score.grammar
 
+            scores = Score.query.filter_by(user_id=current_user.id).all()
+
+            count = 0
+            attempts_str = [0]
+            rate_scores = [0]
+            grammar_scores = [0]
+            fluency_scores = [0]
+
+            for s in scores:
+                count += 1
+                grammar_scores.append(s.grammar)
+                fluency_scores.append(s.fluency)
+                rate_scores.append(s.rate)
+                attempts_str.append(f"Attempt {count}")
+
+            chart_data = {
+                "labels": attempts_str,
+                "datasets": [
+                    {
+                        "label": "Grammar",
+                        "data": grammar_scores,
+                        "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                        "borderColor": "rgba(255, 99, 132, 1)",
+                        "borderWidth": 1,
+                        "color": "#FF6384",
+                    },
+                    {
+                        "label": "Rate",
+                        "data": rate_scores,
+                        "backgroundColor": "rgba(54, 162, 235, 0.2)",
+                        "borderColor": "rgba(54, 162, 235, 1)",
+                        "borderWidth": 1,
+                        "color": "#36A2EB",
+                        "hidden": "true"
+                    },
+                    {
+                        "label": "Fluency",
+                        "data": fluency_scores,
+                        "backgroundColor": "rgba(255, 206, 86, 0.2)",
+                        "borderColor": "rgba(255, 206, 86, 1)",
+                        "borderWidth": 1,
+                        "color": "#FFCE56",
+                        "hidden": "true"
+                    }
+                ]
+            }
+
+            chart_data_json = json.dumps(chart_data)
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
@@ -268,7 +317,8 @@ class Routes:
                 'emo_score_1': emotion_scores[0],
                 'emo_score_2': emotion_scores[1],
                 'emo_score_3': emotion_scores[2],
-                'feedback_msg': feedback.feedback()
+                'feedback_msg': feedback.feedback(),
+                'chart_data': chart_data_json
             }
 
             return render_template("feedback.html", **data)

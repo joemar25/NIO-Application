@@ -4,12 +4,14 @@
   <div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
     <!-- first col -->
     <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
-      <div class="flex justify-center items-center">
-        <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Nio logo" class="h-20 w-20" />
-        <div class="h-20 w-20 flex justify-center items-center">
-          <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">NiO</div>
+      <a href="{{ url_for('index') }}">
+        <div class="flex justify-center items-center">
+          <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Nio logo" class="h-20 w-20" />
+          <div class="h-20 w-20 flex justify-center items-center">
+            <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">NiO</div>
+          </div>
         </div>
-      </div>
+      </a>
 
       <div class="text-sm text-gray-400 dark:text-gray-300 mt-4">Step 1 of 3</div>
       <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
@@ -21,7 +23,7 @@
               <span class="text-lg font-medium text-gray-900 dark:text-gray-100">1</span>
             </div>
           </div>
-          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
             <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
               <p class="ml-14 p-4 text-sm">Enter your username</p>
             </div>
@@ -36,7 +38,7 @@
               <span class="text-lg font-medium text-gray-900 dark:text-gray-100">2</span>
             </div>
           </div>
-          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
             <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
               <p class="ml-14 p-4 text-sm">
                 Upload a text file or script in the text box <i>(optional)</i>
@@ -53,7 +55,7 @@
               <span class="text-lg font-medium text-gray-900 dark:text-gray-100">3</span>
             </div>
           </div>
-          <div class="z-0 ml-[-65px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
             <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
               <p class="ml-14 p-4 text-sm">Press Start</p>
             </div>

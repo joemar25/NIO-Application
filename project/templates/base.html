@@ -113,11 +113,9 @@
       </a>
 
       <!-- history -->
-      {% if request.endpoint != 'feedback' %}
       <a data-modal-target="large-modal" data-modal-toggle="large-modal" class="menu-item" title="History">
         <i class="fa fa-history"></i>
       </a>
-      {% endif %}
 
       {% else %}
 
@@ -169,7 +167,7 @@
             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
               Are you sure you want to end this Session?
             </h3>
-            <button data-modal-hide="popup-modal" type="button" onclick="window.location.href='{{ url_for('index') }}';"
+            <button data-modal-hide="popup-modal" type="button" onclick="window.location.href='{{ url_for('login') }}';"
               class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800">
               Yes, I'm sure
             </button>
