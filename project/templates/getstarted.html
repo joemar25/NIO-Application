@@ -37,12 +37,21 @@
 					<div class="container mx-auto px-4 sm:px-6 md:px-8 max-w-xl">
 						<div class="relative z-10">
 							<div class="relative mb-12 lg:mb-20">
-								<h1 class="hero-title mt-0 text-gray-100 title">NiO Application</h1>
-								<p class="hero-paragraph text-gray-500 text-[15px]">"NiO is a cutting-edge speech
-									improvement app designed to help users improve their pronunciation, intonation, and
-									pacing. With personalized exercises and feedback system, NiO makes it easy for
-									users to practice their speaking skills and gain confidence in any language.
-									Try NiO today and start speaking like a pro!</p>
+								<h1 class="hero-title mt-0 text-gray-100 text-[20px]">Introducing</h1>
+								<br>
+								<b><h1 class="hero-title mt-0 text-gray-100 title">NiO</h1></b>
+								<b><h1 class="hero-title mt-0 text-gray-100 secondary-title">Your personal speech coach!</h1></b>
+								<br>
+								<p class="hero-paragraph text-gray-500 text-[15px]">
+									A cutting-edge speech delivery improvement app designed to help you improve your
+									speech rate, grammar, fluency, and speech emotion!
+								</p>
+								<br>
+								<p class="hero-paragraph text-gray-500 text-[15px]">
+									Equipped with AI and state-of-the-art audio processing algorithms, NiO can become
+									your companion in practicing your speeches to improve your speaking skills and gain confidence in speaking publicly.
+								</p>
+								<br>
 								<div class="hero-cta mt-8">
 									<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded text-lg hover:underline-none"
 										href="{{ url_for('login') }}">Get Started</a>
@@ -54,10 +63,16 @@
 										alt="iPhone illustration">
 								</div>
 								<img class="device-mockup"
-									src="{{ url_for('static', filename = 'images/iphone-hero.png') }}"
+									src="{{ url_for('static', filename = 'images/iphone-hero1.png') }}"
 									alt="iPhone Hero">
 							</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="hero text-center">
+					<div class="relative mb-12 lg:mb-20">
+						<b><h1 class="hero-title mt-0 text-black-100 title">How to use NiO?</h1></b>
 					</div>
 				</div>
 
@@ -73,17 +88,15 @@
 													alt="iPhone Feature 01 illustration">
 											</div>
 											<img class="device-mockup is-revealing"
-												src="{{ url_for('static', filename = 'images/iphone-feature-01.png') }}"
+												src="{{ url_for('static', filename = 'images/input.png') }}"
 												alt="iPhone Feature 01">
 										</div>
 										<div class="feature-extended-body is-revealing">
-											<h3 class="secondary-title">Amazing features,
-												coming soon.</h3>
-											<p class="text-[18px]">Quam quisque id diam vel quam elementum pulvinar.
-												Ut
-												etiam sit amet nisl
-												purus in mollis nunc. Odio morbi quis commodo odio aenean sed
-												adipiscing diam donec.
+											<h3 class="secondary-title">Step 1: User Input</h3>
+											<p class="text-[18px]">
+												Input your username to keep track of your progress while practicing.
+												You can also enter a script by typing in the text box or by uploading a
+												txt file.
 											</p>
 										</div>
 									</div>
@@ -95,16 +108,17 @@
 													alt="iPhone Feature 02 illustration">
 											</div>
 											<img class="device-mockup is-revealing"
-												src="{{ url_for('static', filename = 'images/iphone-feature-02.png') }}"
+												src="{{ url_for('static', filename = 'images/record.png') }}"
 												alt="iPhone Feature 02">
 										</div>
 										<div class="feature-extended-body is-revealing">
-											<h3 class="secondary-title">Amazing features, coming soon.</h3>
-											<p class="text-[18px]">Quam quisque id diam vel quam elementum pulvinar. Ut
-												etiam
-												sit
-												amet nisl purus in mollis nunc.
-												Odio morbi quis commodo odio aenean sed adipiscing diam donec.</p>
+											<h3 class="secondary-title">Step 2: Record your speech</h3>
+											<p class="text-[18px]">
+												Talk into your device's mic and start recording your speech.<br>
+												NiO can handle a maximum of 5 minutes audio.<br>
+												Tip: Position your mic 6-12 inches away from your mouth for better audio
+												results
+											</p>
 										</div>
 									</div>
 									<div class="feature-extended">
@@ -114,35 +128,18 @@
 													alt="iPhone Feature 03 illustration">
 											</div>
 											<img class="device-mockup is-revealing"
-												src="{{ url_for('static', filename = 'images/iphone-feature-03.png') }}"
+												src="{{ url_for('static', filename = 'images/result.png') }}"
 												alt="iPhone Feature 03">
 										</div>
 										<div class="feature-extended-body is-revealing">
-											<h3 class="secondary-title">Amazing features, coming soon.</h3>
-											<p class="text-[18px]">Quam quisque id diam vel quam elementum pulvinar. Ut
-												etiam
-												sit
-												amet nisl purus in mollis nunc.
-												Odio morbi quis commodo odio aenean sed adipiscing diam donec.</p>
-										</div>
-									</div>
-									<div class="feature-extended">
-										<div class="feature-extended-image">
-											<div class="mockup-bg">
-												<img src="{{ url_for('static', filename = 'images/iphone-feature-bg-04.svg') }}"
-													alt="iPhone Feature 04 illustration">
-											</div>
-											<img class="device-mockup is-revealing"
-												src="{{ url_for('static', filename = 'images/iphone-feature-04.png') }}"
-												alt="iPhone Feature 04">
-										</div>
-										<div class="feature-extended-body is-revealing">
-											<h3 class="secondary-title">Amazing features, coming soon.</h3>
-											<p class="text-[18px]">Quam quisque id diam vel quam elementum pulvinar. Ut
-												etiam
-												sit
-												amet nisl purus in mollis nunc. Odio morbi quis commodo odio aenean sed
-												adipiscing diam donec.</p>
+											<h3 class="secondary-title">Step 3: View your results</h3>
+											<p class="text-[18px]">
+												After recording your audio, NiO will perform audio processing and analysis
+												of your speech. <br>
+												It will tell you your score in terms of your speech rate, grammar, and fluency
+												in speaking.<br>
+												It also tells you what emotion is felt in your way of speaking!
+											</p>
 										</div>
 									</div>
 								</div>
