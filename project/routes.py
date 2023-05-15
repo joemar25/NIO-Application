@@ -2,7 +2,11 @@
 # import platform
 # from project import mode
 
-import os, io, urllib, tempfile, json
+import os
+import io
+import urllib
+import tempfile
+import json
 
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
@@ -38,7 +42,11 @@ class Routes:
     @app.route("/")
     @app.route("/index")
     def index():
-        return redirect(url_for("login"))
+        return redirect(url_for("getstarted"))
+
+    @app.route("/welcome")
+    def getstarted():
+        return render_template("getstarted.html")
 
     @app.route("/home", methods=['GET', 'POST'])
     def login():
