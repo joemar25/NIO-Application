@@ -21795,6 +21795,7 @@ class Recorder {
     const timerDiv = document.getElementById("timer");
     const countdownDiv = document.getElementById("countdown");
     const notif = document.getElementById("notif");
+    const reminder = document.getElementById("reminder");
 
     recordBtn.addEventListener("click", () => {
       this.toggleState();
@@ -21805,6 +21806,7 @@ class Recorder {
       timerDiv,
       countdownDiv,
       notif,
+      reminder,
     });
   }
 
@@ -21812,6 +21814,7 @@ class Recorder {
     const { state } = this.recordBtn.dataset;
     if (state === "ready") {
       this.recordBtn.dataset.state = "recording";
+      this.reminder.classList.add("hidden");
       this.startCountdown();
       this.notif.textContent = "Prepare in...";
     } else if (state === "recording") {
