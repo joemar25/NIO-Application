@@ -49,14 +49,17 @@ class Routes:
     @app.route("/")
     @app.route("/index")
     def index():
+        # print\("-------------> page=index")
         return redirect(url_for("getstarted"))
 
     @app.route("/welcome")
     def getstarted():
+        # print\("-------------> page=get started")
         return render_template("getstarted.html")
 
     @app.route("/home", methods=['GET', 'POST'])
     def login():
+        # print\("-------------> page=login")
         logout_user()
         entry_form = EntryForm()
 
@@ -84,6 +87,7 @@ class Routes:
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
+        # print\("-------------> page=main")
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
 
@@ -137,6 +141,7 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
+        # print\("-------------> page=upload")
         # file config
         file_name = request.files['audio'].filename
 
@@ -169,6 +174,7 @@ class Routes:
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
+        # print\("-------------> page=processing")
         try:
             current_score = Score.query.filter_by(
                 user_id=current_user.id).order_by(Score.id.desc()).first()
@@ -231,11 +237,13 @@ class Routes:
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
+        # print\("-------------> page=audio fail")
         flash("Error sending audio recording to server", category='danger')
         return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
+        # print\("-------------> page=feedback")
         try:
             score = Score.query.filter_by(
                 user_id=current_user.id).order_by(Score.id.desc()).first()
@@ -328,21 +336,26 @@ class Routes:
 
     @app.route("/about")
     def about():
+        # print\("-------------> page=about")
         return render_template('about.html')
 
     @app.route("/help")
     def help():
+        # print\("-------------> page=help")
         return render_template("help.html")
 
     @app.route("/test")
     def test():
+        # print\("-------------> page=test")
         return render_template("temp.html")
 
     @app.route("/destroy", methods=['POST'])
     def destroy():
+        # print\("-------------> page=destroy")
         logout_user()
         return redirect(url_for("index"))
 
     @app.errorhandler(404)
     def page_not_found(e):
+        # print\("-------------> page=error page")
         return render_template('404.html'), 404

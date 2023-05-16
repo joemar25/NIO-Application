@@ -24,7 +24,7 @@ def transcribe_audio(audio_path):
         ...
 
 
-async def process_audio(audio_path):
+async def process_audio_async(audio_path):
     if audio_path in result_cache:
         return result_cache[audio_path]
 
@@ -56,9 +56,7 @@ def to_text(audio, use_temp_folder=True):
     # Process the audio file asynchronously
     async def fetch_audio():
         async with aiohttp.ClientSession() as session:
-            return await process_audio(audio_path)
+            return await process_audio_async(audio_path)
 
-    loop = asyncio.get_event_loop()
-    text = loop.run_until_complete(fetch_audio())
-
+    text = asyncio.run(fetch_audio())
     return text
