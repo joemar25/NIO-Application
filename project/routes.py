@@ -8,6 +8,7 @@ import urllib
 import tempfile
 import json
 
+from functools import lru_cache
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -28,9 +29,14 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
+@lru_cache(maxsize=None)
+def get_user(user_id):
+    return User.query.get_or_404(int(user_id))
+
+
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get_or_404(int(user_id))
+    return get_user(user_id)
 
 
 @app.context_processor
@@ -138,14 +144,6 @@ class Routes:
         audio = AudioSegment.from_file(request.files['audio'], format="webm")
         audio = audio.set_frame_rate(44000)
         audio = audio.set_channels(1)
-
-        # get duration of audio in seconds
-        # audio_length = audio.duration_seconds
-        # print(f'audio length is {audio_length}')
-        # print(f'is audio good={audio_length >= 1}')
-        # if audio_length >= 1:
-        #     flash(f'Audio must be at least...', category='danger')
-        #     return redirect(url_for("main"))
 
         # write audio to a buffer
         with io.BytesIO() as buffer:
