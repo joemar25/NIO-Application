@@ -4,6 +4,7 @@
 *.cpython-39.pyc
 *.env
 *.envv
+*.wav
 
 # Ignore all files starting with "temp"
 temp*
