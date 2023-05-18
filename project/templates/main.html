@@ -25,7 +25,7 @@
   <div class="relative z-10 mb-10 ml-10 mr-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
     <div class="space-y-8 rounded-xl bg-white p-10 shadow-lg dark:bg-[#2E2868]">
       <div
-        class="relative mb-28 z-10 flex flex-col items-center justify-center space-y-8 rounded-xl bg-white p-5 text-center dark:bg-[#2E2868]">
+        class="relative z-10 flex flex-col items-center justify-center space-y-8 rounded-xl bg-white p-5 text-center dark:bg-[#2E2868]">
         <div class="text-sm text-gray-400 dark:text-gray-300">Step 2 of 3</div>
         <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">Record 1 - 5 minute audio</div>
         <div id="notif" class="text-xl text-gray-800 dark:text-gray-300">Tap to start recording</div>
@@ -38,6 +38,29 @@
           <div id="countdown" class="mt-2 hidden text-2xl font-bold dark:text-white"></div>
           <div id="timer" class="mt-2 hidden text-2xl font-bold dark:text-white">00:00</div>
         </div>
+
+
+        <button data-popover-target="popover-default" type="button" class="text-gray-400 text-center">Privacy Policy</button>
+        <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-full text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-900 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            <div class="px-3 py-2 bg-gray-200 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                <h3 class="font-semibold text-gray-900 dark:text-white">Disclamer</h3>
+            </div>
+            <div class="px-3 py-2">
+                <p>
+                  When using our app to record audio, we prioritize your privacy and take steps to ensure that you remain
+                  anonymous and non-identifiable. We have implemented measures to safeguard your personal information and
+                  dissociate it from the recorded audio.
+                  <br><br>
+                  Your audio is stored in a database for the sole purpose of processing the audio to provide speech delivery feedback.
+                  <br><br>
+                  It is not shared with third-party organizations and is protected under the Data Privacy Act of 2012 or
+                  RA 10173.
+                </p>
+            </div>
+            <div data-popper-arrow></div>
+        </div>
+
+
       </div>
     </div>
   </div>
