@@ -51,7 +51,13 @@ class FluencyEvaluator:
         fill_pause_num = self._extract_fluency_score(output)
 
         duration_seconds = self._calculate_duration(audio_file_path)
-        fluency_score = abs(100 - (duration_seconds - fill_pause_num))
+        # fluency_score = abs(100 - (duration_seconds - fill_pause_num))
+        x = duration_seconds / 60  # audio in seconds/60
+        y = duration_seconds / 12  # audio in seconds/12
+        fluency_score = abs(100 - (((x * 10) / (y - x)) * (fill_pause_num / x)))
+        if fluency_score >= 100:
+            fluency_score = 100
+
         return fluency_score
     
     def count_fillers(self, audio_file_path):
