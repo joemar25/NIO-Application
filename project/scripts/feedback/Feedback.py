@@ -29,13 +29,13 @@ class Feedback:
             A string containing feedback on the speaker's speaking rate.
         """
         if self.rate < 50:
-            return "Your speaking rate needs improvement. You may want to try speaking more confidently and clearly to help speed up your responses."
+            return "your speaking rate needs improvement. You may want to try speaking more confidently and clearly to help speed up your responses."
 
         if self.rate >= 50 and self.rate < 80:
-            return "Your speaking rate is good, but there is room for improvement. You could benefit from taking more time to think through your responses. Try to take a breath and gather your thoughts before speaking."
+            return "your speaking rate is good, but there is room for improvement. You could benefit from taking more time to think through your responses. Try to take a breath and gather your thoughts before speaking."
 
         if self.rate >= 80:
-            return "Your speaking rate is ideal. Well done! You have a good balance of speaking at a comfortable pace while still answering questions effectively."
+            return "your speaking rate is ideal. Well done! You have a good balance of speaking at a comfortable pace while still answering questions effectively."
         
     def grammar_comment(self):
         """
@@ -45,11 +45,11 @@ class Feedback:
             A string containing feedback on the speaker's grammar.
         """
         if self.grammar >= 90:
-            return "It is excellent! You consistently use proper grammar and have a great understanding of grammar rules."
+            return "it is excellent! You consistently use proper grammar and have a great understanding of grammar rules."
         elif 80 <= self.grammar < 90:
-            return "It is good, but there is room for improvement. You have a good grasp of grammar rules, but there are some errors in your usage."
+            return "it is good, but there is room for improvement. You have a good grasp of grammar rules, but there are some errors in your usage."
         else:
-            return "It grammar needs significant improvement, please review grammar rules and practice more, there are many errors in your usage and it is affecting your overall communication."    
+            return "it grammar needs significant improvement, please review grammar rules and practice more, there are many errors in your usage and it is affecting your overall communication."
 
     def fluency_comment(self):
         """
@@ -59,11 +59,11 @@ class Feedback:
             A string containing feedback on the speaker's fluency.
         """
         if self.fluency >= 90:
-            return "Your speech is very fluent and natural."
+            return "your speech is very fluent and natural."
         elif 80 <= self.fluency < 90:
-            return "Your speech is mostly fluent, but there are some areas for improvement."
+            return "your speech is mostly fluent, but there are some areas for improvement."
         else:
-            return "Your speech needs significant improvement in terms of fluency. Please practice speaking more and work on reducing the number of fillers."
+            return "your speech needs significant improvement in terms of fluency. Please practice speaking more and work on reducing the number of fillers."
     
     def feedback(self):
         """
@@ -72,13 +72,13 @@ class Feedback:
         Returns:
             A string containing feedback on the speaker's performance, including rate, grammar, and fluency.
         """
-        rate_comment = str(self.rate_comment()).capitalize()
-        grammar_comment = str(self.grammar_comment()).capitalize()
-        fluency_comment = str(self.fluency_comment()).capitalize()
+        rate_comment = str(self.rate_comment())
+        grammar_comment = str(self.grammar_comment())
+        fluency_comment = str(self.fluency_comment())
 
-        feedback_message = "In terms of rate, {} ".format(rate_comment[0].lower() + rate_comment[1:])
-        feedback_message += "In terms of grammar, {} ".format(grammar_comment[0].lower() + grammar_comment[1:])
-        feedback_message += "Regarding fluency, {} ".format(fluency_comment[0].lower() + fluency_comment[1:])
+        feedback_message = "In terms of rate, {} ".format(rate_comment)
+        feedback_message += "In terms of grammar, {} ".format(grammar_comment)
+        feedback_message += "Regarding fluency, {} ".format(fluency_comment)
 
         return feedback_message
     
