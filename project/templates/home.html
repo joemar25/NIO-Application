@@ -1,90 +1,111 @@
 {% extends 'base.html' %} {% block title %}
-  Welcome
+Welcome
 {% endblock %} {% block body %}
-  <div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
-    <!-- first col -->
-    <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
-      <a href="{{ url_for('index') }}">
-        <div class="flex justify-center items-center">
-          <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Nio logo" class="h-20 w-20" />
-          <div class="h-20 w-20 flex justify-center items-center">
-            <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">NiO</div>
-          </div>
-        </div>
-      </a>
-
-      <div class="text-sm text-gray-400 dark:text-gray-300 mt-4">Step 1 of 3</div>
-      <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
-
-      <div class="hidden md:block">
-        <div class="group m-4 flex items-center">
-          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full">
-              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">1</span>
-            </div>
-          </div>
-          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-              <p class="ml-14 p-4 text-sm">Enter your username</p>
-            </div>
-          </div>
+<div class="flex w-5/6 flex-col items-center justify-between lg:flex-row">
+  <!-- first col -->
+  <div class="flex flex-col mb-1 lg:mb-20 items-center justify-between pl-10 pr-10 pt-5 lg:w-1/2 lg:pt-20">
+    <a href="{{ url_for('index') }}">
+      <div class="flex justify-center items-center">
+        <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="Nio logo" class="h-20 w-20" />
+        <div class="h-20 w-20 flex justify-center items-center">
+          <div class="text-4xl font-bold capitalize text-gray-700 dark:text-gray-300">NiO</div>
         </div>
       </div>
+    </a>
 
-      <div class="hidden md:block">
-        <div class="group m-4 flex items-center">
-          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full">
-              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">2</span>
-            </div>
-          </div>
-          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-              <p class="ml-14 p-4 text-sm">
-                Upload a text file or script in the text box <i>(optional)</i>
-              </p>
-            </div>
+    <div class="text-sm text-gray-400 dark:text-gray-300 mt-4">Step 1 of 3</div>
+    <div class="text-2xl font-bold capitalize text-gray-700 dark:text-gray-300">User Input</div>
+
+    <div class="hidden md:block">
+      <div class="group m-4 flex items-center">
+        <div
+          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full">
+            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">1</span>
           </div>
         </div>
-      </div>
-
-      <div class="hidden md:block">
-        <div class="group m-4 flex items-center">
-          <div class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
-            <div class="flex h-10 w-10 items-center justify-center rounded-full">
-              <span class="text-lg font-medium text-gray-900 dark:text-gray-100">3</span>
-            </div>
-          </div>
-          <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
-            <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
-              <p class="ml-14 p-4 text-sm">Press Start</p>
-            </div>
+        <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+            <p class="ml-14 p-4 text-sm">Enter your username</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- second col -->
-    <div class="relative z-10 mb-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
-      <form method="POST" action="" enctype="multipart/form-data" class="space-y-8 rounded-3xl p-6 shadow-lg dark:bg-[#221E4B] dark:text-[#7A7280] md:p-10">
-        {{ form.hidden_tag() }}
-
-        <div class="relative z-10 flex flex-col items-start justify-start space-y-8 rounded-xl pb-10 pl-4 pr-4 pt-10 dark:bg-[#221E4B] md:pl-10 md:pr-10">
-          {{ form.username(class = 'mt-2 block w-full rounded-full border border-gray-600 dark:border-gray-100 dark:bg-gray-100 px-4 py-4 text-center text-base
-          placeholder-gray-500 focus:border-white focus:outline-none') }}
-
-          <div class="relative w-full">
-            <grammarly-editor-plugin>
-              <textarea class="placeholder-center placeholder-text-center mt-2 block h-56 w-full resize-none rounded-3xl border border-gray-600 px-4 py-4 text-base placeholder-opacity-50 focus:border-white focus:outline-none dark:border-gray-100 dark:bg-gray-100" id="text_script" placeholder="Script (Optional)" name="text_script" rows="6"></textarea>
-            </grammarly-editor-plugin>
-
-            <div class="absolute bottom-2 right-2">
-              <label for="file_script" class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium capitalize text-white transition duration-200 hover:bg-indigo-600 dark:bg-[#5548E4]">Upload<input type="file" id="file_script" name="file_script" class="hidden" multiple /></label>
-            </div>
+    <div class="hidden md:block">
+      <div class="group m-4 flex items-center">
+        <div
+          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full">
+            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">2</span>
           </div>
-          <button type="submit" class="mx-auto inline-block w-40 rounded-full border-2 border-gray-100 bg-indigo-500 px-3 py-2 text-base font-medium capitalize text-white transition duration-200 hover:bg-indigo-600 dark:border-gray-100 dark:bg-[#5548E4]">start</button>
         </div>
-      </form>
+        <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+            <p class="ml-14 p-4 text-sm">
+              Upload a text file or script in the text box <i>(optional)</i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden md:block">
+      <div class="group m-4 flex items-center">
+        <div
+          class="z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-solid border-gray-500 dark:border-gray-100 bg-gray-100 dark:bg-[#2E2868]">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full">
+            <span class="text-lg font-medium text-gray-900 dark:text-gray-100">3</span>
+          </div>
+        </div>
+        <div class="z-0 ml-[-40px] h-16 w-80 rounded-full bg-indigo-500 px-2.5 py-2 dark:bg-[#2E2868]">
+          <div class="flex h-full items-center justify-between font-light text-gray-100 dark:text-gray-100">
+            <p class="ml-14 p-4 text-sm">Press Start</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- second col -->
+  <div class="relative z-10 mb-10 w-full max-w-2xl lg:mb-0 lg:ml-10 lg:w-1/2">
+    <form method="POST" action="" enctype="multipart/form-data"
+      class="space-y-8 rounded-3xl p-6 shadow-lg dark:bg-[#221E4B] dark:text-[#7A7280] md:p-10">
+      {{ form.hidden_tag() }}
+
+      <div
+        class="relative z-10 flex flex-col items-start justify-start space-y-8 rounded-xl pb-10 pl-4 pr-4 pt-10 dark:bg-[#221E4B] md:pl-10 md:pr-10">
+        {{ form.username(class = 'mt-2 block w-full rounded-full border border-gray-600 dark:border-gray-100 dark:bg-gray-100 px-4 py-4 text-center text-base placeholder-gray-500 focus:border-white focus:outline-none') }}
+
+        <div class="relative w-full">
+          <grammarly-editor-plugin>
+            <textarea
+              class="placeholder-center placeholder-text-center mt-2 block h-56 w-full resize-none rounded-3xl border border-gray-600 px-4 py-4 text-base placeholder-opacity-50 focus:border-white focus:outline-none dark:border-gray-100 dark:bg-gray-100"
+              id="text_script" placeholder="Script (Optional)" name="text_script" rows="6"></textarea>
+          </grammarly-editor-plugin>
+
+          <div class="absolute bottom-2 right-2">
+            <div class="relative">
+              <label for="file_script" id="file_label"
+                class="file-upload-label inline-block rounded-full bg-indigo-500 px-3 py-2 text-base font-medium capitalize text-white transition duration-200 hover:bg-indigo-600 dark:bg-indigo-700">
+                Upload
+                <input type="file" id="file_script" name="file_script" class="hidden" multiple />
+              </label>
+              <div id="file_info"
+                class="hidden bg-indigo-500 dark:bg-indigo-600 p-2 rounded-md shadow-md absolute bottom-0 right-0">
+                <span id="file_title" class="text-sm font-medium text-gray-100"></span>
+                <button id="cancel_upload"
+                  class="text-sm text-white bg-red-500 px-3 py-2 rounded-md ml-2 hover:bg-red-600 transition duration-200">Remove</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button type="submit"
+          class="mx-auto inline-block w-40 rounded-full border-2 border-gray-100 bg-indigo-500 px-3 py-2 text-base font-medium capitalize text-white transition duration-200 hover:bg-indigo-600 dark:border-gray-100 dark:bg-[#5548E4]">start</button>
+      </div>
+    </form>
+  </div>
+
+</div>
 {% endblock %}

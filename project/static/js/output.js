@@ -1,7 +1,7 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function (process){(function (){
 /**
- * @popperjs/core v2.11.6 - MIT License
+ * @popperjs/core v2.11.7 - MIT License
  */
 
 'use strict';
@@ -48,7 +48,7 @@ var round = Math.round;
 function getUAString() {
   var uaData = navigator.userAgentData;
 
-  if (uaData != null && uaData.brands) {
+  if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
     return uaData.brands.map(function (item) {
       return item.brand + "/" + item.version;
     }).join(' ');
@@ -1179,10 +1179,9 @@ var unsetSides = {
 // Zooming can change the DPR, but it seems to report a value that will
 // cleanly divide the values into the appropriate subpixels.
 
-function roundOffsetsByDPR(_ref) {
+function roundOffsetsByDPR(_ref, win) {
   var x = _ref.x,
       y = _ref.y;
-  var win = window;
   var dpr = win.devicePixelRatio || 1;
   return {
     x: round(x * dpr) / dpr || 0,
@@ -1265,7 +1264,7 @@ function mapToStyles(_ref2) {
   var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
     x: x,
     y: y
-  }) : {
+  }, getWindow(popper)) : {
     x: x,
     y: y
   };
@@ -2004,7 +2003,7 @@ exports.preventOverflow = preventOverflow$1;
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":45}],2:[function(require,module,exports){
+},{"_process":46}],2:[function(require,module,exports){
 /*
  * jQuery File Upload Plugin
  * https://github.com/blueimp/jQuery-File-Upload
@@ -3610,7 +3609,7 @@ exports.preventOverflow = preventOverflow$1;
   });
 });
 
-},{"./vendor/jquery.ui.widget":3,"jquery":41}],3:[function(require,module,exports){
+},{"./vendor/jquery.ui.widget":3,"jquery":42}],3:[function(require,module,exports){
 /*! jQuery UI - v1.12.1+0b7246b6eeadfa9e2696e22f3230f6452f8129dc - 2020-02-20
  * http://jqueryui.com
  * Includes: widget.js
@@ -4417,7 +4416,7 @@ exports.preventOverflow = preventOverflow$1;
   });
 });
 
-},{"jquery":41}],4:[function(require,module,exports){
+},{"jquery":42}],4:[function(require,module,exports){
 const plugin = require('tailwindcss/plugin')
 const merge = require('lodash.merge')
 const castArray = require('lodash.castarray')
@@ -4566,7 +4565,7 @@ module.exports = plugin.withOptions(
   }
 )
 
-},{"./styles":5,"lodash.castarray":42,"lodash.merge":43,"tailwindcss/plugin":51}],5:[function(require,module,exports){
+},{"./styles":5,"lodash.castarray":43,"lodash.merge":44,"tailwindcss/plugin":52}],5:[function(require,module,exports){
 const colors = require('tailwindcss/colors')
 
 const round = (num) =>
@@ -5526,7 +5525,7 @@ module.exports = {
   ...defaultModifiers,
 }
 
-},{"tailwindcss/colors":46}],6:[function(require,module,exports){
+},{"tailwindcss/colors":47}],6:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -6810,6 +6809,36 @@ arguments[4][7][0].apply(exports,arguments)
 arguments[4][8][0].apply(exports,arguments)
 },{"dup":8}],27:[function(require,module,exports){
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initFlowbite = void 0;
+var accordion_1 = require("./accordion");
+var carousel_1 = require("./carousel");
+var collapse_1 = require("./collapse");
+var dial_1 = require("./dial");
+var dismiss_1 = require("./dismiss");
+var drawer_1 = require("./drawer");
+var dropdown_1 = require("./dropdown");
+var modal_1 = require("./modal");
+var popover_1 = require("./popover");
+var tabs_1 = require("./tabs");
+var tooltip_1 = require("./tooltip");
+function initFlowbite() {
+    (0, accordion_1.initAccordions)();
+    (0, collapse_1.initCollapses)();
+    (0, carousel_1.initCarousels)();
+    (0, dismiss_1.initDismisses)();
+    (0, dropdown_1.initDropdowns)();
+    (0, modal_1.initModals)();
+    (0, drawer_1.initDrawers)();
+    (0, tabs_1.initTabs)();
+    (0, tooltip_1.initTooltips)();
+    (0, popover_1.initPopovers)();
+    (0, dial_1.initDials)();
+}
+exports.initFlowbite = initFlowbite;
+
+},{"./accordion":6,"./carousel":9,"./collapse":12,"./dial":15,"./dismiss":18,"./drawer":21,"./dropdown":24,"./modal":28,"./popover":31,"./tabs":34,"./tooltip":37}],28:[function(require,module,exports){
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -7082,11 +7111,11 @@ function initModals() {
 exports.initModals = initModals;
 exports.default = Modal;
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],29:[function(require,module,exports){
+},{"dup":7}],30:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],30:[function(require,module,exports){
+},{"dup":8}],31:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7202,6 +7231,18 @@ var Popover = /** @class */ (function () {
                 };
         }
     };
+    Popover.prototype._setupKeydownListener = function () {
+        var _this = this;
+        this._keydownEventListener = function (ev) {
+            if (ev.key === 'Escape') {
+                _this.hide();
+            }
+        };
+        document.body.addEventListener('keydown', this._keydownEventListener, true);
+    };
+    Popover.prototype._removeKeydownListener = function () {
+        document.body.removeEventListener('keydown', this._keydownEventListener, true);
+    };
     Popover.prototype._setupClickOutsideListener = function () {
         var _this = this;
         this._clickOutsideEventListener = function (ev) {
@@ -7242,6 +7283,8 @@ var Popover = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._setupClickOutsideListener();
+        // handle esc keydown
+        this._setupKeydownListener();
         // Update its position
         this._popperInstance.update();
         // set visibility to true
@@ -7258,6 +7301,8 @@ var Popover = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._removeClickOutsideListener();
+        // handle esc keydown
+        this._removeKeydownListener();
         // set visibility to false
         this._visible = false;
         // callback function
@@ -7292,11 +7337,11 @@ function initPopovers() {
 exports.initPopovers = initPopovers;
 exports.default = Popover;
 
-},{"@popperjs/core":1}],31:[function(require,module,exports){
+},{"@popperjs/core":1}],32:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],32:[function(require,module,exports){
+},{"dup":7}],33:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],33:[function(require,module,exports){
+},{"dup":8}],34:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7411,11 +7456,11 @@ function initTabs() {
 exports.initTabs = initTabs;
 exports.default = Tabs;
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],35:[function(require,module,exports){
+},{"dup":7}],36:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],36:[function(require,module,exports){
+},{"dup":8}],37:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -7516,6 +7561,18 @@ var Tooltip = /** @class */ (function () {
                 };
         }
     };
+    Tooltip.prototype._setupKeydownListener = function () {
+        var _this = this;
+        this._keydownEventListener = function (ev) {
+            if (ev.key === 'Escape') {
+                _this.hide();
+            }
+        };
+        document.body.addEventListener('keydown', this._keydownEventListener, true);
+    };
+    Tooltip.prototype._removeKeydownListener = function () {
+        document.body.removeEventListener('keydown', this._keydownEventListener, true);
+    };
     Tooltip.prototype._setupClickOutsideListener = function () {
         var _this = this;
         this._clickOutsideEventListener = function (ev) {
@@ -7555,6 +7612,8 @@ var Tooltip = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._setupClickOutsideListener();
+        // handle esc keydown
+        this._setupKeydownListener();
         // Update its position
         this._popperInstance.update();
         // set visibility
@@ -7571,6 +7630,8 @@ var Tooltip = /** @class */ (function () {
             ], false) })); });
         // handle click outside
         this._removeClickOutsideListener();
+        // handle esc keydown
+        this._removeKeydownListener();
         // set visibility
         this._visible = false;
         // callback function
@@ -7603,11 +7664,11 @@ function initTooltips() {
 exports.initTooltips = initTooltips;
 exports.default = Tooltip;
 
-},{"@popperjs/core":1}],37:[function(require,module,exports){
+},{"@popperjs/core":1}],38:[function(require,module,exports){
 arguments[4][7][0].apply(exports,arguments)
-},{"dup":7}],38:[function(require,module,exports){
+},{"dup":7}],39:[function(require,module,exports){
 arguments[4][8][0].apply(exports,arguments)
-},{"dup":8}],39:[function(require,module,exports){
+},{"dup":8}],40:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Events = /** @class */ (function () {
@@ -7628,7 +7689,7 @@ var Events = /** @class */ (function () {
 }());
 exports.default = Events;
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -7645,7 +7706,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.initTooltips = exports.initTabs = exports.initPopovers = exports.initModals = exports.initDropdowns = exports.initDrawers = exports.initDismisses = exports.initDials = exports.initCollapses = exports.initCarousels = exports.initAccordions = exports.Tooltip = exports.Tabs = exports.Popover = exports.Modal = exports.Dropdown = exports.Drawer = exports.Dismiss = exports.Dial = exports.Collapse = exports.Carousel = exports.Accordion = void 0;
+exports.initFlowbite = exports.initTooltips = exports.initTabs = exports.initPopovers = exports.initModals = exports.initDropdowns = exports.initDrawers = exports.initDismisses = exports.initDials = exports.initCollapses = exports.initCarousels = exports.initAccordions = exports.Tooltip = exports.Tabs = exports.Popover = exports.Modal = exports.Dropdown = exports.Drawer = exports.Dismiss = exports.Dial = exports.Collapse = exports.Carousel = exports.Accordion = void 0;
 var events_1 = require("./dom/events");
 var accordion_1 = require("./components/accordion");
 var collapse_1 = require("./components/collapse");
@@ -7743,10 +7804,13 @@ var tabs_3 = require("./components/tabs");
 Object.defineProperty(exports, "initTabs", { enumerable: true, get: function () { return tabs_3.initTabs; } });
 var tooltip_3 = require("./components/tooltip");
 Object.defineProperty(exports, "initTooltips", { enumerable: true, get: function () { return tooltip_3.initTooltips; } });
+// export all init functions
+var index_1 = require("./components/index");
+Object.defineProperty(exports, "initFlowbite", { enumerable: true, get: function () { return index_1.initFlowbite; } });
 
-},{"./components/accordion":6,"./components/accordion/interface":7,"./components/accordion/types":8,"./components/carousel":9,"./components/carousel/interface":10,"./components/carousel/types":11,"./components/collapse":12,"./components/collapse/interface":13,"./components/collapse/types":14,"./components/dial":15,"./components/dial/interface":16,"./components/dial/types":17,"./components/dismiss":18,"./components/dismiss/interface":19,"./components/dismiss/types":20,"./components/drawer":21,"./components/drawer/interface":22,"./components/drawer/types":23,"./components/dropdown":24,"./components/dropdown/interface":25,"./components/dropdown/types":26,"./components/modal":27,"./components/modal/interface":28,"./components/modal/types":29,"./components/popover":30,"./components/popover/interface":31,"./components/popover/types":32,"./components/tabs":33,"./components/tabs/interface":34,"./components/tabs/types":35,"./components/tooltip":36,"./components/tooltip/interface":37,"./components/tooltip/types":38,"./dom/events":39}],41:[function(require,module,exports){
+},{"./components/accordion":6,"./components/accordion/interface":7,"./components/accordion/types":8,"./components/carousel":9,"./components/carousel/interface":10,"./components/carousel/types":11,"./components/collapse":12,"./components/collapse/interface":13,"./components/collapse/types":14,"./components/dial":15,"./components/dial/interface":16,"./components/dial/types":17,"./components/dismiss":18,"./components/dismiss/interface":19,"./components/dismiss/types":20,"./components/drawer":21,"./components/drawer/interface":22,"./components/drawer/types":23,"./components/dropdown":24,"./components/dropdown/interface":25,"./components/dropdown/types":26,"./components/index":27,"./components/modal":28,"./components/modal/interface":29,"./components/modal/types":30,"./components/popover":31,"./components/popover/interface":32,"./components/popover/types":33,"./components/tabs":34,"./components/tabs/interface":35,"./components/tabs/types":36,"./components/tooltip":37,"./components/tooltip/interface":38,"./components/tooltip/types":39,"./dom/events":40}],42:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v3.6.3
+ * jQuery JavaScript Library v3.6.4
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -7756,7 +7820,7 @@ Object.defineProperty(exports, "initTooltips", { enumerable: true, get: function
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2022-12-20T21:28Z
+ * Date: 2023-03-08T15:28Z
  */
 ( function( global, factory ) {
 
@@ -7898,7 +7962,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.6.3",
+	version = "3.6.4",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -8269,14 +8333,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.9
+ * Sizzle CSS Selector Engine v2.3.10
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2022-12-19
+ * Date: 2023-02-14
  */
 ( function( window ) {
 var i,
@@ -8380,7 +8444,7 @@ var i,
 		whitespace + "+$", "g" ),
 
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace +
+	rleadingCombinator = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace +
 		"*" ),
 	rdescend = new RegExp( whitespace + "|>" ),
 
@@ -8597,7 +8661,7 @@ function Sizzle( selector, context, results, seed ) {
 				// as such selectors are not recognized by querySelectorAll.
 				// Thanks to Andrew Dupont for this technique.
 				if ( nodeType === 1 &&
-					( rdescend.test( selector ) || rcombinators.test( selector ) ) ) {
+					( rdescend.test( selector ) || rleadingCombinator.test( selector ) ) ) {
 
 					// Expand context for sibling selectors
 					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
@@ -8626,27 +8690,6 @@ function Sizzle( selector, context, results, seed ) {
 				}
 
 				try {
-
-					// `qSA` may not throw for unrecognized parts using forgiving parsing:
-					// https://drafts.csswg.org/selectors/#forgiving-selector
-					// like the `:has()` pseudo-class:
-					// https://drafts.csswg.org/selectors/#relational
-					// `CSS.supports` is still expected to return `false` then:
-					// https://drafts.csswg.org/css-conditional-4/#typedef-supports-selector-fn
-					// https://drafts.csswg.org/css-conditional-4/#dfn-support-selector
-					if ( support.cssSupportsSelector &&
-
-						// eslint-disable-next-line no-undef
-						!CSS.supports( "selector(:is(" + newSelector + "))" ) ) {
-
-						// Support: IE 11+
-						// Throw to get to the same code path as an error directly in qSA.
-						// Note: once we only support browser supporting
-						// `CSS.supports('selector(...)')`, we can most likely drop
-						// the `try-catch`. IE doesn't implement the API.
-						throw new Error();
-					}
-
 					push.apply( results,
 						newContext.querySelectorAll( newSelector )
 					);
@@ -8942,29 +8985,22 @@ setDocument = Sizzle.setDocument = function( node ) {
 			!el.querySelectorAll( ":scope fieldset div" ).length;
 	} );
 
-	// Support: Chrome 105+, Firefox 104+, Safari 15.4+
-	// Make sure forgiving mode is not used in `CSS.supports( "selector(...)" )`.
-	//
-	// `:is()` uses a forgiving selector list as an argument and is widely
-	// implemented, so it's a good one to test against.
-	support.cssSupportsSelector = assert( function() {
-		/* eslint-disable no-undef */
-
-		return CSS.supports( "selector(*)" ) &&
-
-			// Support: Firefox 78-81 only
-			// In old Firefox, `:is()` didn't use forgiving parsing. In that case,
-			// fail this test as there's no selector to test against that.
-			// `CSS.supports` uses unforgiving parsing
-			document.querySelectorAll( ":is(:jqfake)" ) &&
-
-			// `*` is needed as Safari & newer Chrome implemented something in between
-			// for `:has()` - it throws in `qSA` if it only contains an unsupported
-			// argument but multiple ones, one of which is supported, are fine.
-			// We want to play safe in case `:is()` gets the same treatment.
-			!CSS.supports( "selector(:is(*,:jqfake))" );
-
-		/* eslint-enable */
+	// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
+	// Make sure the the `:has()` argument is parsed unforgivingly.
+	// We include `*` in the test to detect buggy implementations that are
+	// _selectively_ forgiving (specifically when the list includes at least
+	// one valid selector).
+	// Note that we treat complete lack of support for `:has()` as if it were
+	// spec-compliant support, which is fine because use of `:has()` in such
+	// environments will fail in the qSA path and fall back to jQuery traversal
+	// anyway.
+	support.cssHas = assert( function() {
+		try {
+			document.querySelector( ":has(*,:jqfake)" );
+			return false;
+		} catch ( e ) {
+			return true;
+		}
 	} );
 
 	/* Attributes
@@ -9233,14 +9269,14 @@ setDocument = Sizzle.setDocument = function( node ) {
 		} );
 	}
 
-	if ( !support.cssSupportsSelector ) {
+	if ( !support.cssHas ) {
 
-		// Support: Chrome 105+, Safari 15.4+
-		// `:has()` uses a forgiving selector list as an argument so our regular
-		// `try-catch` mechanism fails to catch `:has()` with arguments not supported
-		// natively like `:has(:contains("Foo"))`. Where supported & spec-compliant,
-		// we now use `CSS.supports("selector(:is(SELECTOR_TO_BE_TESTED))")`, but
-		// outside that we mark `:has` as buggy.
+		// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
+		// Our regular `try-catch` mechanism fails to detect natively-unsupported
+		// pseudo-classes inside `:has()` (such as `:has(:contains("Foo"))`)
+		// in browsers that parse the `:has()` argument as a forgiving selector list.
+		// https://drafts.csswg.org/selectors/#relational now requires the argument
+		// to be parsed unforgivingly, but browsers have not yet fully adjusted.
 		rbuggyQSA.push( ":has" );
 	}
 
@@ -10153,7 +10189,7 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 		matched = false;
 
 		// Combinators
-		if ( ( match = rcombinators.exec( soFar ) ) ) {
+		if ( ( match = rleadingCombinator.exec( soFar ) ) ) {
 			matched = match.shift();
 			tokens.push( {
 				value: matched,
@@ -18739,7 +18775,7 @@ if ( typeof noGlobal === "undefined" ) {
 return jQuery;
 } );
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
  * lodash 4.4.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -18816,7 +18852,7 @@ var isArray = Array.isArray;
 
 module.exports = castArray;
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (global){(function (){
 /**
  * Lodash (Custom Build) <https://lodash.com/>
@@ -20797,13 +20833,13 @@ function stubFalse() {
 module.exports = merge;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 var x=String;
 var create=function() {return {isColorSupported:false,reset:x,bold:x,dim:x,italic:x,underline:x,inverse:x,hidden:x,strikethrough:x,black:x,red:x,green:x,yellow:x,blue:x,magenta:x,cyan:x,white:x,gray:x,bgBlack:x,bgRed:x,bgGreen:x,bgYellow:x,bgBlue:x,bgMagenta:x,bgCyan:x,bgWhite:x}};
 module.exports=create();
 module.exports.createColors = create;
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -20989,11 +21025,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 let colors = require('./lib/public/colors')
 module.exports = (colors.__esModule ? colors : { default: colors }).default
 
-},{"./lib/public/colors":47}],47:[function(require,module,exports){
+},{"./lib/public/colors":48}],48:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21030,7 +21066,8 @@ const _default = {
         600: "#475569",
         700: "#334155",
         800: "#1e293b",
-        900: "#0f172a"
+        900: "#0f172a",
+        950: "#020617"
     },
     gray: {
         50: "#f9fafb",
@@ -21042,7 +21079,8 @@ const _default = {
         600: "#4b5563",
         700: "#374151",
         800: "#1f2937",
-        900: "#111827"
+        900: "#111827",
+        950: "#030712"
     },
     zinc: {
         50: "#fafafa",
@@ -21054,7 +21092,8 @@ const _default = {
         600: "#52525b",
         700: "#3f3f46",
         800: "#27272a",
-        900: "#18181b"
+        900: "#18181b",
+        950: "#09090b"
     },
     neutral: {
         50: "#fafafa",
@@ -21066,7 +21105,8 @@ const _default = {
         600: "#525252",
         700: "#404040",
         800: "#262626",
-        900: "#171717"
+        900: "#171717",
+        950: "#0a0a0a"
     },
     stone: {
         50: "#fafaf9",
@@ -21078,7 +21118,8 @@ const _default = {
         600: "#57534e",
         700: "#44403c",
         800: "#292524",
-        900: "#1c1917"
+        900: "#1c1917",
+        950: "#0c0a09"
     },
     red: {
         50: "#fef2f2",
@@ -21090,7 +21131,8 @@ const _default = {
         600: "#dc2626",
         700: "#b91c1c",
         800: "#991b1b",
-        900: "#7f1d1d"
+        900: "#7f1d1d",
+        950: "#450a0a"
     },
     orange: {
         50: "#fff7ed",
@@ -21102,7 +21144,8 @@ const _default = {
         600: "#ea580c",
         700: "#c2410c",
         800: "#9a3412",
-        900: "#7c2d12"
+        900: "#7c2d12",
+        950: "#431407"
     },
     amber: {
         50: "#fffbeb",
@@ -21114,7 +21157,8 @@ const _default = {
         600: "#d97706",
         700: "#b45309",
         800: "#92400e",
-        900: "#78350f"
+        900: "#78350f",
+        950: "#451a03"
     },
     yellow: {
         50: "#fefce8",
@@ -21126,7 +21170,8 @@ const _default = {
         600: "#ca8a04",
         700: "#a16207",
         800: "#854d0e",
-        900: "#713f12"
+        900: "#713f12",
+        950: "#422006"
     },
     lime: {
         50: "#f7fee7",
@@ -21138,7 +21183,8 @@ const _default = {
         600: "#65a30d",
         700: "#4d7c0f",
         800: "#3f6212",
-        900: "#365314"
+        900: "#365314",
+        950: "#1a2e05"
     },
     green: {
         50: "#f0fdf4",
@@ -21150,7 +21196,8 @@ const _default = {
         600: "#16a34a",
         700: "#15803d",
         800: "#166534",
-        900: "#14532d"
+        900: "#14532d",
+        950: "#052e16"
     },
     emerald: {
         50: "#ecfdf5",
@@ -21162,7 +21209,8 @@ const _default = {
         600: "#059669",
         700: "#047857",
         800: "#065f46",
-        900: "#064e3b"
+        900: "#064e3b",
+        950: "#022c22"
     },
     teal: {
         50: "#f0fdfa",
@@ -21174,7 +21222,8 @@ const _default = {
         600: "#0d9488",
         700: "#0f766e",
         800: "#115e59",
-        900: "#134e4a"
+        900: "#134e4a",
+        950: "#042f2e"
     },
     cyan: {
         50: "#ecfeff",
@@ -21186,7 +21235,8 @@ const _default = {
         600: "#0891b2",
         700: "#0e7490",
         800: "#155e75",
-        900: "#164e63"
+        900: "#164e63",
+        950: "#083344"
     },
     sky: {
         50: "#f0f9ff",
@@ -21198,7 +21248,8 @@ const _default = {
         600: "#0284c7",
         700: "#0369a1",
         800: "#075985",
-        900: "#0c4a6e"
+        900: "#0c4a6e",
+        950: "#082f49"
     },
     blue: {
         50: "#eff6ff",
@@ -21210,7 +21261,8 @@ const _default = {
         600: "#2563eb",
         700: "#1d4ed8",
         800: "#1e40af",
-        900: "#1e3a8a"
+        900: "#1e3a8a",
+        950: "#172554"
     },
     indigo: {
         50: "#eef2ff",
@@ -21222,7 +21274,8 @@ const _default = {
         600: "#4f46e5",
         700: "#4338ca",
         800: "#3730a3",
-        900: "#312e81"
+        900: "#312e81",
+        950: "#1e1b4b"
     },
     violet: {
         50: "#f5f3ff",
@@ -21234,7 +21287,8 @@ const _default = {
         600: "#7c3aed",
         700: "#6d28d9",
         800: "#5b21b6",
-        900: "#4c1d95"
+        900: "#4c1d95",
+        950: "#2e1065"
     },
     purple: {
         50: "#faf5ff",
@@ -21246,7 +21300,8 @@ const _default = {
         600: "#9333ea",
         700: "#7e22ce",
         800: "#6b21a8",
-        900: "#581c87"
+        900: "#581c87",
+        950: "#3b0764"
     },
     fuchsia: {
         50: "#fdf4ff",
@@ -21258,7 +21313,8 @@ const _default = {
         600: "#c026d3",
         700: "#a21caf",
         800: "#86198f",
-        900: "#701a75"
+        900: "#701a75",
+        950: "#4a044e"
     },
     pink: {
         50: "#fdf2f8",
@@ -21270,7 +21326,8 @@ const _default = {
         600: "#db2777",
         700: "#be185d",
         800: "#9d174d",
-        900: "#831843"
+        900: "#831843",
+        950: "#500724"
     },
     rose: {
         50: "#fff1f2",
@@ -21282,7 +21339,8 @@ const _default = {
         600: "#e11d48",
         700: "#be123c",
         800: "#9f1239",
-        900: "#881337"
+        900: "#881337",
+        950: "#4c0519"
     },
     get lightBlue () {
         warn({
@@ -21326,7 +21384,7 @@ const _default = {
     }
 };
 
-},{"../util/log":50}],48:[function(require,module,exports){
+},{"../util/log":51}],49:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21343,7 +21401,7 @@ function _interopRequireDefault(obj) {
 }
 const _default = _createPlugin.default;
 
-},{"../util/createPlugin":49}],49:[function(require,module,exports){
+},{"../util/createPlugin":50}],50:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -21375,7 +21433,7 @@ createPlugin.withOptions = function(pluginFunction, configFunction = ()=>({})) {
 };
 const _default = createPlugin;
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 (function (process){(function (){
 "use strict";
 Object.defineProperty(exports, "__esModule", {
@@ -21436,11 +21494,11 @@ const _default = {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":45,"picocolors":44}],51:[function(require,module,exports){
+},{"_process":46,"picocolors":45}],52:[function(require,module,exports){
 let createPlugin = require('./lib/public/create-plugin')
 module.exports = (createPlugin.__esModule ? createPlugin : { default: createPlugin }).default
 
-},{"./lib/public/create-plugin":48}],52:[function(require,module,exports){
+},{"./lib/public/create-plugin":49}],53:[function(require,module,exports){
 // On page load or when changing themes, best to add inline in `head` to avoid FOUC
 if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
   document.documentElement.classList.add('dark');
@@ -21488,7 +21546,7 @@ themeToggleBtn.addEventListener('click', function () {
   }
 
 });
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 const menuOpenButton = document.querySelector('.menu-open-button');
 const menu = document.querySelector('.menu');
 const menuOpenCheckbox = document.querySelector('.menu-open');
@@ -21507,7 +21565,7 @@ menuOpenButton.addEventListener('click', (event) => {
     // stop the event from bubbling up to the document
     event.stopPropagation();
 });
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 if (window.location.pathname === "/welcome") {
   !(function () {
     const t = document,
@@ -21663,88 +21721,70 @@ if (window.location.pathname === "/welcome") {
   })();
 }
 
-},{}],55:[function(require,module,exports){
-/* 
-wrap JavaScript code inside a DOMContentLoaded event listener,
-which ensures that the code is executed only after the HTML document
-has been completely loaded and parsed.
-*/
-
+},{}],56:[function(require,module,exports){
 const initializeFileUploader = () => {
-    const fileInput = document.getElementById('file_script');
-    const fileLabel = document.getElementById('file_label');
-    const fileTitle = document.getElementById('file_title');
-    const cancelUpload = document.getElementById('cancel_upload');
-    const isTouchDevice = () => {
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    };
-    const handleFileChange = (fileName) => {
-        fileTitle.textContent = fileName;
-        fileTitle.classList.remove('hidden');
-        cancelUpload.classList.remove('hidden');
-    };
-    const resetFileInput = () => {
-        fileInput.value = '';
-        fileTitle.classList.add('hidden');
-        cancelUpload.classList.add('hidden');
-    };
-    const handleFileDrop = (e) => {
-        e.preventDefault();
-        fileInput.files = e.dataTransfer.files;
-        handleFileChange(fileInput.files[0].name);
-    };
-    fileInput.addEventListener('change', (e) => {
-        handleFileChange(e.target.files[0].name);
-    });
-    cancelUpload.addEventListener('click', () => {
-        resetFileInput();
-    });
-    if (!isTouchDevice()) {
-        fileLabel.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileLabel.classList.add('border-blue-500');
-        });
-        fileLabel.addEventListener('dragleave', () => {
-            fileLabel.classList.remove('border-blue-500');
-        });
-        fileLabel.addEventListener('drop', handleFileDrop);
+  const fileInput = document.getElementById("file_script");
+  const fileLabel = document.getElementById("file_label");
+  const fileInfo = document.getElementById("file_info");
+  const fileTitle = document.getElementById("file_title");
+  const cancelUpload = document.getElementById("cancel_upload");
+  const textArea = document.getElementById("text_script"); // Assuming there's a textarea element with id "text_area"
+
+  const handleFileChange = (fileName) => {
+    fileTitle.textContent = fileName;
+    fileInfo.classList.remove("hidden");
+    textArea.value = ""; // Clear the textarea when a file is uploaded
+  };
+
+  const resetFileInput = () => {
+    fileInput.value = "";
+    fileInfo.classList.add("hidden");
+  };
+
+  const handleFileDrop = (e) => {
+    e.preventDefault();
+    fileInput.files = e.dataTransfer.files;
+    handleFileChange(fileInput.files[0].name);
+  };
+
+  const handleTextAreaChange = () => {
+    if (fileInput.files.length > 0) {
+      resetFileInput();
     }
+  };
+
+  fileInput.addEventListener("change", (e) => {
+    e.preventDefault();
+    handleFileChange(e.target.files[0].name);
+  });
+
+  cancelUpload.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetFileInput();
+  });
+
+  fileLabel.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    fileLabel.classList.add("border-blue-500");
+  });
+
+  fileLabel.addEventListener("dragleave", () => {
+    fileLabel.classList.remove("border-blue-500");
+  });
+
+  fileLabel.addEventListener("drop", (e) => {
+    e.preventDefault();
+    handleFileDrop(e);
+  });
+
+  textArea.addEventListener("input", handleTextAreaChange);
 };
 
-const hideSubmitHomeBtn = () => {
-    const submitButton = document.getElementById('home_submit_btn');
-    submitButton.addEventListener('click', () => {
-        setTimeout(() => {
-            submitButton.disabled = true;
-        }, 10);
-    });
-};
-
-const checkUsernameInput = () => {
-    const usernameInput = document.querySelector('#username-input');
-    const usernameCounter = document.querySelector('#username-counter');
-    const minChars = 3;
-    const maxChars = 10;
-    const updateUsernameCounter = () => {
-        const characterCount = usernameInput.value.length;
-        if (characterCount >= minChars && characterCount !== maxChars) {
-            usernameCounter.textContent = `${characterCount}/${maxChars} characters`;
-        } else if (characterCount === maxChars) {
-            usernameCounter.textContent = `Maximum ${maxChars} characters reached`;
-        } else {
-            usernameCounter.textContent = '';
-        }
-    };
-    usernameInput.addEventListener('input', updateUsernameCounter);
-};
-
-if (window.location.pathname === '/home') {
-    initializeFileUploader();
-    hideSubmitHomeBtn();
-    checkUsernameInput();
+if (window.location.pathname === "/home") {
+  initializeFileUploader();
 }
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /*
 NOTE:
 run this command on project's folder: browserify static/js/index.js -o static/js/bundle.js
@@ -21764,7 +21804,7 @@ require("./home_controller.js");
 require("./fab_controller.js");
 require("./recording.js");
 
-},{"./dark_mode.js":52,"./fab_controller.js":53,"./gstarter.js":54,"./home_controller.js":55,"./recording.js":57,"./toast.js":58,"blueimp-file-upload/js/jquery.fileupload":2,"flowbite":40,"flowbite-typography":4}],57:[function(require,module,exports){
+},{"./dark_mode.js":53,"./fab_controller.js":54,"./gstarter.js":55,"./home_controller.js":56,"./recording.js":58,"./toast.js":59,"blueimp-file-upload/js/jquery.fileupload":2,"flowbite":41,"flowbite-typography":4}],58:[function(require,module,exports){
 /*
  * This is a JavaScript class that defines a simple audio recorder. The recorder
  * allows users to record audio from their device's microphone and upload it to
@@ -21947,7 +21987,7 @@ if (window.location.pathname === "/main") {
   const recorder = new Recorder();
 }
 
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 window.addEventListener("DOMContentLoaded", () => {
     const alertElements = document.querySelectorAll("#alert > div");
 
@@ -21965,4 +22005,4 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-},{}]},{},[56]);
+},{}]},{},[57]);
