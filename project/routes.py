@@ -329,13 +329,28 @@ class Routes:
                 ]
             }
 
+            # chart data
             chart_data_json = json.dumps(chart_data)
+
+            # average and comment
+            average = round(
+                (score.rate + score.fluency + score.grammar) / 3, 1)
+            if average >= 75:
+                comment_on_average = "Excellent"
+            elif average >= 50:
+                comment_on_average = "Satisfactory"
+            elif average > 25:
+                comment_on_average = "Needs improvement"
+            else:
+                comment_on_average = "Poor"
+
             data = {
                 'rate': score.rate,
                 'fluency': score.fluency,
                 'grammar': score.grammar,
                 'fluency': score.fluency,
-                'average': round((score.rate + score.fluency + score.grammar) / 3, 1),
+                'average': average,
+                'comment_on_average': comment_on_average,
                 'transcribed': audio.transcribed,
                 'ctranscribed': audio.ctranscribed,
                 'emo_label_1': emotion_labels[0],

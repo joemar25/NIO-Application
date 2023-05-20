@@ -20,7 +20,7 @@ class Feedback:
         self.rate = rate
         self.grammar = grammar
         self.fluency = fluency
-    
+
     def rate_comment(self):
         """
         Generates feedback on the speaker's speaking rate.
@@ -36,7 +36,7 @@ class Feedback:
 
         if self.rate >= 80:
             return "your speaking rate is ideal. Well done! You have a good balance of speaking at a comfortable pace while still answering questions effectively."
-        
+
     def grammar_comment(self):
         """
         Generates feedback on the speaker's grammar.
@@ -64,7 +64,7 @@ class Feedback:
             return "your speech is mostly fluent, but there are some areas for improvement."
         else:
             return "your speech needs significant improvement in terms of fluency. Please practice speaking more and work on reducing the number of fillers."
-    
+
     def feedback(self):
         """
         Generates overall feedback on the speaker's performance.
@@ -81,27 +81,27 @@ class Feedback:
         feedback_message += "Regarding fluency, {} ".format(fluency_comment)
 
         return feedback_message
-    
+
     @property
     def rate(self):
         return self._rate
-    
+
     @rate.setter
     def rate(self, value):
         self._rate = value
-    
+
     @property
     def grammar(self):
         return self._grammar
-    
+
     @grammar.setter
     def grammar(self, value):
         self._grammar = value
-    
+
     @property
     def fluency(self):
         return self._fluency
-    
+
     @fluency.setter
     def fluency(self, value):
         self._fluency = value
