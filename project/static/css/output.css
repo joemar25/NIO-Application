@@ -1786,9 +1786,6 @@ div::-webkit-scrollbar-thumb {
 .m-4 {
   margin: 1rem;
 }
-.m-28 {
-  margin: 7rem;
-}
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -1891,8 +1888,8 @@ div::-webkit-scrollbar-thumb {
 .mt-8 {
   margin-top: 2rem;
 }
-.mb-28 {
-  margin-bottom: 7rem;
+.ml-4 {
+  margin-left: 1rem;
 }
 .block {
   display: block;
@@ -1939,9 +1936,6 @@ div::-webkit-scrollbar-thumb {
 .h-20 {
   height: 5rem;
 }
-.h-28 {
-  height: 7rem;
-}
 .h-4 {
   height: 1rem;
 }
@@ -1959,6 +1953,9 @@ div::-webkit-scrollbar-thumb {
 }
 .h-8 {
   height: 2rem;
+}
+.h-96 {
+  height: 24rem;
 }
 .h-\[calc\(100\%-1rem\)\] {
   height: calc(100% - 1rem);
@@ -2092,8 +2089,14 @@ div::-webkit-scrollbar-thumb {
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;
@@ -2125,6 +2128,9 @@ div::-webkit-scrollbar-thumb {
 .gap-10 {
   gap: 2.5rem;
 }
+.gap-4 {
+  gap: 1rem;
+}
 .gap-8 {
   gap: 2rem;
 }
@@ -2142,6 +2148,9 @@ div::-webkit-scrollbar-thumb {
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.self-center {
+  align-self: center;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -2185,6 +2194,10 @@ div::-webkit-scrollbar-thumb {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
+.rounded-t-lg {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
 .border {
   border-width: 1px;
 }
@@ -2227,6 +2240,10 @@ div::-webkit-scrollbar-thumb {
 .border-gray-600 {
   --tw-border-opacity: 1;
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+.border-gray-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(17 24 39 / var(--tw-border-opacity));
 }
 .bg-blue-100 {
   --tw-bg-opacity: 1;
@@ -2302,8 +2319,15 @@ div::-webkit-scrollbar-thumb {
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
 }
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-1 {
   padding: 0.25rem;
@@ -2320,6 +2344,9 @@ div::-webkit-scrollbar-thumb {
 .p-2\.5 {
   padding: 0.625rem;
 }
+.p-20 {
+  padding: 5rem;
+}
 .p-4 {
   padding: 1rem;
 }
@@ -2328,9 +2355,6 @@ div::-webkit-scrollbar-thumb {
 }
 .p-6 {
   padding: 1.5rem;
-}
-.p-28 {
-  padding: 7rem;
 }
 .px-2 {
   padding-left: 0.5rem;
@@ -2440,6 +2464,12 @@ div::-webkit-scrollbar-thumb {
 .text-\[18px\] {
   font-size: 18px;
 }
+.text-\[20px\] {
+  font-size: 20px;
+}
+.text-\[8px\] {
+  font-size: 8px;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2489,11 +2519,11 @@ div::-webkit-scrollbar-thumb {
 .leading-9 {
   line-height: 2.25rem;
 }
+.leading-loose {
+  line-height: 2;
+}
 .leading-normal {
   line-height: 1.5;
-}
-.leading-relaxed {
-  line-height: 1.625;
 }
 .leading-tight {
   line-height: 1.25;
@@ -2594,6 +2624,11 @@ div::-webkit-scrollbar-thumb {
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .outline {
@@ -3270,6 +3305,10 @@ div::-webkit-scrollbar-thumb {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.dark .dark\:text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
 .dark .dark\:hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
@@ -3354,6 +3393,10 @@ div::-webkit-scrollbar-thumb {
     width: 75%;
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:p-10 {
     padding: 2.5rem;
   }
@@ -3405,8 +3448,8 @@ div::-webkit-scrollbar-thumb {
     width: 41.666667%;
   }
 
-  .lg\:w-full {
-    width: 100%;
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:flex-row {
@@ -3426,5 +3469,9 @@ div::-webkit-scrollbar-thumb {
 
   .xl\:h-80 {
     height: 20rem;
+  }
+
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }

@@ -84,12 +84,33 @@ class Routes:
         login_user(user)
         return redirect(url_for("main"))
 
+    def zip_lists(a, b):
+        return zip(a, b)
+
+    app.jinja_env.filters['zip_lists'] = zip_lists
+
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
         # print\("-------------> page=main")
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
+        audio = Audio.query.filter(Audio.score_id.in_(
+            [score.id for score in scores])).all()
+
+        emotion_data = []
+        attempt_count = 0
+        for entry in audio:
+            emo_labels = entry.emotion_labels.split(",")
+            emo_scores = entry.emotion_scores.split(",")
+            # Get the attempt count by getting the length of emo_labels
+            attempt_count += 1
+            emotion_dict = {
+                'attempts': attempt_count,
+                'labels': emo_labels,
+                'scores': emo_scores
+            }
+            emotion_data.append(emotion_dict)
 
         count = 0
         attempts_str = [0]
@@ -137,7 +158,7 @@ class Routes:
         }
 
         chart_data_json = json.dumps(chart_data)
-        return render_template("main.html", form=form, chart_data=chart_data_json)
+        return render_template("main.html", form=form, chart_data=chart_data_json, emotion_data=emotion_data)
 
     @app.route('/upload', methods=['POST'])
     def upload():
@@ -327,7 +348,23 @@ class Routes:
                 'chart_data': chart_data_json
             }
 
-            return render_template("feedback.html", **data)
+            # audio query to get all the emotion_data
+            audio = Audio.query.filter(Audio.score_id.in_(
+                [score.id for score in scores])).all()
+            emotion_data = []
+            attempt_count = 0
+            for entry in audio:
+                emo_labels = entry.emotion_labels.split(",")
+                emo_scores = entry.emotion_scores.split(",")
+                attempt_count += 1
+                emotion_dict = {
+                    'attempts': attempt_count,
+                    'labels': emo_labels,
+                    'scores': emo_scores
+                }
+                emotion_data.append(emotion_dict)
+
+            return render_template("feedback.html", **data, emotion_data=emotion_data)
         except Exception as e:
             # flash(f"Error getting feedback: {e}", category='danger')
             flash(f"Audio must be clear and must be at least 5 seconds.",

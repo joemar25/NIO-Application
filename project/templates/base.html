@@ -207,7 +207,30 @@
 
           <!-- line graph -->
           <div class="w-full p-4">
-            <canvas id="line-chart" class="w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80 dark:text-white"></canvas>
+            <canvas id="line-chart" class="w-full h-64 sm:h-48 md:h-56 lg:h-64 xl:h-80 dark:text-white">
+            </canvas>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+              {% for emotion_dict in emotion_data %}
+              <div class="bg-gray-200 dark:bg-gray-800 p-4 rounded-lg">
+                <p class="text-gray-900 dark:text-gray-200 font-semibold">Attempt Count: {{ emotion_dict.attempts }}</p>
+                {% for label, score in emotion_dict.labels|zip_lists(emotion_dict.scores) %}
+                {% if label %}
+                <div class="flex justify-between items-center mt-2 text-gray-700 dark:text-gray-400">
+                  <span class="capitalize">{{ label }}</span>
+                  <span class="ml-4">{{ score }}</span>
+                </div>
+                {% else %}
+                <div class="flex justify-between items-center mt-2 text-gray-700 dark:text-gray-400">
+                  <span>-</span>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endfor %}
+            </div>
+
+
           </div>
 
         </div>
