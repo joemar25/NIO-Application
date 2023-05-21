@@ -3,7 +3,6 @@ import io
 import urllib
 import tempfile
 import json
-import re
 
 from functools import lru_cache
 from werkzeug.utils import secure_filename
@@ -24,6 +23,7 @@ from project.scripts.fluency import fluency_detector
 from project.scripts.feedback import feedback
 
 ALLOWED_EXTENSIONS = {'txt'}
+ENCODINGS = ['utf-8', 'latin-1']
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -45,34 +45,24 @@ def inject_current_page():
     return dict(current_page=request.path)
 
 
-def read_file(file):
-    CHUNK_SIZE = 4096
-    text_chunks = []
-    while True:
-        chunk = file.read(CHUNK_SIZE)
-        if not chunk:
-            break
-        text_chunks.append(chunk)
-    text = b''.join(text_chunks).decode('utf-8')
-    if not is_safe_text(text):
-        return ""
-    return text
-
-
 def is_safe_text(text):
-    # Use regular expressions to check for potential malicious patterns
-    patterns = [
-        r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>',
-        r'<(?!\/?[\w\s"\':=\/\-])(?:[^>"\']|"(?:[^"]|\\")*"|\'(?:[^\']|\\\')*\')*>'
-    ]
-    for pattern in patterns:
-        if re.search(pattern, text, re.IGNORECASE):
-            return False
+    if '<' in text or '>' in text:
+        return False
     return True
 
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def decode_file(file):
+    for encoding in ENCODINGS:
+        try:
+            text = file.read().decode(encoding)
+            return text
+        except UnicodeDecodeError:
+            continue
+    return None
 
 
 class Routes:
@@ -98,15 +88,18 @@ class Routes:
         text = entry_form.text_script.data
         file = request.files.get('file_script')
 
-        if not bool(text) and file and allowed_file(file.filename):
-            text = read_file(file)
-        else:
-            flash(f'Please select a valid .txt file.', category='danger')
-            return render_template("home.html", form=entry_form)
-
         if not Validation.is_valid_username(username):
             flash(f'Username must be at least 3 characters long.', category='danger')
             return render_template("home.html", form=entry_form)
+
+        if not bool(text) and file:
+            if file.filename == '' or not allowed_file(file.filename):
+                flash(f'Please select a valid .txt file.', category='danger')
+                return render_template("home.html", form=entry_form)
+            text = decode_file(file)
+            if text is None:
+                flash(f'Unable to decode file content.', category='danger')
+                return render_template("home.html", form=entry_form)
 
         if not is_safe_text(text):
             flash(f'Invalid input detected.', category='danger')
@@ -123,6 +116,11 @@ class Routes:
         except IntegrityError:
             flash(f'Username already exists.', category='danger')
             return render_template("home.html", form=entry_form)
+
+    def zip_lists(a, b):
+        return zip(a, b)
+
+    app.jinja_env.filters['zip_lists'] = zip_lists
 
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
