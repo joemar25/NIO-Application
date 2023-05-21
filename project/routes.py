@@ -1,7 +1,3 @@
-# unused; platform for determining the current os of the PC, and mode is for development/deployment
-# import platform
-# from project import mode
-
 import os
 import io
 import urllib
@@ -49,17 +45,14 @@ class Routes:
     @app.route("/")
     @app.route("/index")
     def index():
-        # print\("-------------> page=index")
         return redirect(url_for("getstarted"))
 
     @app.route("/welcome")
     def getstarted():
-        # print\("-------------> page=get started")
         return render_template("getstarted.html")
 
     @app.route("/home", methods=['GET', 'POST'])
     def login():
-        # print\("-------------> page=login")
         logout_user()
         entry_form = EntryForm()
 
@@ -92,20 +85,29 @@ class Routes:
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
     def main():
-        # print\("-------------> page=main")
         form = RecordForm()
         scores = Score.query.filter_by(user_id=current_user.id).all()
-        audio = Audio.query.filter(Audio.score_id.in_(
-            [score.id for score in scores])).all()
+
+        # Perform a join operation to retrieve all audio entries and their associated scores
+        audio_scores = db.session.query(Audio, Score).join(Score, Audio.score_id == Score.id).\
+            filter(Audio.score_id.in_(
+                [score.id for score in scores])).all()
 
         emotion_data = []
         attempt_count = 0
-        for entry in audio:
-            emo_labels = entry.emotion_labels.split(",")
-            emo_scores = entry.emotion_scores.split(",")
-            # Get the attempt count by getting the length of emo_labels
+
+        for audio, score in audio_scores:
+            # Calculate the overall score using the grammar, fluency, and rate attributes of the score
+            overall_score = (
+                score.grammar + score.fluency + score.rate) / 3
+
+            # Split the emotion labels and scores from the current audio entry
+            emo_labels = audio.emotion_labels.split(",")
+            emo_scores = audio.emotion_scores.split(",")
+
             attempt_count += 1
             emotion_dict = {
+                'overall_score': round(overall_score, 1),
                 'attempts': attempt_count,
                 'labels': emo_labels,
                 'scores': emo_scores
@@ -162,7 +164,6 @@ class Routes:
 
     @app.route('/upload', methods=['POST'])
     def upload():
-        # print\("-------------> page=upload")
         # file config
         file_name = request.files['audio'].filename
 
@@ -195,7 +196,6 @@ class Routes:
 
     @app.route('/process_audio', methods=['GET'])
     def process_audio():
-        # print\("-------------> page=processing")
         try:
             current_score = Score.query.filter_by(
                 user_id=current_user.id).order_by(Score.id.desc()).first()
@@ -258,13 +258,11 @@ class Routes:
 
     @app.route('/process_audio_fail', methods=['GET'])
     def process_audio_fail():
-        # print\("-------------> page=audio fail")
         flash("Error sending audio recording to server", category='danger')
         return redirect(url_for("main"))
 
     @app.route("/feedback", methods=['GET'])
     def feedback():
-        # print\("-------------> page=feedback")
         try:
             score = Score.query.filter_by(
                 user_id=current_user.id).order_by(Score.id.desc()).first()
@@ -363,16 +361,26 @@ class Routes:
                 'chart_data': chart_data_json
             }
 
-            # audio query to get all the emotion_data
-            audio = Audio.query.filter(Audio.score_id.in_(
-                [score.id for score in scores])).all()
+            # Perform a join operation to retrieve all audio entries and their associated scores
+            audio_scores = db.session.query(Audio, Score).join(Score, Audio.score_id == Score.id).\
+                filter(Audio.score_id.in_(
+                    [score.id for score in scores])).all()
+
             emotion_data = []
             attempt_count = 0
-            for entry in audio:
-                emo_labels = entry.emotion_labels.split(",")
-                emo_scores = entry.emotion_scores.split(",")
+
+            for audio, score in audio_scores:
+                # Calculate the overall score using the grammar, fluency, and rate attributes of the score
+                overall_score = (
+                    score.grammar + score.fluency + score.rate) / 3
+
+                # Split the emotion labels and scores from the current audio entry
+                emo_labels = audio.emotion_labels.split(",")
+                emo_scores = audio.emotion_scores.split(",")
+
                 attempt_count += 1
                 emotion_dict = {
+                    'overall_score': round(overall_score, 1),
                     'attempts': attempt_count,
                     'labels': emo_labels,
                     'scores': emo_scores
@@ -388,26 +396,21 @@ class Routes:
 
     @app.route("/about")
     def about():
-        # print\("-------------> page=about")
         return render_template('about.html')
 
     @app.route("/help")
     def help():
-        # print\("-------------> page=help")
         return render_template("help.html")
 
     @app.route("/test")
     def test():
-        # print\("-------------> page=test")
         return render_template("temp.html")
 
     @app.route("/destroy", methods=['POST'])
     def destroy():
-        # print\("-------------> page=destroy")
         logout_user()
         return redirect(url_for("index"))
 
     @app.errorhandler(404)
     def page_not_found(e):
-        # print\("-------------> page=error page")
         return render_template('404.html'), 404

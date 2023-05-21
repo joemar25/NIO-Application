@@ -1767,15 +1767,6 @@ div::-webkit-scrollbar-thumb {
 .top-3 {
   top: 0.75rem;
 }
-.bottom-4 {
-  bottom: 1rem;
-}
-.right-4 {
-  right: 1rem;
-}
-.-right-4 {
-  right: -1rem;
-}
 .z-0 {
   z-index: 0;
 }
@@ -1994,9 +1985,6 @@ div::-webkit-scrollbar-thumb {
 }
 .h-modal {
   height: calc(100% - 2rem);
-}
-.h-screen {
-  height: 100vh;
 }
 .max-h-full {
   max-height: 100%;
@@ -2397,6 +2385,10 @@ div::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(253 242 242 / var(--tw-bg-opacity));
 }
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
+}
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(224 36 36 / var(--tw-bg-opacity));
@@ -2413,14 +2405,6 @@ div::-webkit-scrollbar-thumb {
 }
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
-}
-.bg-indigo-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(205 219 254 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -2562,6 +2546,9 @@ div::-webkit-scrollbar-thumb {
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .text-justify {
   text-align: justify;
 }
@@ -2702,14 +2689,6 @@ div::-webkit-scrollbar-thumb {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(224 36 36 / var(--tw-text-opacity));
-}
-.text-indigo-900 {
-  --tw-text-opacity: 1;
-  color: rgb(54 47 120 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
@@ -3274,6 +3253,10 @@ div::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(251 213 213 / var(--tw-bg-opacity));
 }
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
+}
 .hover\:bg-red-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(155 28 28 / var(--tw-bg-opacity));
@@ -3281,10 +3264,6 @@ div::-webkit-scrollbar-thumb {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.hover\:bg-red-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
 }
 .hover\:text-blue-600:hover {
   --tw-text-opacity: 1;
@@ -3450,25 +3429,17 @@ div::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
   background-color: rgb(3 84 63 / var(--tw-bg-opacity));
 }
-:is(.dark .dark\:bg-white) {
+:is(.dark .dark\:bg-indigo-600) {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-:is(.dark .dark\:bg-\[\#FF5252\]) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 82 82 / var(--tw-bg-opacity));
+  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
 }
 :is(.dark .dark\:bg-indigo-700) {
   --tw-bg-opacity: 1;
   background-color: rgb(81 69 205 / var(--tw-bg-opacity));
 }
-:is(.dark .dark\:bg-blue-700) {
+:is(.dark .dark\:bg-white) {
   --tw-bg-opacity: 1;
-  background-color: rgb(26 86 219 / var(--tw-bg-opacity));
-}
-:is(.dark .dark\:bg-indigo-600) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(88 80 236 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 :is(.dark .dark\:bg-opacity-80) {
   --tw-bg-opacity: 0.8;

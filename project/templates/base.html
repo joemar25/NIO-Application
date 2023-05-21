@@ -213,22 +213,28 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
               {% for emotion_dict in emotion_data %}
               <div class="bg-gray-200 dark:bg-gray-800 p-4 rounded-lg">
-                <p class="text-gray-900 dark:text-gray-200 font-semibold">Attempt Count: {{ emotion_dict.attempts }}</p>
-                {% for label, score in emotion_dict.labels|zip_lists(emotion_dict.scores) %}
-                {% if label %}
+                <p class="text-gray-900 dark:text-gray-200 font-semibold flex justify-between">
+                  <span class="text-left">Attempt Count: {{ emotion_dict.attempts }}</span>
+                  {% if emotion_dict.overall_score is defined %}
+                  <span class="text-right">Overall Score: {{ emotion_dict.overall_score }}</span>
+                  {% endif %}
+                </p>
+                {% for i in range(emotion_dict.labels|length) %}
+                {% set label = emotion_dict.labels[i] %}
+                {% set score = emotion_dict.scores[i] %}
                 <div class="flex justify-between items-center mt-2 text-gray-700 dark:text-gray-400">
+                  {% if label %}
                   <span class="capitalize">{{ label }}</span>
                   <span class="ml-4">{{ score }}</span>
-                </div>
-                {% else %}
-                <div class="flex justify-between items-center mt-2 text-gray-700 dark:text-gray-400">
+                  {% else %}
                   <span>-</span>
+                  {% endif %}
                 </div>
-                {% endif %}
                 {% endfor %}
               </div>
               {% endfor %}
             </div>
+
 
 
           </div>
