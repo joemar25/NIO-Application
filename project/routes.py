@@ -3,11 +3,14 @@ import io
 import urllib
 import tempfile
 import json
+import re
 
 from functools import lru_cache
+from werkzeug.utils import secure_filename
 from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from sqlalchemy.exc import IntegrityError
 
 from project import app, db, storage, mode
 from project.models import User, Score, Audio
@@ -19,6 +22,8 @@ from project.scripts.emotion import emotion_detector, emotion_label
 from project.scripts.grammar import grammar, grammar_score
 from project.scripts.fluency import fluency_detector
 from project.scripts.feedback import feedback
+
+ALLOWED_EXTENSIONS = {'txt'}
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -38,6 +43,36 @@ def load_user(user_id):
 @app.context_processor
 def inject_current_page():
     return dict(current_page=request.path)
+
+
+def read_file(file):
+    CHUNK_SIZE = 4096
+    text_chunks = []
+    while True:
+        chunk = file.read(CHUNK_SIZE)
+        if not chunk:
+            break
+        text_chunks.append(chunk)
+    text = b''.join(text_chunks).decode('utf-8')
+    if not is_safe_text(text):
+        return ""
+    return text
+
+
+def is_safe_text(text):
+    # Use regular expressions to check for potential malicious patterns
+    patterns = [
+        r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>',
+        r'<(?!\/?[\w\s"\':=\/\-])(?:[^>"\']|"(?:[^"]|\\")*"|\'(?:[^\']|\\\')*\')*>'
+    ]
+    for pattern in patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            return False
+    return True
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class Routes:
@@ -61,26 +96,33 @@ class Routes:
 
         username = entry_form.username.data
         text = entry_form.text_script.data
+        file = request.files.get('file_script')
 
-        if not bool(text):
-            file = entry_form.file_script.data
-            text = file.read().decode('utf-8')
-
-        if not Validation.is_valid_username(username):
-            flash(f'Username must be atleast 3 characters long.', category='danger')
+        if not bool(text) and file and allowed_file(file.filename):
+            text = read_file(file)
+        else:
+            flash(f'Please select a valid .txt file.', category='danger')
             return render_template("home.html", form=entry_form)
 
-        user = User(username=username, script=text)
-        db.session.add(user)
-        db.session.commit()
+        if not Validation.is_valid_username(username):
+            flash(f'Username must be at least 3 characters long.', category='danger')
+            return render_template("home.html", form=entry_form)
 
-        login_user(user)
-        return redirect(url_for("main"))
+        if not is_safe_text(text):
+            flash(f'Invalid input detected.', category='danger')
+            return render_template("home.html", form=entry_form)
 
-    def zip_lists(a, b):
-        return zip(a, b)
+        try:
+            user = User(username=username, script=text)
+            db.session.add(user)
+            db.session.commit()
 
-    app.jinja_env.filters['zip_lists'] = zip_lists
+            login_user(user)
+            return redirect(url_for("main"))
+
+        except IntegrityError:
+            flash(f'Username already exists.', category='danger')
+            return render_template("home.html", form=entry_form)
 
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
