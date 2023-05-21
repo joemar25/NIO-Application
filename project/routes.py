@@ -3,7 +3,6 @@ import io
 import urllib
 import tempfile
 import json
-
 from functools import lru_cache
 from werkzeug.utils import secure_filename
 from pydub import AudioSegment
@@ -75,6 +74,13 @@ def read_file(file):
     return None
 
 
+def zip_lists(a, b):
+    return zip(a, b)
+
+
+app.jinja_env.filters['zip_lists'] = zip_lists
+
+
 class Routes:
 
     @app.route("/")
@@ -128,11 +134,6 @@ class Routes:
         except IntegrityError:
             flash(f'Username already exists.', category='danger')
             return render_template("home.html", form=entry_form)
-
-    def zip_lists(a, b):
-        return zip(a, b)
-
-    app.jinja_env.filters['zip_lists'] = zip_lists
 
     @app.route("/main", methods=['GET', 'POST'])
     @login_required
