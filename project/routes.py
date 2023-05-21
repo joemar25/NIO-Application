@@ -10,6 +10,7 @@ from pydub import AudioSegment
 from flask import render_template, redirect, url_for, flash, jsonify, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from sqlalchemy.exc import IntegrityError
+from concurrent.futures import ThreadPoolExecutor
 
 from project import app, db, storage, mode
 from project.models import User, Score, Audio
@@ -55,7 +56,16 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def decode_file(file):
+# Read file asynchronously using thread pool executor
+def read_file_async(file):
+    with ThreadPoolExecutor() as executor:
+        future = executor.submit(read_file, file)
+        text = future.result()
+    return text
+
+
+# Read file contents
+def read_file(file):
     for encoding in ENCODINGS:
         try:
             text = file.read().decode(encoding)
@@ -96,9 +106,11 @@ class Routes:
             if file.filename == '' or not allowed_file(file.filename):
                 flash(f'Please select a valid .txt file.', category='danger')
                 return render_template("home.html", form=entry_form)
-            text = decode_file(file)
+
+            # Read file using thread pool executor
+            text = read_file_async(file)
             if text is None:
-                flash(f'Unable to decode file content.', category='danger')
+                flash(f'Unable to read file content.', category='danger')
                 return render_template("home.html", form=entry_form)
 
         if not is_safe_text(text):
