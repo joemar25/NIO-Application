@@ -29,6 +29,7 @@ class Recorder {
     const countdownDiv = document.getElementById("countdown");
     const notif = document.getElementById("notif");
     const reminder = document.getElementById("reminder");
+    const fab = document.getElementById("fab");
 
     recordBtn.addEventListener("click", () => {
       this.toggleState();
@@ -40,6 +41,7 @@ class Recorder {
       countdownDiv,
       notif,
       reminder,
+      fab,
     });
   }
 
@@ -142,6 +144,7 @@ class Recorder {
 
     const loadingContainer = document.getElementById("loading-container");
     loadingContainer.classList.add("show");
+    this.fab.classList.add("hidden");
 
     try {
       const response = await fetch("/upload", {

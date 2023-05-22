@@ -3,6 +3,9 @@ import io
 import urllib
 import tempfile
 import json
+import asyncio
+
+from sqlalchemy import join
 from functools import lru_cache
 from werkzeug.utils import secure_filename
 from pydub import AudioSegment
@@ -55,11 +58,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# Read file asynchronously using thread pool executor
-def read_file_async(file):
-    with ThreadPoolExecutor() as executor:
-        future = executor.submit(read_file, file)
-        text = future.result()
+# Read file asynchronously using asyncio
+async def read_file_async(file):
+    loop = asyncio.get_event_loop()
+    text = await loop.run_in_executor(None, read_file, file)
     return text
 
 
@@ -113,8 +115,8 @@ class Routes:
                 flash(f'Please select a valid .txt file.', category='danger')
                 return render_template("home.html", form=entry_form)
 
-            # Read file using thread pool executor
-            text = read_file_async(file)
+            # Read file asynchronously
+            text = asyncio.run(read_file_async(file))
             if text is None:
                 flash(f'Unable to read file content.', category='danger')
                 return render_template("home.html", form=entry_form)
