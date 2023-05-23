@@ -26,6 +26,12 @@ test*
 /project/node_modules
 /project/__pycache__
 /project/scripts/__pycache__/
+/project/static/js/dark_mode.js
+/project/static/js/fab_controller.js
+/project/static/js/gstarter.js
+/project/static/js/home_controller.js
+/project/static/js/index.js
+/project/static/js/toast.js
 /others
 *note.txt
 *.csv
