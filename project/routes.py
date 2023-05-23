@@ -1,3 +1,7 @@
+"""
+This module contains routes and helper functions for a Flask web application.
+"""
+
 import os
 import io
 import urllib

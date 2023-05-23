@@ -1,8 +1,10 @@
 """
-This code defines two classes `EntryForm` and `RecordForm` that inherit from `FlaskForm` and are used to create forms for user input. 
-The `EntryForm` class has three fields: `username`, `text_script`, and `file_script`, and a submit button `submit`. The `username` field is a string field that requires a value between 3 and 20 characters. The `text_script` field is a text area field that allows the user to enter a text script. The `file_script` field is a file field that allows the user to upload a script file.
-The `RecordForm` class has only one field: `record`, which is a submit button. This class is likely used to trigger a function to record the user's voice or screen.
-This code uses the `wtforms` library for form creation and `flask_wtf` for Flask integration. The `ValidationError` class is used to handle validation errors.
+This program defines two classes, EntryForm and RecordForm, which are used to create forms for user input in a Flask application.
+The EntryForm class represents a form with fields for username, text_script, and file_script, along with a submit button.
+The RecordForm class represents a form with a single field, record, which is likely used to trigger a function for recording user voice or screen.
+These classes inherit from FlaskForm, indicating their integration with the Flask web framework.
+The program utilizes the wtforms library for form creation and flask_wtf for Flask integration.
+The validation logic is implemented using custom validation methods and the ValidationError class from wtforms.validators.
 """
 
 from flask_wtf import FlaskForm
