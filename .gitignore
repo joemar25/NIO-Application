@@ -33,7 +33,7 @@ test*
 /project/static/js/index.js
 /project/static/js/toast.js
 /project/static/js/recording.js
-/project/static/css/style.js
+/project/static/css/style.css
 /others
 *note.txt
 *.csv
