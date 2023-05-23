@@ -6,35 +6,27 @@
 *.envv
 *.wav
 
-# Ignore all files starting with "temp"
-temp*
-test*
-# Ignore all files containing the string "temp"
-*temp*
-*test*
+# Ignore all files starting with "temp" or containing "temp" or "test"
+temp*|*temp*|test*
 *dump*
 *.deb
 *.TextGrid
+*.html
+*.txt
+*.css
+*.js
 
 # personal choice
-/__
-/.venv
-/dump
-/project/package-lock.json
-/project/database
-/project/temp_data
-/project/node_modules
-/project/__pycache__
-/project/scripts/__pycache__/
-/project/static/js/dark_mode.js
-/project/static/js/fab_controller.js
-/project/static/js/gstarter.js
-/project/static/js/home_controller.js
-/project/static/js/index.js
-/project/static/js/toast.js
-/project/static/js/recording.js
-/project/static/css/style.css
-/others
+__
+.venv
+dump
+project/package-lock.json
+project/database
+project/temp_data
+project/node_modules
+project/__pycache__/**
+project/static/js/*.js
+others
 *note.txt
 *.csv
 *KEYNOTE
@@ -54,7 +46,6 @@ harvard.wav
 /.pnp
 .pnp.js
 
-
 # testing
 /coverage
 
@@ -67,7 +58,6 @@ harvard.wav
 .env.development.local
 .env.test.local
 .env.production.local
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
