@@ -34,13 +34,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Set up secret key for secure sessions
+# Get Secret key
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # Initialize SQLAlchemy database
 db = SQLAlchemy(app)
 
-# Set up Firebase configuration
+# Firebase configuration
 config = {
     'apiKey': os.getenv('apiKey'),
     'authDomain': os.getenv('authDomain'),
@@ -55,7 +55,7 @@ config = {
 config = firebase.initialize_app(config)
 storage = config.storage()
 
-# Set mode
+# Mode of the application
 mode = "dev"
 
 # Import routes
