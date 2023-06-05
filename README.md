@@ -27,6 +27,14 @@ We welcome contributions to Nio! To contribute, follow these steps:
 2. Make your changes and test them.
 3. Submit a pull request.
 
+Creators are:
+Joemar Cardiño
+John Olan Gomez
+Arrlee John Balagtas
+Glenn Viola
+Jericho Bite
+
+
 ## Credits
 
 Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
