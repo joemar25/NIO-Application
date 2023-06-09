@@ -40,6 +40,7 @@ harvard.wav
 # testing areas
 /project/scripts/grammar/grammarTest.py
 /tests/*
+*test*
 
 # dependencies
 /node_modules
