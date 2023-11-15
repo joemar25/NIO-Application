@@ -45,3 +45,12 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 
 <https://www.write-out-loud.com/speech-rate.html>
 
+## Additional Command and TIPS
+
+- for Activating an Environment in Python for Powershell
+
+```py
+    Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+```
+
+- if ffmpeg is added to your pc but cannot read it, put it on ENV PATH on your pc
