@@ -54,3 +54,34 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 ```
 
 - if ffmpeg is added to your pc but cannot read it, put it on ENV PATH on your pc
+
+## Guide
+
+
+Installation Sequence:
+```git
+pip install --upgrade pip
+pip install --upgrade setuptools
+pip install --upgrade setuptools wheel
+python -m venv .venv
+
+.venv/Scripts/activate
+
+pip install firebase-rest-api
+pip install flask
+pip install flask_sqlalchemy
+pip install python-dotenv
+pip install pydub
+pip install Flask-Login
+pip install Flask-WTF
+pip install pytz
+pip install -U openai-whisper
+pip install aiohttp
+pip install librosa
+pip install keras
+pip install tensorflow==2.12.0
+pip install nltk
+pip install transformers==4.29.1
+pip install praat-parselmouth
+pip install scikit-learn==1.2.2
+```
