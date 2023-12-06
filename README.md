@@ -34,7 +34,6 @@ Arrlee John Balagtas
 Glenn Viola
 Jericho Bite
 
-
 ## Credits
 
 Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Jericho.
@@ -57,8 +56,8 @@ Nio was created by Bicol University Student's Joemar, Olan, Glenn, Arrlee and Je
 
 ## Guide
 
-
 Installation Sequence:
+
 ```git
 pip install --upgrade pip
 pip install --upgrade setuptools
@@ -85,3 +84,15 @@ pip install transformers==4.29.1
 pip install praat-parselmouth
 pip install scikit-learn==1.2.2
 ```
+
+Note if you have an error in FFMPEG, you may search for solutions online.
+
+For Linux:
+
+```cmd
+sudo apt update
+sudo apt install ffmpeg
+```
+
+Note for Windows you may read and download it from https://ffmpeg.org/download.html
+  
